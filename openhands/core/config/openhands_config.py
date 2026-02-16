@@ -122,7 +122,7 @@ class OpenHandsConfig(BaseModel):
         default=30,
         description='Timeout in seconds for waiting for websocket client connection during initialization',
     )
-    mcp_host: str = Field(default=f'localhost:{os.getenv("port", 3000)}')
+    mcp_host: str = Field(default=f'localhost:{os.getenv("PORT", os.getenv("port", 3000))}')
     mcp: MCPConfig = Field(default_factory=MCPConfig)
     kubernetes: KubernetesConfig = Field(default_factory=KubernetesConfig)
     git_user_name: str = Field(

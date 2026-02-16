@@ -14,5 +14,11 @@ services:
         value: "1"
       - key: WORKSPACE_BASE
         value: /tmp/workspace
+      - key: LLM_MODEL
+        value: openrouter/anthropic/claude-sonnet-4
+      - key: LLM_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: LLM_API_KEY
+        sync: false
       - key: OH_SECRET_KEY
         generateValue: true
