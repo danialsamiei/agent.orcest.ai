@@ -5,7 +5,7 @@
 ### 1. Build Command
 
 ```
-cd frontend && npm ci && npm run build && cd .. && uv sync
+apt-get update && apt-get install -y tmux && cd frontend && npm ci && npm run build && cd .. && uv sync
 ```
 
 ### 2. Start Command
@@ -44,8 +44,9 @@ uv run -- uvicorn openhands.server.listen:app --host 0.0.0.0 --port $PORT
 
 1. `RUNTIME=local` را حتماً تنظیم کنید (Render بدون Docker است)
 2. `WORKSPACE_BASE=/tmp/workspace` را اضافه کنید
-3. مطمئن شوید کلید API در Settings ذخیره شده است
-4. یک بار سرویس را Manual Deploy کنید
+3. در Build Command نصب `tmux` را اضافه کنید (LocalRuntime به آن نیاز دارد)
+4. مطمئن شوید کلید API در Settings ذخیره شده است
+5. یک بار سرویس را Manual Deploy کنید
 
 ---
 
