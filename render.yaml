@@ -4,7 +4,7 @@ services:
   - type: web
     name: agent
     runtime: python
-    buildCommand: cd frontend && npm ci && npm run build && cd .. && uv sync
+    buildCommand: cd frontend && npm ci && npm run build && (test -f build/index.html || (cp -r build/client/* build/ && rm -rf build/client)) && cd .. && uv sync
     startCommand: uv run -- uvicorn openhands.server.listen:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:

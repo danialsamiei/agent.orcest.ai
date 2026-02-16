@@ -88,18 +88,6 @@ async def authentication_error_handler(request: Request, exc: AuthenticationErro
     )
 
 
-@app.get("/")
-async def root():
-    """Root endpoint - redirects users to health and API docs."""
-    return {
-        "service": "OpenHands",
-        "status": "ok",
-        "docs": "/docs",
-        "health": "/health",
-        "version": get_version(),
-    }
-
-
 app.include_router(public_api_router)
 app.include_router(files_api_router)
 app.include_router(security_api_router)
