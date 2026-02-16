@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import Annotated
 
 from pydantic import (
@@ -53,7 +54,7 @@ class Settings(BaseModel):
     email_verified: bool | None = None
     git_user_name: str | None = None
     git_user_email: str | None = None
-    v1_enabled: bool = True
+    v1_enabled: bool = Field(default_factory=lambda: os.getenv('RUNTIME') != 'cli')
 
     model_config = ConfigDict(
         validate_assignment=True,

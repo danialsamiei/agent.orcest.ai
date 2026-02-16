@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 
 from openhands.core.config.openhands_config import OpenHandsConfig
@@ -22,9 +23,9 @@ class FileSettingsStore(SettingsStore):
             kwargs = json.loads(json_str)
             settings = Settings(**kwargs)
 
-            # Turn on V1 in OpenHands
-            # We can simplify / remove this as part of V0 removal
-            settings.v1_enabled = True
+            # Turn on V1 in OpenHands unless using CLI runtime
+            # ProcessSandboxService (V1) doesn't work with CLIRuntime
+            settings.v1_enabled = os.getenv('RUNTIME') != 'cli'
 
             return settings
         except FileNotFoundError:
