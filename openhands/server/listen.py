@@ -21,7 +21,7 @@ from openhands.server.middleware import (
 from openhands.server.static import SPAStaticFiles
 
 if os.getenv('SERVE_FRONTEND', 'true').lower() == 'true':
-    build_dir = './frontend/build'
+    build_dir = os.path.abspath('./frontend/build')
     if not os.path.isfile(os.path.join(build_dir, 'index.html')) and os.path.isdir(
         os.path.join(build_dir, 'client')
     ):
