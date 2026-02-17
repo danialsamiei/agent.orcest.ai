@@ -1,7 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using the following metadata."
-title: "OpenHands: An Open Platform for AI Software Developers as Generalist Agents"
+title: "Maestrist: Masterful Agent Ecosystem for Strategic Task Resolution and Innovative Swarm Technology"
 authors:
+  - family-names: Samiei
+    given-names: Danial
   - family-names: Wang
     given-names: Xingyao
   - family-names: Li
@@ -52,4 +54,4 @@ authors:
     given-names: Graham
 year: 2024
 doi: "10.48550/arXiv.2407.16741"
-url: "https://arxiv.org/abs/2407.16741"
+url: "https://github.com/danialsamiei/agent.orcest.ai"

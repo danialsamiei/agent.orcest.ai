@@ -49,12 +49,12 @@ jobs:
           # Create test results directory
           mkdir -p test-results
 
-          # Create downloads directory for OpenHands (use a directory in the home folder)
+          # Create downloads directory for Maestrist (use a directory in the home folder)
           mkdir -p $HOME/downloads
           sudo chown -R $USER:$USER $HOME/downloads
           sudo chmod -R 755 $HOME/downloads
 
-      - name: Build OpenHands
+      - name: Build Maestrist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_MODEL: ${{ secrets.LLM_MODEL || 'gpt-4o' }}
@@ -73,7 +73,7 @@ jobs:
           echo "Fixing poetry.lock file if needed..."
           poetry lock
 
-          # Build OpenHands using make build
+          # Build Maestrist using make build
           echo "Running make build..."
           make build
 
@@ -96,7 +96,7 @@ jobs:
           # Docker runtime will handle workspace directory creation
 
           # Start the application using make run with custom parameters and reduced logging
-          echo "Starting OpenHands using make run..."
+          echo "Starting Maestrist using make run..."
           # Set environment variables to reduce logging verbosity
           export PYTHONUNBUFFERED=1
           export LOG_LEVEL=WARNING
@@ -106,19 +106,19 @@ jobs:
 
           # Store the PID of the make run process
           MAKE_PID=$!
-          echo "OpenHands started with PID: $MAKE_PID"
+          echo "Maestrist started with PID: $MAKE_PID"
 
           # Wait for the application to start
-          echo "Waiting for OpenHands to start..."
+          echo "Waiting for Maestrist to start..."
           max_attempts=15
           attempt=1
 
           while [ $attempt -le $max_attempts ]; do
-            echo "Checking if OpenHands is running (attempt $attempt of $max_attempts)..."
+            echo "Checking if Maestrist is running (attempt $attempt of $max_attempts)..."
 
             # Check if the process is still running
             if ! ps -p $MAKE_PID > /dev/null; then
-              echo "ERROR: OpenHands process has terminated unexpectedly"
+              echo "ERROR: Maestrist process has terminated unexpectedly"
               echo "Last 50 lines of the log:"
               tail -n 50 /tmp/openhands-e2e-test.log
               exit 1
@@ -128,7 +128,7 @@ jobs:
             if nc -z localhost 12000; then
               # Verify we can get HTML content
               if curl -s http://localhost:12000 | grep -q "<html"; then
-                echo "SUCCESS: OpenHands is running and serving HTML content on port 12000"
+                echo "SUCCESS: Maestrist is running and serving HTML content on port 12000"
                 break
               else
                 echo "Port 12000 is open but not serving HTML content yet"
@@ -148,7 +148,7 @@ jobs:
 
             # Exit if we've reached the maximum number of attempts
             if [ $attempt -gt $max_attempts ]; then
-              echo "ERROR: OpenHands failed to start after $max_attempts attempts"
+              echo "ERROR: Maestrist failed to start after $max_attempts attempts"
               echo "Last 50 lines of the log:"
               tail -n 50 /tmp/openhands-e2e-test.log
               exit 1
@@ -157,14 +157,14 @@ jobs:
 
           # Final verification that the app is running
           if ! nc -z localhost 12000 || ! curl -s http://localhost:12000 | grep -q "<html"; then
-            echo "ERROR: OpenHands is not running properly on port 12000"
+            echo "ERROR: Maestrist is not running properly on port 12000"
             echo "Last 50 lines of the log:"
             tail -n 50 /tmp/openhands-e2e-test.log
             exit 1
           fi
 
           # Print success message
-          echo "OpenHands is running successfully on port 12000"
+          echo "Maestrist is running successfully on port 12000"
 
       - name: Run end-to-end tests
         env:
@@ -175,7 +175,7 @@ jobs:
         run: |
           # Check if the application is running
           if ! nc -z localhost 12000; then
-            echo "ERROR: OpenHands is not running on port 12000"
+            echo "ERROR: Maestrist is not running on port 12000"
             echo "Last 50 lines of the log:"
             tail -n 50 /tmp/openhands-e2e-test.log
             exit 1
@@ -198,7 +198,7 @@ jobs:
           path: tests/e2e/test-results/
           retention-days: 30
 
-      - name: Upload OpenHands logs
+      - name: Upload Maestrist logs
         if: always()
         uses: actions/upload-artifact@v6
         with:
@@ -217,12 +217,12 @@ jobs:
       - name: Cleanup
         if: always()
         run: |
-          # Stop OpenHands processes
-          echo "Stopping OpenHands processes..."
+          # Stop Maestrist processes
+          echo "Stopping Maestrist processes..."
           pkill -f "python -m openhands.server" || true
           pkill -f "npm run dev" || true
           pkill -f "make run" || true
 
           # Print process status for debugging
-          echo "Checking if any OpenHands processes are still running:"
+          echo "Checking if any Maestrist processes are still running:"
           ps aux | grep -E "openhands|npm run dev" || true

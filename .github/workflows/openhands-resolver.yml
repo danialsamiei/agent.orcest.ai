@@ -1,4 +1,4 @@
-name: Auto-Fix Tagged Issue with OpenHands
+name: Auto-Fix Tagged Issue with Maestrist
 
 on:
   workflow_call:
@@ -201,10 +201,10 @@ jobs:
               issue_number: ${{ env.ISSUE_NUMBER }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `[OpenHands](https://github.com/OpenHands/OpenHands) started fixing the ${issueType}! You can monitor the progress [here](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}).`
+              body: `[Maestrist](https://github.com/danialsamiei/agent.orcest.ai) started fixing the ${issueType}! You can monitor the progress [here](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}).`
             });
 
-      - name: Install OpenHands
+      - name: Install Maestrist
         id: install_openhands
         uses: actions/github-script@v7
         env:
@@ -231,7 +231,7 @@ jobs:
 
             // Perform package installation
             if (isExperimentalLabel || isIssueCommentExperimental || isReviewCommentExperimental) {
-              console.log("Installing experimental OpenHands...");
+              console.log("Installing experimental Maestrist...");
 
               await exec.exec("pip install git+https://github.com/openhands/openhands.git");
             } else {

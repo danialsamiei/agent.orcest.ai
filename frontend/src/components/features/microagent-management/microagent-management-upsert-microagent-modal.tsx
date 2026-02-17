@@ -110,7 +110,7 @@ export function MicroagentManagementUpsertMicroagentModal({
             <div className="flex items-center gap-2">
               <h2 className="text-white text-xl font-medium">{modalTitle}</h2>
               <a
-                href="https://docs.all-hands.dev/usage/prompting/microagents-overview#microagents-overview"
+                href="https://docs.orcest.ai/maestrist/usage/prompting/microagents-overview#microagents-overview"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -156,7 +156,7 @@ export function MicroagentManagementUpsertMicroagentModal({
             <div className="flex items-center gap-2">
               {t(I18nKey.MICROAGENT_MANAGEMENT$ADD_TRIGGERS)}
               <a
-                href="https://docs.all-hands.dev/usage/prompting/microagents-keyword"
+                href="https://docs.orcest.ai/maestrist/usage/prompting/microagents-keyword"
                 target="_blank"
                 rel="noopener noreferrer"
               >

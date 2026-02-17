@@ -1,5 +1,5 @@
 SHELL=/usr/bin/env bash
-# Makefile for OpenHands project
+# Makefile for Maestrist project - Masterful Agent Ecosystem for Strategic Task Resolution and Innovative Swarm Technology
 
 # Variables
 BACKEND_HOST ?= "127.0.0.1"
@@ -12,7 +12,7 @@ DEFAULT_MODEL = "gpt-4o"
 CONFIG_FILE = config.toml
 PRE_COMMIT_CONFIG_PATH = "./dev_config/python/.pre-commit-config.yaml"
 PYTHON_VERSION = 3.12
-KIND_CLUSTER_NAME = "local-hands"
+KIND_CLUSTER_NAME = "maestrist"
 
 # ANSI color codes
 GREEN=$(shell tput -Txterm setaf 2)

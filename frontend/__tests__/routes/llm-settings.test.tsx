@@ -71,7 +71,7 @@ describe("Content", () => {
       const apiKey = screen.getByTestId("llm-api-key-input");
 
       await waitFor(() => {
-        expect(provider).toHaveValue("OpenHands");
+        expect(provider).toHaveValue("Maestrist");
         expect(model).toHaveValue("claude-opus-4-5-20251101");
 
         expect(apiKey).toHaveValue("");
@@ -350,7 +350,7 @@ describe("Content", () => {
 
       // Verify OpenHands is selected by default
       await waitFor(() => {
-        expect(provider).toHaveValue("OpenHands");
+        expect(provider).toHaveValue("Maestrist");
       });
 
       // API key input should not be visible when OpenHands provider is selected in SaaS mode
@@ -408,7 +408,7 @@ describe("Content", () => {
 
       // Verify OpenHands is selected by default
       await waitFor(() => {
-        expect(provider).toHaveValue("OpenHands");
+        expect(provider).toHaveValue("Maestrist");
       });
 
       // API key input should be visible when OSS mode is enabled (even with OpenHands provider)
@@ -480,11 +480,11 @@ describe("Content", () => {
 
       // Switch to OpenHands provider
       await userEvent.click(provider);
-      const openHandsOption = screen.getByText("OpenHands");
+      const openHandsOption = screen.getByText("Maestrist");
       await userEvent.click(openHandsOption);
 
       await waitFor(() => {
-        expect(provider).toHaveValue("OpenHands");
+        expect(provider).toHaveValue("Maestrist");
       });
 
       // API key input should now be hidden
@@ -511,7 +511,7 @@ describe("Content", () => {
 
       // Verify OpenHands is selected by default
       await waitFor(() => {
-        expect(provider).toHaveValue("OpenHands");
+        expect(provider).toHaveValue("Maestrist");
       });
 
       // API key input should be hidden with OpenHands
@@ -889,7 +889,7 @@ describe("Form submission", () => {
 
     // select provider
     await userEvent.click(provider);
-    const providerOption = screen.getByText("OpenHands");
+    const providerOption = screen.getByText("Maestrist");
     await userEvent.click(providerOption);
 
     // select model
