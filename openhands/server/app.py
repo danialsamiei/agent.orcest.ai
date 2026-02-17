@@ -72,8 +72,8 @@ if app_lifespan_:
 
 
 app = FastAPI(
-    title='OpenHands',
-    description='OpenHands: Code Less, Make More',
+    title='Maestrist',
+    description='Maestrist: Ignite Your AI Agent Symphony',
     version=get_version(),
     lifespan=combine_lifespans(*lifespans),
     routes=[Mount(path='/mcp', app=mcp_app)],
