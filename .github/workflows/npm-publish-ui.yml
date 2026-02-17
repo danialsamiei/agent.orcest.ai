@@ -1,4 +1,4 @@
-name: Publish OpenHands UI Package
+name: Publish Maestrist UI Package
 
 # * Always run on "main"
 # * Run on PRs that have changes in the "openhands-ui" folder or this workflow

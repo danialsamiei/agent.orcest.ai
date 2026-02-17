@@ -1,86 +1,146 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/OpenHands/docs/main/openhands/static/img/logo.png" alt="Logo" width="200">
-  <h1 align="center" style="border-bottom: none">OpenHands: AI-Driven Development</h1>
+  <h1 align="center" style="border-bottom: none">🎼 Maestrist</h1>
+  <h3 align="center"><em>Masterful Agent Ecosystem for Strategic Task Resolution and Innovative Swarm Technology</em></h3>
+  <p align="center"><strong>Ignite Your AI Agent Symphony.</strong></p>
 </div>
 
-
 <div align="center">
-  <a href="https://github.com/OpenHands/OpenHands/blob/main/LICENSE"><img src="https://img.shields.io/badge/LICENSE-MIT-20B2AA?style=for-the-badge" alt="MIT License"></a>
-  <a href="https://docs.google.com/spreadsheets/d/1wOUdFCMyY6Nt0AIqF705KN4JKOWgeI4wUGUP60krXXs/edit?gid=811504672#gid=811504672"><img src="https://img.shields.io/badge/SWEBench-77.6-00cc00?logoColor=FFE165&style=for-the-badge" alt="Benchmark Score"></a>
+  <a href="https://github.com/danialsamiei/agent.orcest.ai/blob/main/LICENSE"><img src="https://img.shields.io/badge/LICENSE-MIT-7C3AED?style=for-the-badge" alt="MIT License"></a>
+  <a href="https://agent.orcest.ai"><img src="https://img.shields.io/badge/Live_Demo-agent.orcest.ai-3B82F6?style=for-the-badge" alt="Live Demo"></a>
   <br/>
-  <a href="https://docs.openhands.dev/sdk"><img src="https://img.shields.io/badge/Documentation-000?logo=googledocs&logoColor=FFE165&style=for-the-badge" alt="Check out the documentation"></a>
-  <a href="https://arxiv.org/abs/2511.03690"><img src="https://img.shields.io/badge/Paper-000?logoColor=FFE165&logo=arxiv&style=for-the-badge" alt="Tech Report"></a>
-
-
-  <!-- Keep these links. Translations will automatically update with the README. -->
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=de">Deutsch</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=es">Español</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=fr">français</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=ja">日本語</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=ko">한국어</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=pt">Português</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=ru">Русский</a> |
-  <a href="https://www.readme-i18n.com/OpenHands/OpenHands?lang=zh">中文</a>
-
+  <a href="https://orcest.ai"><img src="https://img.shields.io/badge/Powered_by-Orcest.ai-7C3AED?style=for-the-badge" alt="Orcest.ai"></a>
 </div>
 
 <hr>
 
-🙌 Welcome to OpenHands, a [community](COMMUNITY.md) focused on AI-driven development. We’d love for you to [join us on Slack](https://dub.sh/openhands).
+🎼 **Maestrist** is the ultimate self-hosted, multi-agent AI coding platform — the advanced agent companion to [Orcest.ai](https://orcest.ai). Built to surpass Devin.ai in features, scalability, and global competition.
 
-There are a few ways to work with OpenHands:
+> **Fork Heritage**: Maestrist is built upon the excellent [OpenHands](https://github.com/All-Hands-AI/OpenHands) framework (MIT licensed), extended with Orcest ecosystem integration, orchestral-themed UX, and multi-agent swarm capabilities.
 
-### OpenHands Software Agent SDK
-The SDK is a composable Python library that contains all of our agentic tech. It's the engine that powers everything else below.
+---
 
-Define agents in code, then run them locally, or scale to 1000s of agents in the cloud.
+## ✨ What is Maestrist?
 
-[Check out the docs](https://docs.openhands.dev/sdk) or [view the source](https://github.com/OpenHands/software-agent-sdk/)
+Maestrist is an AI-driven development platform that orchestrates intelligent agents to build, maintain, and deploy software. Think of it as a conductor leading an orchestra of AI agents — each specialized, all synchronized.
 
-### OpenHands CLI
-The CLI is the easiest way to start using OpenHands. The experience will be familiar to anyone who has worked
-with e.g. Claude Code or Codex. You can power it with Claude, GPT, or any other LLM.
+### Key Features
 
-[Check out the docs](https://docs.openhands.dev/openhands/usage/run-openhands/cli-mode) or [view the source](https://github.com/OpenHands/OpenHands-CLI)
+- 🤖 **AI Software Agent SDK** — Composable Python library for defining and running agents
+- 🎯 **Multi-Agent Orchestration** — Swarm mode for parallel task execution
+- 🖥️ **Local GUI** — React-based dashboard with real-time agent interaction
+- ⌨️ **CLI Mode** — Terminal-first experience powered by any LLM
+- 🔌 **Orcest.ai Integration** — Connect to Orcest workflow orchestration and model routing via [dargah.ai](https://dargah.ai)
+- 🐳 **Self-Hosted Excellence** — Docker/Kubernetes ready, one-click deploy
+- 🌐 **Global i18n** — 14+ language support out of the box
+- 🔐 **Enterprise Ready** — Auth, RBAC, multi-tenancy, Stripe billing
 
-### OpenHands Local GUI
-Use the Local GUI for running agents on your laptop. It comes with a REST API and a single-page React application.
-The experience will be familiar to anyone who has used Devin or Jules.
+---
 
-[Check out the docs](https://docs.openhands.dev/openhands/usage/run-openhands/local-setup) or view the source in this repo.
+## 🚀 Quick Start
 
-### OpenHands Cloud
-This is a deployment of OpenHands GUI, running on hosted infrastructure.
+### Using Docker (Recommended)
 
-You can try it with a free $10 credit by [signing in with your GitHub or GitLab account](https://app.all-hands.dev).
+```bash
+docker compose up maestrist
+```
 
-OpenHands Cloud comes with source-available features and integrations:
-- Integrations with Slack, Jira, and Linear
-- Multi-user support
-- RBAC and permissions
-- Collaboration features (e.g., conversation sharing)
+### Using Render (Cloud Deploy)
 
-### OpenHands Enterprise
-Large enterprises can work with us to self-host OpenHands Cloud in their own VPC, via Kubernetes.
-OpenHands Enterprise can also work with the CLI and SDK above.
+Deploy directly to [Render](https://render.com) with our `render.yaml`:
 
-OpenHands Enterprise is source-available--you can see all the source code here in the enterprise/ directory,
-but you'll need to purchase a license if you want to run it for more than one month.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/danialsamiei/agent.orcest.ai)
 
-Enterprise contracts also come with extended support and access to our research team.
+### Local Development
 
-Learn more at [openhands.dev/enterprise](https://openhands.dev/enterprise)
+```bash
+# Clone the repo
+git clone https://github.com/danialsamiei/agent.orcest.ai.git
+cd agent.orcest.ai
 
-### Everything Else
+# Build everything (backend + frontend)
+make build
 
-Check out our [Product Roadmap](https://github.com/orgs/openhands/projects/1), and feel free to
-[open up an issue](https://github.com/OpenHands/OpenHands/issues) if there's something you'd like to see!
+# Run the application
+make run
+```
 
-You might also be interested in our [evaluation infrastructure](https://github.com/OpenHands/benchmarks), our [chrome extension](https://github.com/OpenHands/openhands-chrome-extension/), or our [Theory-of-Mind module](https://github.com/OpenHands/ToM-SWE).
+### CLI Mode
 
-All our work is available under the MIT license, except for the `enterprise/` directory in this repository (see the [enterprise license](enterprise/LICENSE) for details).
-The core `openhands` and `agent-server` Docker images are fully MIT-licensed as well.
+```bash
+# Install and run via CLI
+pip install maestrist-ai
+maestrist
+```
 
-If you need help with anything, or just want to chat, [come find us on Slack](https://dub.sh/openhands).
+---
+
+## 🏗️ Architecture
+
+```
+maestrist/
+├── openhands/              # Core agent framework (Python)
+│   ├── agenthub/           # Agent implementations (CodeAct, Browsing, etc.)
+│   ├── app_server/         # V1 Application Server (FastAPI)
+│   ├── server/             # Legacy V0 Server
+│   ├── runtime/            # Runtime environments (Docker, CLI, K8s)
+│   ├── llm/                # LLM integrations (OpenAI, Anthropic, etc.)
+│   ├── events/             # Event-driven architecture
+│   └── storage/            # Data persistence layer
+├── frontend/               # React dashboard (TypeScript)
+├── enterprise/             # Enterprise features (Auth, Billing, Integrations)
+├── skills/                 # Agent skill definitions
+├── containers/             # Docker configurations
+└── third_party/            # Third-party runtime integrations
+```
+
+---
+
+## 🎨 Orcest Ecosystem
+
+Maestrist is designed as a core component of the **Orcest.ai** ecosystem:
+
+| Component | Description |
+|-----------|-------------|
+| [**Orcest.ai**](https://orcest.ai) | Workflow orchestration platform |
+| [**Dargah.ai**](https://dargah.ai) | Multi-model AI gateway & routing |
+| **Maestrist** | AI agent coding platform (this repo) |
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📜 License
+
+Maestrist is available under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+The `enterprise/` directory contains additional functionality under the [Polyform Free Trial License](enterprise/LICENSE).
+
+---
+
+## 🙏 Acknowledgments
+
+- Built upon [OpenHands](https://github.com/All-Hands-AI/OpenHands) by the All Hands AI team
+- Powered by the [Orcest.ai](https://orcest.ai) ecosystem
+- Inspired by the vision of AI agents conducting a symphony of code
+
+---
+
+<div align="center">
+  <strong>🎼 Maestrist: Ignite Your AI Agent Symphony.</strong>
+  <br/>
+  <em>Masterful Agent Ecosystem for Strategic Task Resolution and Innovative Swarm Technology</em>
+  <br/><br/>
+  <a href="https://agent.orcest.ai">Live Demo</a> · <a href="https://orcest.ai">Orcest.ai</a> · <a href="https://github.com/danialsamiei/agent.orcest.ai/issues">Report Bug</a>
+</div>

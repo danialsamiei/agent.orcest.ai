@@ -1,4 +1,4 @@
-# Workflow that builds, tests and then pushes the OpenHands and runtime docker images to the ghcr.io repository
+# Workflow that builds, tests and then pushes the Maestrist and runtime docker images to the ghcr.io repository
 name: Docker
 
 # Always run on "main"
@@ -49,7 +49,7 @@ jobs:
           fi
           echo "base_image=$json" >> "$GITHUB_OUTPUT"
 
-  # Builds the OpenHands Docker images
+  # Builds the Maestrist Docker images
   ghcr_build_app:
     name: Build App Image
     runs-on: blacksmith-4vcpu-ubuntu-2204
@@ -252,7 +252,7 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.ALLHANDS_BOT_GITHUB_PAT }}" \
             -H "Accept: application/vnd.github+json" \
             -d "{\"ref\": \"main\", \"inputs\": {\"openhandsPrNumber\": \"${{ github.event.pull_request.number }}\", \"deployEnvironment\": \"feature\", \"enterpriseImageTag\": \"pr-${{ github.event.pull_request.number }}\" }}" \
-            https://api.github.com/repos/OpenHands/deploy/actions/workflows/deploy.yaml/dispatches
+            https://api.github.com/repos/Maestrist/deploy/actions/workflows/deploy.yaml/dispatches
 
   # "All Runtime Tests Passed" is a required job for PRs to merge
   # We can remove this once the config changes

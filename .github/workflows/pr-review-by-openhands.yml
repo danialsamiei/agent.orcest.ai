@@ -1,5 +1,5 @@
 ---
-name: PR Review by OpenHands
+name: PR Review by Maestrist
 
 on:
     # Use pull_request_target to allow fork PRs to access secrets when triggered by maintainers
@@ -39,7 +39,7 @@ jobs:
         runs-on: blacksmith-4vcpu-ubuntu-2404
         env:
             LLM_MODEL: litellm_proxy/claude-sonnet-4-5-20250929
-            LLM_BASE_URL: https://llm-proxy.app.all-hands.dev
+            LLM_BASE_URL: https://llm-proxy.app.orcest.ai
             # PR context will be automatically provided by the agent script
             PR_NUMBER: ${{ github.event.pull_request.number }}
             PR_TITLE: ${{ github.event.pull_request.title }}
@@ -51,7 +51,7 @@ jobs:
             - name: Checkout software-agent-sdk repository
               uses: actions/checkout@v5
               with:
-                  repository: OpenHands/software-agent-sdk
+                  repository: Maestrist/software-agent-sdk
                   path: software-agent-sdk
 
             - name: Checkout PR repository
@@ -82,9 +82,9 @@ jobs:
                   sudo apt-get update
                   sudo apt-get install -y gh
 
-            - name: Install OpenHands dependencies
+            - name: Install Maestrist dependencies
               run: |
-                  # Install OpenHands SDK and tools from local checkout
+                  # Install Maestrist SDK and tools from local checkout
                   uv pip install --system ./software-agent-sdk/openhands-sdk ./software-agent-sdk/openhands-tools
 
             - name: Check required configuration
