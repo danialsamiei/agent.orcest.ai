@@ -1,0 +1,32 @@
+<svg width="47" height="30" viewBox="0 0 148 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Maestrist: AI Baton + Code Nodes - White/Light variant -->
+  <defs>
+    <linearGradient id="maestristGradW" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A78BFA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60A5FA;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="batonGradW" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C4B5FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A78BFA;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Conductor's Baton (diagonal line) -->
+  <line x1="20" y1="80" x2="128" y2="8" stroke="url(#batonGradW)" stroke-width="5" stroke-linecap="round"/>
+  <!-- Baton tip glow -->
+  <circle cx="128" cy="8" r="4" fill="#C4B5FD" opacity="0.9"/>
+  <circle cx="128" cy="8" r="7" fill="#C4B5FD" opacity="0.3"/>
+  <!-- Code Node 1 (left) -->
+  <circle cx="35" cy="38" r="12" fill="url(#maestristGradW)" opacity="0.95"/>
+  <text x="35" y="43" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="monospace">&lt;/&gt;</text>
+  <!-- Code Node 2 (center) -->
+  <circle cx="74" cy="55" r="14" fill="url(#maestristGradW)" opacity="0.95"/>
+  <text x="74" y="60" text-anchor="middle" fill="white" font-size="15" font-weight="bold" font-family="monospace">M</text>
+  <!-- Code Node 3 (right) -->
+  <circle cx="110" cy="42" r="11" fill="url(#maestristGradW)" opacity="0.95"/>
+  <text x="110" y="47" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="monospace">AI</text>
+  <!-- Connection lines between nodes -->
+  <line x1="47" y1="42" x2="60" y2="50" stroke="#A78BFA" stroke-width="2" opacity="0.6"/>
+  <line x1="88" y1="52" x2="99" y2="45" stroke="#A78BFA" stroke-width="2" opacity="0.6"/>
+  <!-- Orchestral wave accents -->
+  <path d="M15 90 Q 40 75, 74 82 Q 108 89, 133 78" stroke="url(#maestristGradW)" stroke-width="2.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+</svg>
