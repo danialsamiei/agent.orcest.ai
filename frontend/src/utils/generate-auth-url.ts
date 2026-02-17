@@ -21,9 +21,9 @@ export const generateAuthUrl = (
     finalAuthUrl = `https://${authUrl.replace(/^https?:\/\//, "")}`;
   } else {
     finalAuthUrl = requestUrl.hostname
-      .replace(/(^|\.)staging\.all-hands\.dev$/, "$1auth.staging.all-hands.dev")
-      .replace(/(^|\.)app\.all-hands\.dev$/, "auth.app.all-hands.dev")
-      .replace(/(^|\.)localhost$/, "auth.staging.all-hands.dev");
+      .replace(/(^|\.)staging\.orcest\.ai$/, "$1auth.staging.orcest.ai")
+      .replace(/(^|\.)agent\.orcest\.ai$/, "auth.agent.orcest.ai")
+      .replace(/(^|\.)localhost$/, "auth.staging.orcest.ai");
 
     // If no replacements matched, prepend "auth." (excluding localhost)
     if (
@@ -40,5 +40,5 @@ export const generateAuthUrl = (
   const separator = requestUrl.search ? "&" : "?";
   const cleanHref = requestUrl.href.replace(/\/$/, "");
   const state = `${cleanHref}${separator}login_method=${identityProvider}`;
-  return `${finalAuthUrl}/realms/allhands/protocol/openid-connect/auth?client_id=allhands&kc_idp_hint=${identityProvider}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&state=${encodeURIComponent(state)}`;
+  return `${finalAuthUrl}/realms/maestrist/protocol/openid-connect/auth?client_id=maestrist&kc_idp_hint=${identityProvider}&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&state=${encodeURIComponent(state)}`;
 };
