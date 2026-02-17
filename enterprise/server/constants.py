@@ -2,16 +2,16 @@ import os
 import re
 
 # Get the host from environment variable
-HOST = os.getenv('WEB_HOST', 'app.all-hands.dev').strip()
+HOST = os.getenv('WEB_HOST', 'agent.orcest.ai').strip()
 
 # Check if this is a feature environment
-# Feature environments have a host format like {some-text}.staging.all-hands.dev
-# Just staging.all-hands.dev doesn't count as a feature environment
+# Feature environments have a host format like {some-text}.staging.orcest.ai
+# Just staging.orcest.ai doesn't count as a feature environment
 IS_STAGING_ENV = bool(
-    re.match(r'^.+\.staging\.all-hands\.dev$', HOST) or HOST == 'staging.all-hands.dev'
+    re.match(r'^.+\.staging\.orcest\.ai$', HOST) or HOST == 'staging.orcest.ai'
 )  # Includes the staging deployment + feature deployments
 IS_FEATURE_ENV = (
-    IS_STAGING_ENV and HOST != 'staging.all-hands.dev'
+    IS_STAGING_ENV and HOST != 'staging.orcest.ai'
 )  # Does not include the staging deployment
 IS_LOCAL_ENV = bool(HOST == 'localhost')
 
