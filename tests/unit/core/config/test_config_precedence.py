@@ -5,7 +5,7 @@ import pytest
 from openhands.core.config import (
     OH_DEFAULT_AGENT,
     OH_MAX_ITERATIONS,
-    OpenHandsConfig,
+    MaestristConfig,
     get_llm_config_arg,
     setup_config_from_args,
 )
@@ -13,8 +13,8 @@ from openhands.core.config import (
 
 @pytest.fixture
 def default_config():
-    """Fixture to provide a default OpenHandsConfig instance."""
-    yield OpenHandsConfig()
+    """Fixture to provide a default MaestristConfig instance."""
+    yield MaestristConfig()
 
 
 @pytest.fixture
@@ -165,7 +165,7 @@ def test_default_values_applied_when_none():
     # Load config
     with patch(
         'openhands.core.config.utils.load_openhands_config',
-        return_value=OpenHandsConfig(),
+        return_value=MaestristConfig(),
     ):
         config = setup_config_from_args(mock_args)
 
@@ -186,7 +186,7 @@ def test_cli_args_override_defaults():
     # Load config
     with patch(
         'openhands.core.config.utils.load_openhands_config',
-        return_value=OpenHandsConfig(),
+        return_value=MaestristConfig(),
     ):
         config = setup_config_from_args(mock_args)
 
@@ -205,7 +205,7 @@ def test_cli_args_none_uses_config_toml_values():
     mock_args.max_iterations = None
 
     # Create a config with specific values from config.toml
-    config_from_toml = OpenHandsConfig()
+    config_from_toml = MaestristConfig()
     config_from_toml.default_agent = 'ConfigTomlAgent'
     config_from_toml.max_iterations = 100
 

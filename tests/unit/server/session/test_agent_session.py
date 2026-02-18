@@ -5,7 +5,7 @@ import pytest
 from openhands.controller.agent import Agent
 from openhands.controller.agent_controller import AgentController
 from openhands.controller.state.state import State
-from openhands.core.config import LLMConfig, OpenHandsConfig
+from openhands.core.config import LLMConfig, MaestristConfig
 from openhands.core.config.agent_config import AgentConfig
 from openhands.events import EventStream, EventStreamSubscriber
 from openhands.integrations.service_types import ProviderType
@@ -25,7 +25,7 @@ from openhands.storage.memory import InMemoryFileStore
 @pytest.fixture
 def mock_llm_registry():
     """Create a mock LLM registry that properly simulates LLM registration"""
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     registry = LLMRegistry(config=config, agent_cls=None, retry_listener=None)
     return registry
 
@@ -139,7 +139,7 @@ async def test_agent_session_start_with_no_state(
     ):
         await session.start(
             runtime_name='test-runtime',
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             agent=mock_agent,
             max_iterations=10,
         )
@@ -240,7 +240,7 @@ async def test_agent_session_start_with_restored_state(
     ):
         await session.start(
             runtime_name='test-runtime',
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             agent=mock_agent,
             max_iterations=10,
         )
@@ -318,7 +318,7 @@ async def test_metrics_centralization_via_conversation_stats(
     ):
         await session.start(
             runtime_name='test-runtime',
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             agent=mock_agent,
             max_iterations=10,
         )
@@ -413,7 +413,7 @@ async def test_budget_control_flag_syncs_with_metrics(
         # Start the session with a budget limit
         await session.start(
             runtime_name='test-runtime',
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             agent=mock_agent,
             max_iterations=10,
             max_budget_per_task=1.0,  # Set a budget limit

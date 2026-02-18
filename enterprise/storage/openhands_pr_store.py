@@ -76,16 +76,16 @@ class OpenhandsPRStore:
         num_openhands_general_comments: int,
     ) -> bool:
         """
-        Update OpenHands statistics for a PR with row-level locking and timestamp validation.
+        Update Maestrist statistics for a PR with row-level locking and timestamp validation.
 
         Args:
             repo_id: Repository identifier
             pr_number: Pull request number
             original_updated_at: Original updated_at timestamp to check for concurrent modifications
-            openhands_helped_author: Whether OpenHands helped the author (1+ commits)
-            num_openhands_commits: Number of commits by OpenHands
-            num_openhands_review_comments: Number of review comments by OpenHands
-            num_openhands_general_comments: Number of PR comments (not review comments) by OpenHands
+            openhands_helped_author: Whether Maestrist helped the author (1+ commits)
+            num_openhands_commits: Number of commits by Maestrist
+            num_openhands_review_comments: Number of review comments by Maestrist
+            num_openhands_general_comments: Number of PR comments (not review comments) by Maestrist
 
         Returns:
             True if PR was found and updated, False if not found or timestamp changed
@@ -112,7 +112,7 @@ class OpenhandsPRStore:
                 session.rollback()
                 return False
 
-            # Update the OpenHands statistics
+            # Update the Maestrist statistics
             pr.openhands_helped_author = openhands_helped_author
             pr.num_openhands_commits = num_openhands_commits
             pr.num_openhands_review_comments = num_openhands_review_comments

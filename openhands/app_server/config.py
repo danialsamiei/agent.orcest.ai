@@ -1,4 +1,4 @@
-"""Configuration for the OpenHands App Server."""
+"""Configuration for the Maestrist App Server."""
 
 import os
 from pathlib import Path
@@ -54,7 +54,7 @@ from openhands.app_server.web_client.default_web_client_config_injector import (
 from openhands.app_server.web_client.web_client_config_injector import (
     WebClientConfigInjector,
 )
-from openhands.sdk.utils.models import OpenHandsModel
+from openhands.sdk.utils.models import MaestristModel
 from openhands.server.types import AppMode
 
 
@@ -83,27 +83,27 @@ def get_default_web_url() -> str | None:
 
 
 def get_openhands_provider_base_url() -> str | None:
-    """Return the base URL for the OpenHands provider, if configured."""
+    """Return the base URL for the Maestrist provider, if configured."""
     return os.getenv('OPENHANDS_PROVIDER_BASE_URL') or None
 
 
 def _get_default_lifespan():
     # Check legacy parameters for saas mode. If we are in SAAS mode do not apply
-    # OpenHands alembic migrations
+    # Maestrist alembic migrations
     if 'saas' in (os.getenv('OPENHANDS_CONFIG_CLS') or '').lower():
         return None
     return OssAppLifespanService()
 
 
-class AppServerConfig(OpenHandsModel):
+class AppServerConfig(MaestristModel):
     persistence_dir: Path = Field(default_factory=get_default_persistence_dir)
     web_url: str | None = Field(
         default_factory=get_default_web_url,
-        description='The URL where OpenHands is running (e.g., http://localhost:3000)',
+        description='The URL where Maestrist is running (e.g., http://localhost:3000)',
     )
     openhands_provider_base_url: str | None = Field(
         default_factory=get_openhands_provider_base_url,
-        description='Base URL for the OpenHands provider',
+        description='Base URL for the Maestrist provider',
     )
     # Dependency Injection Injectors
     event: EventServiceInjector | None = None

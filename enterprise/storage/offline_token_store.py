@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 from storage.database import session_maker
 from storage.stored_offline_token import StoredOfflineToken
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 
 
@@ -14,7 +14,7 @@ from openhands.core.logger import openhands_logger as logger
 class OfflineTokenStore:
     user_id: str
     session_maker: sessionmaker
-    config: OpenHandsConfig
+    config: MaestristConfig
 
     async def store_token(self, offline_token: str) -> None:
         """Store an offline token in the database."""
@@ -50,7 +50,7 @@ class OfflineTokenStore:
 
     @classmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str
+        cls, config: MaestristConfig, user_id: str
     ) -> OfflineTokenStore:
         """Get an instance of the OfflineTokenStore."""
         logger.debug(f'offline_token_store.get_instance::{user_id}')

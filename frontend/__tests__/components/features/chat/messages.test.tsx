@@ -4,10 +4,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Messages } from "#/components/features/chat/messages";
 import {
   AssistantMessageAction,
-  OpenHandsAction,
+  MaestristAction,
   UserMessageAction,
 } from "#/types/core/actions";
-import { OpenHandsObservation } from "#/types/core/observations";
+import { MaestristObservation } from "#/types/core/observations";
 import ConversationService from "#/api/conversation-service/conversation-service.api";
 import { Conversation } from "#/api/open-hands.types";
 
@@ -20,7 +20,7 @@ let queryClient: QueryClient;
 const renderMessages = ({
   messages,
 }: {
-  messages: (OpenHandsAction | OpenHandsObservation)[];
+  messages: (MaestristAction | MaestristObservation)[];
 }) => {
   const { rerender, ...rest } = render(
     <Messages messages={messages} isAwaitingUserConfirmation={false} />,
@@ -34,7 +34,7 @@ const renderMessages = ({
   );
 
   const rerenderMessages = (
-    newMessages: (OpenHandsAction | OpenHandsObservation)[],
+    newMessages: (MaestristAction | MaestristObservation)[],
   ) => {
     rerender(
       <Messages messages={newMessages} isAwaitingUserConfirmation={false} />,

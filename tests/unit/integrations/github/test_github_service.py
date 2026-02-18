@@ -262,11 +262,11 @@ async def test_github_search_repositories_with_organizations():
         'items': [
             {
                 'id': 1,
-                'name': 'OpenHands',
-                'full_name': 'All-Hands-AI/OpenHands',
+                'name': 'Maestrist',
+                'full_name': 'All-Hands-AI/Maestrist',
                 'private': False,
-                'html_url': 'https://github.com/All-Hands-AI/OpenHands',
-                'clone_url': 'https://github.com/All-Hands-AI/OpenHands.git',
+                'html_url': 'https://github.com/All-Hands-AI/Maestrist',
+                'clone_url': 'https://github.com/All-Hands-AI/Maestrist.git',
                 'pushed_at': '2023-01-01T00:00:00Z',
                 'owner': {'login': 'All-Hands-AI', 'type': 'Organization'},
             }
@@ -316,7 +316,7 @@ async def test_github_search_repositories_with_organizations():
 
         # Verify repositories are returned (3 copies since each call returns the same mock response)
         assert len(repositories) == 3
-        assert all(repo.full_name == 'All-Hands-AI/OpenHands' for repo in repositories)
+        assert all(repo.full_name == 'All-Hands-AI/Maestrist' for repo in repositories)
 
 
 @pytest.mark.asyncio

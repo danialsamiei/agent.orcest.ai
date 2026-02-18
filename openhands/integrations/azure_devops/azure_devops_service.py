@@ -49,7 +49,7 @@ class AzureDevOpsService(
     - AzureDevOpsWorkItemsMixin: Work item operations (unique to Azure DevOps)
     - AzureDevOpsFeaturesMixin: Microagents, suggested tasks, user info
 
-    This is an extension point in OpenHands that allows applications to customize Azure DevOps
+    This is an extension point in Maestrist that allows applications to customize Azure DevOps
     integration behavior. Applications can substitute their own implementation by:
     1. Creating a class that inherits from GitService
     2. Implementing all required methods

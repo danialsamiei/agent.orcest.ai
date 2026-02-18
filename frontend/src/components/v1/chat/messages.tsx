@@ -1,5 +1,5 @@
 import React from "react";
-import { OpenHandsEvent } from "#/types/v1/core";
+import { MaestristEvent } from "#/types/v1/core";
 import { EventMessage } from "./event-message";
 import { ChatMessage } from "../../features/chat/chat-message";
 import { useOptimisticUserMessageStore } from "#/stores/optimistic-user-message-store";
@@ -9,8 +9,8 @@ import { usePlanPreviewEvents } from "./hooks/use-plan-preview-events";
 // import MemoryIcon from "#/icons/memory_icon.svg?react";
 
 interface MessagesProps {
-  messages: OpenHandsEvent[]; // UI events (actions replaced by observations)
-  allEvents: OpenHandsEvent[]; // Full event history (for action lookup)
+  messages: MaestristEvent[]; // UI events (actions replaced by observations)
+  allEvents: MaestristEvent[]; // Full event history (for action lookup)
 }
 
 export const Messages: React.FC<MessagesProps> = React.memo(

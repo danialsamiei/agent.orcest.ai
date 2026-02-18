@@ -1,6 +1,6 @@
 from server.logger import logger
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.schema.agent import AgentState
 from openhands.events.event import Event
 from openhands.events.observation import (
@@ -50,6 +50,6 @@ class SaaSMonitoringListener(MonitoringListener):
     @classmethod
     def get_instance(
         cls,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
     ) -> 'SaaSMonitoringListener':
         return cls()

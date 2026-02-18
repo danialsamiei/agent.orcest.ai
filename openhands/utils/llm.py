@@ -7,13 +7,13 @@ with warnings.catch_warnings():
     import litellm
     from litellm import LlmProviders, ProviderConfigManager, get_llm_provider
 
-from openhands.core.config import LLMConfig, OpenHandsConfig
+from openhands.core.config import LLMConfig, MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.llm import bedrock
 
 
 def is_openhands_model(model: str | None) -> bool:
-    """Check if the model uses the OpenHands provider.
+    """Check if the model uses the Maestrist provider.
 
     Args:
         model: The model name to check.
@@ -67,7 +67,7 @@ def get_provider_api_base(model: str) -> str | None:
     return None
 
 
-def get_supported_llm_models(config: OpenHandsConfig) -> list[str]:
+def get_supported_llm_models(config: MaestristConfig) -> list[str]:
     """Get all models supported by LiteLLM.
 
     This function combines models from litellm and Bedrock, removing any
@@ -109,7 +109,7 @@ def get_supported_llm_models(config: OpenHandsConfig) -> list[str]:
             except httpx.HTTPError as e:
                 logger.error(f'Error getting OLLAMA models: {e}')
 
-    # Add OpenHands provider models
+    # Add Maestrist provider models
     openhands_models = [
         'openhands/claude-opus-4-5-20251101',
         'openhands/claude-sonnet-4-5-20250929',

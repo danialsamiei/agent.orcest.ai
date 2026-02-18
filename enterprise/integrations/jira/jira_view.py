@@ -346,7 +346,7 @@ class JiraFactory:
         provider_handler = await JiraFactory._create_provider_handler(user_auth)
         if not provider_handler:
             raise RepositoryNotFoundError(
-                'No Git provider connected. Please connect a Git provider in OpenHands settings.'
+                'No Git provider connected. Please connect a Git provider in Maestrist settings.'
             )
 
         potential_repos = JiraFactory._extract_potential_repos(
@@ -383,7 +383,7 @@ class JiraFactory:
             payload: Parsed webhook payload
             workspace: The Jira workspace
             user: The Jira user
-            user_auth: OpenHands user authentication
+            user_auth: Maestrist user authentication
             decrypted_api_key: Decrypted service account API key
 
         Returns:

@@ -1,6 +1,6 @@
 ## Runtime Tests
 
-This folder contains integration tests that verify the functionality of OpenHands' runtime environments and their interactions with various tools and features.
+This folder contains integration tests that verify the functionality of Maestrist' runtime environments and their interactions with various tools and features.
 
 ### What are Runtime Tests?
 

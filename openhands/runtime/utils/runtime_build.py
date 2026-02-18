@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -129,7 +129,7 @@ def build_runtime_image(
 ) -> str:
     """Prepares the final docker build folder.
 
-    If dry_run is False, it will also build the OpenHands runtime Docker image using the docker build folder.
+    If dry_run is False, it will also build the Maestrist runtime Docker image using the docker build folder.
 
     Parameters:
     - base_image (str): The name of the base Docker image to use
@@ -145,7 +145,7 @@ def build_runtime_image(
     Returns:
     - str: <image_repo>:<MD5 hash>. Where MD5 hash is the hash of the docker build folder
 
-    See https://docs.all-hands.dev/usage/architecture/runtime for more details.
+    See https://orcest.ai/docs/maestrist/usage/architecture/runtime for more details.
     """
     if build_folder is None:
         with tempfile.TemporaryDirectory() as temp_dir:

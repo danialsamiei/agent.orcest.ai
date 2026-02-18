@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -17,11 +17,11 @@ import openhands.agenthub  # noqa F401 (we import this to get the agents registe
 from openhands.controller.replay import ReplayManager
 from openhands.controller.state.state import State
 from openhands.core.config import (
-    OpenHandsConfig,
+    MaestristConfig,
     parse_arguments,
     setup_config_from_args,
 )
-from openhands.core.config.mcp_config import OpenHandsMCPConfigImpl
+from openhands.core.config.mcp_config import MaestristMCPConfigImpl
 from openhands.core.logger import openhands_logger as logger
 from openhands.core.loop import run_agent_until_done
 from openhands.core.schema import AgentState
@@ -57,7 +57,7 @@ class FakeUserResponseFunc(Protocol):
 
 
 async def run_controller(
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     initial_user_action: Action,
     sid: str | None = None,
     runtime: Runtime | None = None,
@@ -152,11 +152,11 @@ async def run_controller(
 
     # Add MCP tools to the agent
     if agent.config.enable_mcp:
-        # Add OpenHands' MCP server by default
+        # Add Maestrist' MCP server by default
         (
             _,
             openhands_mcp_stdio_servers,
-        ) = await OpenHandsMCPConfigImpl.create_default_mcp_server_config(
+        ) = await MaestristMCPConfigImpl.create_default_mcp_server_config(
             config.mcp_host, config, None
         )
         runtime.config.mcp.stdio_servers.extend(openhands_mcp_stdio_servers)
@@ -361,7 +361,7 @@ def load_replay_log(trajectory_path: str) -> tuple[list[Event] | None, Action]:
 if __name__ == '__main__':
     args = parse_arguments()
 
-    config: OpenHandsConfig = setup_config_from_args(args)
+    config: MaestristConfig = setup_config_from_args(args)
 
     # Read task from file, CLI args, or stdin
     task_str = read_task(args, config.cli_multiline_input)

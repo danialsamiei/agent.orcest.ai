@@ -8,7 +8,7 @@ import httpx
 import modal
 import tenacity
 
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.events import EventStream
 from openhands.integrations.provider import PROVIDER_TOKEN_TYPE
 from openhands.runtime.impl.action_execution.action_execution_client import (
@@ -34,7 +34,7 @@ class ModalRuntime(ActionExecutionClient):
     When receive an event, it will send the event to runtime-client which run inside the Modal sandbox environment.
 
     Args:
-        config (OpenHandsConfig): The application configuration.
+        config (MaestristConfig): The application configuration.
         event_stream (EventStream): The event stream to subscribe to.
         sid (str, optional): The session ID. Defaults to 'default'.
         plugins (list[PluginRequirement] | None, optional): List of plugin requirements. Defaults to None.
@@ -47,7 +47,7 @@ class ModalRuntime(ActionExecutionClient):
 
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         event_stream: EventStream,
         sid: str = "default",
         plugins: list[PluginRequirement] | None = None,

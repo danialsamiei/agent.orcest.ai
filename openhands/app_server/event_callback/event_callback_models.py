@@ -10,7 +10,7 @@ from uuid import UUID, uuid4
 
 from pydantic import Field
 
-from openhands.agent_server.utils import OpenHandsUUID, utc_now
+from openhands.agent_server.utils import MaestristUUID, utc_now
 from openhands.app_server.event_callback.event_callback_result_models import (
     EventCallbackResult,
     EventCallbackResultStatus,
@@ -18,7 +18,7 @@ from openhands.app_server.event_callback.event_callback_result_models import (
 from openhands.sdk import Event
 from openhands.sdk.utils.models import (
     DiscriminatedUnionMixin,
-    OpenHandsModel,
+    MaestristModel,
     get_known_concrete_subclasses,
 )
 
@@ -65,8 +65,8 @@ class LoggingCallbackProcessor(EventCallbackProcessor):
         )
 
 
-class CreateEventCallbackRequest(OpenHandsModel):
-    conversation_id: OpenHandsUUID | None = Field(
+class CreateEventCallbackRequest(MaestristModel):
+    conversation_id: MaestristUUID | None = Field(
         default=None,
         description=(
             'Optional filter on the conversation to which this callback applies'
@@ -82,12 +82,12 @@ class CreateEventCallbackRequest(OpenHandsModel):
 
 
 class EventCallback(CreateEventCallbackRequest):
-    id: OpenHandsUUID = Field(default_factory=uuid4)
+    id: MaestristUUID = Field(default_factory=uuid4)
     status: EventCallbackStatus = Field(default=EventCallbackStatus.ACTIVE)
     created_at: datetime = Field(default_factory=utc_now)
     updated_at: datetime = Field(default_factory=utc_now)
 
 
-class EventCallbackPage(OpenHandsModel):
+class EventCallbackPage(MaestristModel):
     items: list[EventCallback]
     next_page_id: str | None = None

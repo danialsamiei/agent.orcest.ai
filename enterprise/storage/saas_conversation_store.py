@@ -12,7 +12,7 @@ from storage.stored_conversation_metadata import StoredConversationMetadata
 from storage.stored_conversation_metadata_saas import StoredConversationMetadataSaas
 from storage.user_store import UserStore
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.integrations.provider import ProviderType
 from openhands.storage.conversation.conversation_store import ConversationStore
 from openhands.storage.data_models.conversation_metadata import (
@@ -231,7 +231,7 @@ class SaasConversationStore(ConversationStore):
 
     @classmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str | None
+        cls, config: MaestristConfig, user_id: str | None
     ) -> ConversationStore:
         # user_id should not be None in SaaS, should we raise?
         user = await UserStore.get_user_by_id_async(user_id)

@@ -2,7 +2,7 @@ from unittest import mock
 
 import pytest
 
-from openhands.core.config import OpenHandsConfig, SandboxConfig
+from openhands.core.config import MaestristConfig, SandboxConfig
 from openhands.events.action import CmdRunAction
 from openhands.resolver.issue_resolver import IssueResolver
 
@@ -27,7 +27,7 @@ def assert_sandbox_config(
 def test_setup_sandbox_config_default():
     """Test default configuration when no images provided and not experimental"""
     with mock.patch('openhands.__version__', 'mock'):
-        openhands_config = OpenHandsConfig()
+        openhands_config = MaestristConfig()
 
         IssueResolver.update_sandbox_config(
             openhands_config=openhands_config,
@@ -47,7 +47,7 @@ def test_setup_sandbox_config_both_images():
     with pytest.raises(
         ValueError, match='Cannot provide both runtime and base container images.'
     ):
-        openhands_config = OpenHandsConfig()
+        openhands_config = MaestristConfig()
 
         IssueResolver.update_sandbox_config(
             openhands_config=openhands_config,
@@ -60,7 +60,7 @@ def test_setup_sandbox_config_both_images():
 def test_setup_sandbox_config_base_only():
     """Test configuration when only base_container_image is provided"""
     base_image = 'custom-base-image'
-    openhands_config = OpenHandsConfig()
+    openhands_config = MaestristConfig()
 
     IssueResolver.update_sandbox_config(
         openhands_config=openhands_config,
@@ -79,7 +79,7 @@ def test_setup_sandbox_config_base_only():
 def test_setup_sandbox_config_runtime_only():
     """Test configuration when only runtime_container_image is provided"""
     runtime_image = 'custom-runtime-image'
-    openhands_config = OpenHandsConfig()
+    openhands_config = MaestristConfig()
 
     IssueResolver.update_sandbox_config(
         openhands_config=openhands_config,
@@ -96,7 +96,7 @@ def test_setup_sandbox_config_runtime_only():
 def test_setup_sandbox_config_experimental():
     """Test configuration when experimental mode is enabled"""
     with mock.patch('openhands.__version__', 'mock'):
-        openhands_config = OpenHandsConfig()
+        openhands_config = MaestristConfig()
 
         IssueResolver.update_sandbox_config(
             openhands_config=openhands_config,
@@ -114,7 +114,7 @@ def test_setup_sandbox_config_gitlab_ci(mock_get_unique_uid, mock_getuid):
     """Test GitLab CI specific configuration when running as root"""
     with mock.patch('openhands.__version__', 'mock'):
         with mock.patch.object(IssueResolver, 'GITLAB_CI', True):
-            openhands_config = OpenHandsConfig()
+            openhands_config = MaestristConfig()
 
             IssueResolver.update_sandbox_config(
                 openhands_config=openhands_config,
@@ -133,7 +133,7 @@ def test_setup_sandbox_config_gitlab_ci_non_root(mock_getuid):
     """Test GitLab CI configuration when not running as root"""
     with mock.patch('openhands.__version__', 'mock'):
         with mock.patch.object(IssueResolver, 'GITLAB_CI', True):
-            openhands_config = OpenHandsConfig()
+            openhands_config = MaestristConfig()
 
             IssueResolver.update_sandbox_config(
                 openhands_config=openhands_config,

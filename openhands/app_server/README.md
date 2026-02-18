@@ -1,10 +1,10 @@
-# OpenHands App Server
+# Maestrist App Server
 
-FastAPI-based application server that provides REST API endpoints for OpenHands V1 integration.
+FastAPI-based application server that provides REST API endpoints for Maestrist V1 integration.
 
 ## Overview
 
-As of 2025-09-29, much of the code in the OpenHands repository can be regarded as legacy, having been superseded by the code in AgentSDK. This package provides endpoints to interface with the new agent SDK and bridge the gap with the existing OpenHands project.
+As of 2025-09-29, much of the code in the Maestrist repository can be regarded as legacy, having been superseded by the code in AgentSDK. This package provides endpoints to interface with the new agent SDK and bridge the gap with the existing Maestrist project.
 
 ## Architecture
 

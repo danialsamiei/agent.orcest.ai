@@ -690,7 +690,7 @@ class LiveStatusAppConversationService(AppConversationServiceBase):
     async def _add_system_mcp_servers(
         self, mcp_servers: dict[str, Any], user: UserInfo
     ) -> None:
-        """Add system-generated MCP servers (default OpenHands server and Tavily).
+        """Add system-generated MCP servers (default Maestrist server and Tavily).
 
         Args:
             mcp_servers: Dictionary to add servers to
@@ -699,7 +699,7 @@ class LiveStatusAppConversationService(AppConversationServiceBase):
         if not self.web_url:
             return
 
-        # Add default OpenHands MCP server
+        # Add default Maestrist MCP server
         mcp_url = f'{self.web_url}/mcp/mcp'
         mcp_servers['default'] = {'url': mcp_url}
 

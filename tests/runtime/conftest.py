@@ -7,7 +7,7 @@ import time
 import pytest
 from pytest import TempPathFactory
 
-from openhands.core.config import MCPConfig, OpenHandsConfig, load_openhands_config
+from openhands.core.config import MCPConfig, MaestristConfig, load_openhands_config
 from openhands.core.logger import openhands_logger as logger
 from openhands.events import EventStream
 from openhands.llm.llm_registry import LLMRegistry
@@ -215,7 +215,7 @@ def _load_runtime(
     docker_runtime_kwargs: dict[str, str] | None = None,
     override_mcp_config: MCPConfig | None = None,
     enable_browser: bool = False,
-) -> tuple[Runtime, OpenHandsConfig]:
+) -> tuple[Runtime, MaestristConfig]:
     sid = 'rt_' + str(random.randint(100000, 999999))
 
     # AgentSkills need to be initialized **before** Jupyter
@@ -271,7 +271,7 @@ def _load_runtime(
     event_stream = EventStream(sid, file_store)
 
     # Create a LLMRegistry instance for the runtime
-    llm_registry = LLMRegistry(config=OpenHandsConfig())
+    llm_registry = LLMRegistry(config=MaestristConfig())
 
     runtime = runtime_cls(
         config=config,

@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from openhands.core.config.llm_config import LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.llm.llm_registry import LLMRegistry, RegistryEvent
 
 
@@ -14,8 +14,8 @@ class TestLLMRegistry(unittest.TestCase):
         # Create a basic LLM config for testing
         self.llm_config = LLMConfig(model='test-model')
 
-        # Create a basic OpenHands config for testing
-        self.config = OpenHandsConfig(
+        # Create a basic Maestrist config for testing
+        self.config = MaestristConfig(
             llms={'llm': self.llm_config}, default_agent='CodeActAgent'
         )
 

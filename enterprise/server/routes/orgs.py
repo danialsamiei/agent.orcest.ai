@@ -115,7 +115,7 @@ async def create_org(
 ) -> OrgResponse:
     """Create a new organization.
 
-    This endpoint allows authenticated users with @openhands.dev email to create
+    This endpoint allows authenticated users with @orcest.ai email to create
     a new organization. The user who creates the organization automatically becomes
     its owner.
 
@@ -127,7 +127,7 @@ async def create_org(
         OrgResponse: The created organization details
 
     Raises:
-        HTTPException: 403 if user email domain is not @openhands.dev
+        HTTPException: 403 if user email domain is not @orcest.ai
         HTTPException: 409 if organization name already exists
         HTTPException: 500 if creation fails
     """

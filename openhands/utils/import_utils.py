@@ -42,9 +42,9 @@ def _get_impl(cls: type[T], impl_name: str | None) -> type[T]:
 def get_impl(cls: type[T], impl_name: str | None) -> type[T]:
     """Import and validate a named implementation of a base class.
 
-    This function is an extensibility mechanism in OpenHands that allows runtime substitution
+    This function is an extensibility mechanism in Maestrist that allows runtime substitution
     of implementations. It enables applications to customize behavior by providing their own
-    implementations of OpenHands base classes.
+    implementations of Maestrist base classes.
 
     The function ensures type safety by validating that the imported class is either the same as
     or a subclass of the specified base class.

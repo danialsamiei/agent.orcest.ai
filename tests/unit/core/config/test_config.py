@@ -7,7 +7,7 @@ import pytest
 from openhands.core.config import (
     AgentConfig,
     LLMConfig,
-    OpenHandsConfig,
+    MaestristConfig,
     finalize_config,
     get_agent_config_arg,
     get_llm_config_arg,
@@ -49,8 +49,8 @@ def temp_toml_file(tmp_path):
 
 @pytest.fixture
 def default_config(monkeypatch):
-    # Fixture to provide a default OpenHandsConfig instance
-    yield OpenHandsConfig()
+    # Fixture to provide a default MaestristConfig instance
+    yield MaestristConfig()
 
 
 def test_compat_env_to_config(monkeypatch, setup_env):
@@ -61,7 +61,7 @@ def test_compat_env_to_config(monkeypatch, setup_env):
     monkeypatch.setenv('DEFAULT_AGENT', 'CodeActAgent')
     monkeypatch.setenv('SANDBOX_TIMEOUT', '10')
 
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     load_from_env(config, os.environ)
     finalize_config(config)
 
@@ -417,7 +417,7 @@ def test_defaults_dict_after_updates(default_config):
     assert initial_defaults['workspace_mount_path']['default'] is None
     assert initial_defaults['default_agent']['default'] == 'CodeActAgent'
 
-    updated_config = OpenHandsConfig()
+    updated_config = MaestristConfig()
     updated_config.get_llm_config().api_key = 'updated-api-key'
     updated_config.get_llm_config('llm').api_key = 'updated-api-key'
     updated_config.get_llm_config_from_agent('agent').api_key = 'updated-api-key'
@@ -686,7 +686,7 @@ def test_sandbox_volumes_with_workspace_not_first(default_config):
 
 def test_agent_config_condenser_with_no_enabled():
     """Test default agent condenser with enable_default_condenser=False."""
-    config = OpenHandsConfig(enable_default_condenser=False)
+    config = MaestristConfig(enable_default_condenser=False)
     agent_config = config.get_agent_config()
     assert isinstance(agent_config.condenser, ConversationWindowCondenserConfig)
 
@@ -994,8 +994,8 @@ def test_api_keys_repr_str():
                 f"Unexpected attribute '{attr_name}' contains 'token' in AgentConfig"
             )
 
-    # Test OpenHandsConfig
-    app_config = OpenHandsConfig(
+    # Test MaestristConfig
+    app_config = MaestristConfig(
         llms={'llm': llm_config},
         agents={'agent': agent_config},
         search_api_key='my_search_api_key',
@@ -1004,21 +1004,21 @@ def test_api_keys_repr_str():
     assert 'my_search_api_key' not in repr(app_config)
     assert 'my_search_api_key' not in str(app_config)
 
-    # Check that no other attrs in OpenHandsConfig have 'key' or 'token' in their name
+    # Check that no other attrs in MaestristConfig have 'key' or 'token' in their name
     # This will fail when new attrs are added, and attract attention
     known_key_token_attrs_app = [
         'search_api_key',
     ]
-    for attr_name in OpenHandsConfig.model_fields.keys():
+    for attr_name in MaestristConfig.model_fields.keys():
         if (
             not attr_name.startswith('__')
             and attr_name not in known_key_token_attrs_app
         ):
             assert 'key' not in attr_name.lower(), (
-                f"Unexpected attribute '{attr_name}' contains 'key' in OpenHandsConfig"
+                f"Unexpected attribute '{attr_name}' contains 'key' in MaestristConfig"
             )
             assert 'token' not in attr_name.lower() or 'tokens' in attr_name.lower(), (
-                f"Unexpected attribute '{attr_name}' contains 'token' in OpenHandsConfig"
+                f"Unexpected attribute '{attr_name}' contains 'token' in MaestristConfig"
             )
 
 
@@ -1029,7 +1029,7 @@ max_iterations = 42
 max_budget_per_task = 4.7
 """
 
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     with open(temp_toml_file, 'w') as f:
         f.write(temp_toml)
 

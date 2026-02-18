@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from storage.offline_token_store import OfflineTokenStore
 from storage.stored_offline_token import StoredOfflineToken
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 
 
 @pytest.fixture
@@ -26,7 +26,7 @@ def mock_session_maker(mock_session):
 
 @pytest.fixture
 def mock_config():
-    return MagicMock(spec=OpenHandsConfig)
+    return MagicMock(spec=MaestristConfig)
 
 
 @pytest.fixture

@@ -30,7 +30,7 @@ from openhands.agenthub.readonly_agent.tools import (
 )
 from openhands.controller.state.state import State
 from openhands.core.config import AgentConfig, LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.exceptions import FunctionCallNotExistsError
 from openhands.core.message import ImageContent, Message, TextContent
 from openhands.events.action import (
@@ -50,7 +50,7 @@ from openhands.memory.condenser import View
 @pytest.fixture
 def create_llm_registry():
     def _get_registry(llm_config):
-        config = OpenHandsConfig()
+        config = MaestristConfig()
         config.set_llm_config(llm_config)
         return LLMRegistry(config=config)
 
@@ -527,7 +527,7 @@ def test_get_system_message(create_llm_registry):
 
     # Check that the system message was created correctly
     assert isinstance(result, SystemMessageAction)
-    assert 'You are OpenHands agent' in result.content
+    assert 'You are Maestrist agent' in result.content
     assert len(result.tools) > 0
     assert any(tool['function']['name'] == 'execute_bash' for tool in result.tools)
     assert result._source == EventSource.AGENT

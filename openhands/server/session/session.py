@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -13,16 +13,16 @@ from logging import LoggerAdapter
 import socketio
 
 from openhands.controller.agent import Agent
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.config.condenser_config import (
     BrowserOutputCondenserConfig,
     CondenserPipelineConfig,
     ConversationWindowCondenserConfig,
     LLMSummarizingCondenserConfig,
 )
-from openhands.core.config.mcp_config import OpenHandsMCPConfigImpl
+from openhands.core.config.mcp_config import MaestristMCPConfigImpl
 from openhands.core.exceptions import MicroagentValidationError
-from openhands.core.logger import OpenHandsLoggerAdapter
+from openhands.core.logger import MaestristLoggerAdapter
 from openhands.core.schema import AgentState
 from openhands.events.action import MessageAction, NullAction
 from openhands.events.event import Event, EventSource
@@ -60,7 +60,7 @@ class WebSession:
         is_alive: Whether the web connection is still alive.
         agent_session: Core agent session coordinating runtime/LLM.
         loop: The asyncio loop associated with the session.
-        config: Effective OpenHands configuration for this conversation.
+        config: Effective Maestrist configuration for this conversation.
         llm_registry: Registry responsible for LLM access and retry hooks.
         file_store: File storage interface for this conversation.
         user_id: Optional multi-tenant user identifier.
@@ -73,7 +73,7 @@ class WebSession:
     is_alive: bool = True
     agent_session: AgentSession
     loop: asyncio.AbstractEventLoop
-    config: OpenHandsConfig
+    config: MaestristConfig
     llm_registry: LLMRegistry
     file_store: FileStore
     user_id: str | None
@@ -82,7 +82,7 @@ class WebSession:
     def __init__(
         self,
         sid: str,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         llm_registry: LLMRegistry,
         conversation_stats: ConversationStats,
         file_store: FileStore,
@@ -93,7 +93,7 @@ class WebSession:
         self.sio = sio
         self.last_active_ts = int(time.time())
         self.file_store = file_store
-        self.logger = OpenHandsLoggerAdapter(extra={'session_id': sid})
+        self.logger = MaestristLoggerAdapter(extra={'session_id': sid})
         self.llm_registry = llm_registry
         self.conversation_stats = conversation_stats
         self.agent_session = AgentSession(
@@ -201,11 +201,11 @@ class WebSession:
             self.config.mcp = self.config.mcp.merge(mcp_config)
             self.logger.debug(f'Merged custom MCP Config: {mcp_config}')
 
-        # Add OpenHands' MCP server by default
+        # Add Maestrist' MCP server by default
         (
             openhands_mcp_server,
             openhands_mcp_stdio_servers,
-        ) = await OpenHandsMCPConfigImpl.create_default_mcp_server_config(
+        ) = await MaestristMCPConfigImpl.create_default_mcp_server_config(
             self.config.mcp_host, self.config, self.user_id
         )
 

@@ -219,7 +219,7 @@ class AzureDevOpsIssueHandler(IssueHandlerInterface):
 
         source_branch = data.get('source_branch')
         target_branch = data.get('target_branch', self.default_branch)
-        title = data.get('title', 'Pull request created by OpenHands')
+        title = data.get('title', 'Pull request created by Maestrist')
         description = data.get('description', '')
 
         pr_data = {

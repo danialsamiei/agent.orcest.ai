@@ -502,11 +502,11 @@ class GithubFailingAction:
 
         if any(failed_jobs['merge conflict']):
             suggestions.append(
-                f'@OpenHands please fix the merge conflicts on PR #{pr_number}{branch_info}'
+                f'@Maestrist please fix the merge conflicts on PR #{pr_number}{branch_info}'
             )
         if any(failed_jobs['actions']):
             suggestions.append(
-                f'@OpenHands please fix the failing actions on PR #{pr_number}{branch_info}'
+                f'@Maestrist please fix the failing actions on PR #{pr_number}{branch_info}'
             )
 
         # Take at most 2 suggestions

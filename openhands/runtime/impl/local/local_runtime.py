@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -21,7 +21,7 @@ import httpx
 import tenacity
 
 import openhands
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.exceptions import AgentRuntimeDisconnectedError
 from openhands.core.logger import openhands_logger as logger
 from openhands.events import EventStream
@@ -89,7 +89,7 @@ def get_user_info() -> tuple[int, str | None]:
 
 
 def check_dependencies(code_repo_path: str, check_browser: bool) -> None:
-    ERROR_MESSAGE = 'Please follow the instructions in https://github.com/OpenHands/OpenHands/blob/main/Development.md to install OpenHands.'
+    ERROR_MESSAGE = 'Please follow the instructions in https://github.com/orcest-ai/Maestrist/blob/main/Development.md to install Maestrist.'
     if not os.path.exists(code_repo_path):
         raise ValueError(
             f'Code repo path {code_repo_path} does not exist. ' + ERROR_MESSAGE
@@ -135,7 +135,7 @@ class LocalRuntime(ActionExecutionClient):
     When receiving an event, it will send the event to the server via HTTP.
 
     Args:
-        config (OpenHandsConfig): The application configuration.
+        config (MaestristConfig): The application configuration.
         event_stream (EventStream): The event stream to subscribe to.
         sid (str, optional): The session ID. Defaults to 'default'.
         plugins (list[PluginRequirement] | None, optional): list of plugin requirements. Defaults to None.
@@ -144,7 +144,7 @@ class LocalRuntime(ActionExecutionClient):
 
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         event_stream: EventStream,
         llm_registry: LLMRegistry,
         sid: str = 'default',
@@ -168,7 +168,7 @@ class LocalRuntime(ActionExecutionClient):
 
         logger.warning(
             'Initializing LocalRuntime. WARNING: NO SANDBOX IS USED. '
-            'This is an experimental feature, please report issues to https://github.com/OpenHands/OpenHands/issues. '
+            'This is an experimental feature, please report issues to https://github.com/orcest-ai/Maestrist/issues. '
             '`run_as_openhands` will be ignored since the current user will be used to launch the server. '
             'We highly recommend using a sandbox (eg. DockerRuntime) unless you '
             'are running in a controlled environment.\n'
@@ -417,7 +417,7 @@ class LocalRuntime(ActionExecutionClient):
                 _create_warm_server_in_background(self.config, self.plugins)
 
     @classmethod
-    def setup(cls, config: OpenHandsConfig, headless_mode: bool = False):
+    def setup(cls, config: MaestristConfig, headless_mode: bool = False):
         should_check_dependencies = os.getenv('SKIP_DEPENDENCY_CHECK', '') != '1'
         if should_check_dependencies:
             code_repo_path = os.path.dirname(os.path.dirname(openhands.__file__))
@@ -650,7 +650,7 @@ def _python_bin_path():
 
 
 def _create_server(
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     plugins: list[PluginRequirement],
     workspace_prefix: str,
 ) -> tuple[ActionExecutionServerInfo, str]:
@@ -773,7 +773,7 @@ def _create_server(
 
 
 def _create_warm_server(
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     plugins: list[PluginRequirement],
 ) -> None:
     """Create a warm server in the background."""
@@ -829,7 +829,7 @@ def _create_warm_server(
 
 
 def _create_warm_server_in_background(
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     plugins: list[PluginRequirement],
 ) -> None:
     """Start a new thread to create a warm server."""
@@ -839,7 +839,7 @@ def _create_warm_server_in_background(
     thread.start()
 
 
-def _get_plugins(config: OpenHandsConfig) -> list[PluginRequirement]:
+def _get_plugins(config: MaestristConfig) -> list[PluginRequirement]:
     from openhands.controller.agent import Agent
 
     plugins = Agent.get_cls(config.default_agent).sandbox_plugins

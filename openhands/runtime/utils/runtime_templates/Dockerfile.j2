@@ -267,7 +267,7 @@ RUN \
 # START: Build Runtime Image from Scratch
 # ================================================================
 # This is used in cases where the base image is something more generic like nikolaik/python-nodejs
-# rather than the current OpenHands release
+# rather than the current Maestrist release
 
 {{ setup_base_system() }}
 
@@ -304,7 +304,7 @@ RUN \
     chown -R openhands:openhands /openhands/code && \
     # Set global git configuration to ensure proper author/committer information
     git config --global user.name "openhands" && \
-    git config --global user.email "openhands@all-hands.dev"
+    git config --global user.email "openhands@orcest.ai"
 
 COPY --chown=openhands:openhands ./code/pyproject.toml ./code/poetry.lock /openhands/code/
 
@@ -331,7 +331,7 @@ RUN \
     mkdir -p /home/openhands && \
     mkdir -p /openhands && \
     mkdir -p $(dirname ${OPENVSCODE_SERVER_ROOT}) && \
-    # Ensure ownership is correct for all OpenHands paths
+    # Ensure ownership is correct for all Maestrist paths
     chown -R openhands:openhands /home/openhands || true && \
     chown -R openhands:openhands /openhands || true
 

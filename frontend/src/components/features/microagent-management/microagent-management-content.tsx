@@ -12,7 +12,7 @@ import {
 import { AgentState } from "#/types/agent-state";
 import { getPR, getProviderName, getPRShort } from "#/utils/utils";
 import {
-  isOpenHandsEvent,
+  isMaestristEvent,
   isAgentStateChangeObservation,
   isFinishAction,
 } from "#/types/core/guards";
@@ -37,7 +37,7 @@ const isErrorEvent = (evt: unknown): evt is { error: true; message: string } =>
   evt.error === true;
 
 const isAgentStatusError = (evt: unknown): boolean =>
-  isOpenHandsEvent(evt) &&
+  isMaestristEvent(evt) &&
   isAgentStateChangeObservation(evt) &&
   evt.extras.agent_state === AgentState.ERROR;
 
@@ -45,10 +45,10 @@ const shouldInvalidateConversationsList = (currentSocketEvent: unknown) => {
   const hasError =
     isErrorEvent(currentSocketEvent) || isAgentStatusError(currentSocketEvent);
   const hasStateChanged =
-    isOpenHandsEvent(currentSocketEvent) &&
+    isMaestristEvent(currentSocketEvent) &&
     isAgentStateChangeObservation(currentSocketEvent);
   const hasFinished =
-    isOpenHandsEvent(currentSocketEvent) && isFinishAction(currentSocketEvent);
+    isMaestristEvent(currentSocketEvent) && isFinishAction(currentSocketEvent);
 
   return hasError || hasStateChanged || hasFinished;
 };
@@ -145,7 +145,7 @@ export function MicroagentManagementContent() {
 
       // Check if agent is running and ready to work
       if (
-        isOpenHandsEvent(socketEvent) &&
+        isMaestristEvent(socketEvent) &&
         isAgentStateChangeObservation(socketEvent) &&
         socketEvent.extras.agent_state === AgentState.RUNNING
       ) {
@@ -155,7 +155,7 @@ export function MicroagentManagementContent() {
       }
 
       // Check if agent has finished and we have a PR
-      if (isOpenHandsEvent(socketEvent) && isFinishAction(socketEvent)) {
+      if (isMaestristEvent(socketEvent) && isFinishAction(socketEvent)) {
         const prUrl = getFirstPRUrl(socketEvent.args.final_thought || "");
         if (!prUrl) {
           // Agent finished but no PR found

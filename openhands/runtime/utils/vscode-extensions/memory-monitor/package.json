@@ -1,6 +1,6 @@
 {
     "name": "openhands-memory-monitor",
-    "displayName": "OpenHands Memory Monitor",
+    "displayName": "Maestrist Memory Monitor",
     "description": "A VSCode extension for monitoring system and process memory usage",
     "version": "0.1.0",
     "publisher": "openhands",
@@ -34,15 +34,15 @@
             "commandPalette": [
                 {
                     "command": "openhands-memory-monitor.startMemoryMonitor",
-                    "group": "OpenHands"
+                    "group": "Maestrist"
                 },
                 {
                     "command": "openhands-memory-monitor.stopMemoryMonitor",
-                    "group": "OpenHands"
+                    "group": "Maestrist"
                 },
                 {
                     "command": "openhands-memory-monitor.showMemoryDetails",
-                    "group": "OpenHands"
+                    "group": "Maestrist"
                 }
             ]
         }

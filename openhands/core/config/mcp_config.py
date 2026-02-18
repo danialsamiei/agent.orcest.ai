@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -23,7 +23,7 @@ from pydantic import (
 )
 
 if TYPE_CHECKING:
-    from openhands.core.config.openhands_config import OpenHandsConfig
+    from openhands.core.config.openhands_config import MaestristConfig
 
 from openhands.core.logger import openhands_logger as logger
 from openhands.utils.import_utils import get_impl
@@ -339,9 +339,9 @@ class MCPConfig(BaseModel):
         )
 
 
-class OpenHandsMCPConfig:
+class MaestristMCPConfig:
     @staticmethod
-    def add_search_engine(app_config: 'OpenHandsConfig') -> MCPStdioServerConfig | None:
+    def add_search_engine(app_config: 'MaestristConfig') -> MCPStdioServerConfig | None:
         """Add search engine to the MCP config."""
         if (
             app_config.search_api_key
@@ -356,24 +356,24 @@ class OpenHandsMCPConfig:
             )
         else:
             logger.warning('No search engine API key found, skipping search engine')
-        # Do not add search engine to MCP config in SaaS mode since it will be added by the OpenHands server
+        # Do not add search engine to MCP config in SaaS mode since it will be added by the Maestrist server
         return None
 
     @staticmethod
     async def create_default_mcp_server_config(
-        host: str, config: 'OpenHandsConfig', user_id: str | None = None
+        host: str, config: 'MaestristConfig', user_id: str | None = None
     ) -> tuple[MCPSHTTPServerConfig | None, list[MCPStdioServerConfig]]:
         """Create a default MCP server configuration.
 
         Args:
             host: Host string
-            config: OpenHandsConfig
+            config: MaestristConfig
             user_id: Optional user ID for the MCP server
         Returns:
             tuple[MCPSHTTPServerConfig | None, list[MCPStdioServerConfig]]: A tuple containing the default SHTTP server configuration (or None) and a list of MCP stdio server configurations
         """
         stdio_servers = []
-        search_engine_stdio_server = OpenHandsMCPConfig.add_search_engine(config)
+        search_engine_stdio_server = MaestristMCPConfig.add_search_engine(config)
         if search_engine_stdio_server:
             stdio_servers.append(search_engine_stdio_server)
 
@@ -384,7 +384,7 @@ class OpenHandsMCPConfig:
 
 openhands_mcp_config_cls = os.environ.get(
     'OPENHANDS_MCP_CONFIG_CLS',
-    'openhands.core.config.mcp_config.OpenHandsMCPConfig',
+    'openhands.core.config.mcp_config.MaestristMCPConfig',
 )
 
-OpenHandsMCPConfigImpl = get_impl(OpenHandsMCPConfig, openhands_mcp_config_cls)
+MaestristMCPConfigImpl = get_impl(MaestristMCPConfig, openhands_mcp_config_cls)

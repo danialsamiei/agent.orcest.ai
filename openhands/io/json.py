@@ -11,7 +11,7 @@ from openhands.events.serialization import event_to_dict
 from openhands.llm.metrics import Metrics
 
 
-class OpenHandsJSONEncoder(json.JSONEncoder):
+class MaestristJSONEncoder(json.JSONEncoder):
     """Custom JSON encoder that handles datetime and event objects"""
 
     def default(self, obj):
@@ -29,7 +29,7 @@ class OpenHandsJSONEncoder(json.JSONEncoder):
 
 
 # Create a single reusable encoder instance
-_json_encoder = OpenHandsJSONEncoder()
+_json_encoder = MaestristJSONEncoder()
 
 
 def dumps(obj, **kwargs):
@@ -42,7 +42,7 @@ def dumps(obj, **kwargs):
 
     # If cls is specified, use it; otherwise use our custom encoder
     if 'cls' not in encoder_kwargs:
-        encoder_kwargs['cls'] = OpenHandsJSONEncoder
+        encoder_kwargs['cls'] = MaestristJSONEncoder
 
     return json.dumps(obj, **encoder_kwargs)
 

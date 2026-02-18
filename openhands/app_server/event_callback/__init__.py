@@ -1,4 +1,4 @@
-"""Event callback system for OpenHands.
+"""Event callback system for Maestrist.
 
 This module provides the event callback system that allows processors to be
 registered and executed when specific events occur during conversations.

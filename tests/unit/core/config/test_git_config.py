@@ -3,7 +3,7 @@
 import os
 from unittest.mock import patch
 
-from openhands.core.config import OpenHandsConfig, load_from_env
+from openhands.core.config import MaestristConfig, load_from_env
 from openhands.runtime.utils.command import get_action_execution_server_startup_command
 
 
@@ -12,9 +12,9 @@ class TestGitConfig:
 
     def test_default_git_config(self):
         """Test that default git configuration is set correctly."""
-        config = OpenHandsConfig()
+        config = MaestristConfig()
         assert config.git_user_name == 'openhands'
-        assert config.git_user_email == 'openhands@all-hands.dev'
+        assert config.git_user_email == 'openhands@orcest.ai'
 
     def test_git_config_from_env_vars(self):
         """Test that git configuration can be set via environment variables."""
@@ -22,7 +22,7 @@ class TestGitConfig:
             os.environ,
             {'GIT_USER_NAME': 'testuser', 'GIT_USER_EMAIL': 'testuser@example.com'},
         ):
-            config = OpenHandsConfig()
+            config = MaestristConfig()
             load_from_env(config, os.environ)
 
             assert config.git_user_name == 'testuser'
@@ -34,7 +34,7 @@ class TestGitConfig:
         Git configuration is handled by the runtime base class via git config commands,
         not through command line arguments to the action execution server.
         """
-        config = OpenHandsConfig()
+        config = MaestristConfig()
         config.git_user_name = 'customuser'
         config.git_user_email = 'customuser@example.com'
 
@@ -59,7 +59,7 @@ class TestGitConfig:
         Git configuration is handled by the runtime base class via git config commands,
         not through command line arguments to the action execution server.
         """
-        config = OpenHandsConfig()
+        config = MaestristConfig()
         config.git_user_name = 'User With Spaces'
         config.git_user_email = 'user+tag@example.com'
 
@@ -78,9 +78,9 @@ class TestGitConfig:
     def test_git_config_empty_values(self):
         """Test behavior with empty git configuration values."""
         with patch.dict(os.environ, {'GIT_USER_NAME': '', 'GIT_USER_EMAIL': ''}):
-            config = OpenHandsConfig()
+            config = MaestristConfig()
             load_from_env(config, os.environ)
 
             # Empty values should fall back to defaults
             assert config.git_user_name == 'openhands'
-            assert config.git_user_email == 'openhands@all-hands.dev'
+            assert config.git_user_email == 'openhands@orcest.ai'

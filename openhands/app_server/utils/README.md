@@ -1,6 +1,6 @@
 # Utilities
 
-Common utility functions and helpers for the OpenHands app server.
+Common utility functions and helpers for the Maestrist app server.
 
 ## Overview
 

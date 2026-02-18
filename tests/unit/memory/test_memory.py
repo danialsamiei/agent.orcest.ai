@@ -8,7 +8,7 @@ import pytest
 
 from openhands.controller.agent import Agent
 from openhands.controller.agent_controller import AgentController
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.main import run_controller
 from openhands.core.schema.agent import AgentState
 from openhands.events.action.agent import RecallAction
@@ -83,7 +83,7 @@ def mock_agent():
     agent = MagicMock(spec=Agent)
     agent.llm = MagicMock(spec=LLM)
     agent.llm.metrics = Metrics()
-    agent.llm.config = OpenHandsConfig().get_llm_config()
+    agent.llm.config = MaestristConfig().get_llm_config()
 
     # Add a proper system message mock
     system_message = SystemMessageAction(content='Test system message')
@@ -112,7 +112,7 @@ async def test_memory_on_event_exception_handling(memory, event_stream, mock_age
         patch('openhands.core.main.create_agent', return_value=mock_agent),
     ):
         state = await run_controller(
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             initial_user_action=MessageAction(content='Test message'),
             runtime=runtime,
             sid='test',
@@ -145,7 +145,7 @@ async def test_memory_on_workspace_context_recall_exception_handling(
         patch('openhands.core.main.create_agent', return_value=mock_agent),
     ):
         state = await run_controller(
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             initial_user_action=MessageAction(content='Test message'),
             runtime=runtime,
             sid='test',
@@ -643,7 +643,7 @@ async def test_conversation_instructions_plumbed_to_memory(
     ):
         await session.start(
             runtime_name='test-runtime',
-            config=OpenHandsConfig(),
+            config=MaestristConfig(),
             agent=mock_agent,
             max_iterations=10,
             conversation_instructions='instructions for conversation',

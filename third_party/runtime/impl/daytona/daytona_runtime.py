@@ -11,7 +11,7 @@ from daytona import (
     SessionExecuteRequest,
 )
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.events.stream import EventStream
 from openhands.integrations.provider import PROVIDER_TOKEN_TYPE
 from openhands.runtime.impl.action_execution.action_execution_client import (
@@ -24,7 +24,7 @@ from openhands.runtime.utils.request import RequestHTTPError
 from openhands.utils.async_utils import call_sync_from_async
 from openhands.utils.tenacity_stop import stop_if_should_exit
 
-OPENHANDS_SID_LABEL = "OpenHands_SID"
+OPENHANDS_SID_LABEL = "Maestrist_SID"
 
 
 class DaytonaRuntime(ActionExecutionClient):
@@ -35,7 +35,7 @@ class DaytonaRuntime(ActionExecutionClient):
 
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         event_stream: EventStream,
         sid: str = "default",
         plugins: list[PluginRequirement] | None = None,

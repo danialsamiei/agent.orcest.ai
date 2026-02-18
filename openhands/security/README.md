@@ -1,6 +1,6 @@
 # Security
 
-Given the impressive capabilities of OpenHands and similar coding agents, ensuring robust security measures is essential to prevent unintended actions or security breaches. The SecurityAnalyzer framework provides a structured approach to monitor and analyze agent actions for potential security risks.
+Given the impressive capabilities of Maestrist and similar coding agents, ensuring robust security measures is essential to prevent unintended actions or security breaches. The SecurityAnalyzer framework provides a structured approach to monitor and analyze agent actions for potential security risks.
 
 To enable this feature:
 * From the web interface
@@ -40,7 +40,7 @@ The `SecurityAnalyzer` class (analyzer.py) is an abstract base class designed to
 
 In conclusion, a concrete security analyzer should evaluate the risk of each event and act accordingly (e.g. auto-confirm, send Slack message, etc).
 
-For customization and decoupling from the OpenHands core logic, the security analyzer can define its own API endpoints that can then be accessed from the frontend. These API endpoints need to be secured (do not allow more capabilities than the core logic
+For customization and decoupling from the Maestrist core logic, the security analyzer can define its own API endpoints that can then be accessed from the frontend. These API endpoints need to be secured (do not allow more capabilities than the core logic
 provides).
 
 ## How to implement your own Security Analyzer
@@ -69,7 +69,7 @@ The LLM Risk Analyzer checks if actions have a `security_risk` attribute set by 
 
 ### Invariant
 
-It uses the [Invariant Analyzer](https://github.com/invariantlabs-ai/invariant) to analyze traces and detect potential issues with OpenHands's workflow. It uses confirmation mode to ask for user confirmation on potentially risky actions.
+It uses the [Invariant Analyzer](https://github.com/invariantlabs-ai/invariant) to analyze traces and detect potential issues with Maestrist's workflow. It uses confirmation mode to ask for user confirmation on potentially risky actions.
 
 This allows the agent to run autonomously without fear that it will inadvertently compromise security or perform unintended actions that could be harmful.
 
@@ -83,7 +83,7 @@ Features:
     * harmful content generation (browsing agent setting)
 * Logs:
     * actions and their associated risk
-    * OpenHands traces in JSON format
+    * Maestrist traces in JSON format
 * Run-time settings:
     * the [invariant policy](https://github.com/invariantlabs-ai/invariant?tab=readme-ov-file#policy-language)
     * acceptable risk threshold
@@ -102,7 +102,7 @@ Browsing Agent Safety:
 
 ### Gray Swan
 
-The Gray Swan Security Analyzer integrates with [Gray Swan AI's Cygnal API](https://docs.grayswan.ai/cygnal/monitor-requests) to provide advanced AI safety monitoring for OpenHands agents.
+The Gray Swan Security Analyzer integrates with [Gray Swan AI's Cygnal API](https://docs.grayswan.ai/cygnal/monitor-requests) to provide advanced AI safety monitoring for Maestrist agents.
 
 #### Getting Started
 To get started with the Gray Swan security analyzer (powered by Cygnal):
@@ -113,14 +113,14 @@ To get started with the Gray Swan security analyzer (powered by Cygnal):
 4. If you just want to use Cygnal's default protections, you can move to the next section.
 5. If you want **even more** custom protection, you can create your own policy [here](https://platform.grayswan.ai/policies). Policies are composed of rules, which require a short title, e.g. "Git Operations", and then the rule itself, e.g. "The agent should never push code directly to the main branch".
 
-#### OpenHands Configuration:
+#### Maestrist Configuration:
 
 To use the GraySwan analyzer, set the following environment variables:
 
 * `GRAYSWAN_API_KEY`: Your GraySwan API key (required)
 * `GRAYSWAN_POLICY_ID`: Your GraySwan policy ID (optional)
 
-Then configure OpenHands to use the GraySwan analyzer:
+Then configure Maestrist to use the GraySwan analyzer:
 
 ```toml
 [security]

@@ -169,7 +169,7 @@ class VerifyWebhookStatus:
 
                 if not isinstance(gitlab_service_impl, SaaSGitLabService):
                     raise Exception('Only SaaSGitLabService is supported')
-                # Cast needed when mypy can see OpenHands
+                # Cast needed when mypy can see Maestrist
                 gitlab_service = cast(type[SaaSGitLabService], gitlab_service_impl)
 
                 await self.verify_conditions_are_met(

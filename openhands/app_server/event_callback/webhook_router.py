@@ -1,4 +1,4 @@
-"""Event Callback router for OpenHands App Server."""
+"""Event Callback router for Maestrist App Server."""
 
 import asyncio
 import importlib
@@ -191,7 +191,7 @@ async def get_secret(
         if user_id:
             user_auth = await get_user_auth_for_user(user_id)
         else:
-            # OpenHands (OSS mode) - use default user auth
+            # Maestrist (OSS mode) - use default user auth
             user_auth = DefaultUserAuth()
 
         # Create UserContext directly

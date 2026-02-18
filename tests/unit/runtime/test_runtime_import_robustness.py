@@ -2,7 +2,7 @@
 
 This test specifically addresses the issue where broken third-party runtime dependencies
 (like runloop-api-client with incompatible httpx_aiohttp versions) would break the entire
-OpenHands CLI and system.
+Maestrist CLI and system.
 """
 
 import logging
@@ -71,7 +71,7 @@ def test_runtime_import_exception_handling_behavior():
     handler = logging.StreamHandler(log_capture)
     handler.setLevel(logging.WARNING)
 
-    # Add our test handler to the OpenHands logger
+    # Add our test handler to the Maestrist logger
     logger.addHandler(handler)
     original_level = logger.level
     logger.setLevel(logging.WARNING)

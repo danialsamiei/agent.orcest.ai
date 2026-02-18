@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -64,8 +64,8 @@ class LLMConfig(BaseModel):
     aws_access_key_id: SecretStr | None = Field(default=None)
     aws_secret_access_key: SecretStr | None = Field(default=None)
     aws_region_name: str | None = Field(default=None)
-    openrouter_site_url: str = Field(default='https://docs.all-hands.dev/')
-    openrouter_app_name: str = Field(default='OpenHands')
+    openrouter_site_url: str = Field(default='https://orcest.ai/docs/maestrist/')
+    openrouter_app_name: str = Field(default='Maestrist')
     # total wait time: 8 + 16 + 32 + 64 = 120 seconds
     num_retries: int = Field(default=5)
     retry_multiplier: float = Field(default=8)
@@ -190,7 +190,7 @@ class LLMConfig(BaseModel):
 
         # Set an API version by default for Azure models
         # Required for newer models.
-        # Azure issue: https://github.com/OpenHands/OpenHands/issues/7755
+        # Azure issue: https://github.com/orcest-ai/Maestrist/issues/7755
         if self.model.startswith('azure') and self.api_version is None:
             self.api_version = '2024-12-01-preview'
 

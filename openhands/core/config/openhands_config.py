@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -26,7 +26,7 @@ from openhands.core.config.sandbox_config import SandboxConfig
 from openhands.core.config.security_config import SecurityConfig
 
 
-class OpenHandsConfig(BaseModel):
+class MaestristConfig(BaseModel):
     """Configuration for the app.
 
     Attributes:
@@ -62,7 +62,7 @@ class OpenHandsConfig(BaseModel):
         file_uploads_allowed_extensions: Allowed file extensions. `['.*']` allows all.
         cli_multiline_input: Whether to enable multiline input in CLI. When disabled,
             input is read line by line. When enabled, input continues until /exit command.
-        mcp_host: Host for OpenHands' default MCP server
+        mcp_host: Host for Maestrist' default MCP server
         mcp: MCP configuration settings.
         git_user_name: Git user name for commits made by the agent.
         git_user_email: Git user email for commits made by the agent.
@@ -129,7 +129,7 @@ class OpenHandsConfig(BaseModel):
         default='openhands', description='Git user name for commits made by the agent'
     )
     git_user_email: str = Field(
-        default='openhands@all-hands.dev',
+        default='openhands@orcest.ai',
         description='Git user email for commits made by the agent',
     )
 
@@ -184,5 +184,5 @@ class OpenHandsConfig(BaseModel):
         """Post-initialization hook, called when the instance is created with only default values."""
         super().model_post_init(__context)
 
-        if not OpenHandsConfig.defaults_dict:  # Only set defaults_dict if it's empty
-            OpenHandsConfig.defaults_dict = model_defaults_to_dict(self)
+        if not MaestristConfig.defaults_dict:  # Only set defaults_dict if it's empty
+            MaestristConfig.defaults_dict = model_defaults_to_dict(self)

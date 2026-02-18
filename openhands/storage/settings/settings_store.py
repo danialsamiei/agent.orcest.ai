@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.storage.data_models.settings import Settings
 
 
 class SettingsStore(ABC):
     """Abstract base class for storing user settings.
 
-    This is an extension point in OpenHands that allows applications to customize how
+    This is an extension point in Maestrist that allows applications to customize how
     user settings are stored. Applications can substitute their own implementation by:
     1. Creating a class that inherits from SettingsStore
     2. Implementing all required methods
@@ -31,6 +31,6 @@ class SettingsStore(ABC):
     @classmethod
     @abstractmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str | None
+        cls, config: MaestristConfig, user_id: str | None
     ) -> SettingsStore:
         """Get a store for the user represented by the token given."""

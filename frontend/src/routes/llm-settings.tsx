@@ -29,11 +29,11 @@ import { DEFAULT_SETTINGS } from "#/services/settings";
 import { getProviderId } from "#/utils/map-provider";
 import { DEFAULT_OPENHANDS_MODEL } from "#/utils/verified-models";
 
-interface OpenHandsApiKeyHelpProps {
+interface MaestristApiKeyHelpProps {
   testId: string;
 }
 
-function OpenHandsApiKeyHelp({ testId }: OpenHandsApiKeyHelpProps) {
+function MaestristApiKeyHelp({ testId }: MaestristApiKeyHelpProps) {
   const { t } = useTranslation();
 
   return (
@@ -42,13 +42,13 @@ function OpenHandsApiKeyHelp({ testId }: OpenHandsApiKeyHelpProps) {
         testId={testId}
         text={t(I18nKey.SETTINGS$OPENHANDS_API_KEY_HELP_TEXT)}
         linkText={t(I18nKey.SETTINGS$NAV_API_KEYS)}
-        href="https://app.all-hands.dev/settings/api-keys"
+        href="https://app.orcest.ai/settings/api-keys"
         suffix={` ${t(I18nKey.SETTINGS$OPENHANDS_API_KEY_HELP_SUFFIX)}`}
       />
       <p className="text-xs">
         {t(I18nKey.SETTINGS$LLM_BILLING_INFO)}{" "}
         <a
-          href="https://docs.all-hands.dev/usage/llms/openhands-llms"
+          href="https://docs.orcest.ai/usage/llms/openhands-llms"
           rel="noreferrer noopener"
           target="_blank"
           className="underline underline-offset-2"
@@ -110,12 +110,12 @@ function LlmSettingsScreen() {
     resources?.models || [],
   );
 
-  // Determine if we should hide the API key input and use OpenHands-managed key (when using OpenHands provider in SaaS mode)
+  // Determine if we should hide the API key input and use Maestrist-managed key (when using Maestrist provider in SaaS mode)
   const currentModel = currentSelectedModel || settings?.llm_model;
 
   const isSaasMode = config?.app_mode === "saas";
 
-  const isOpenHandsProvider = () => {
+  const isMaestristProvider = () => {
     if (view === "basic") {
       return selectedProvider === "openhands";
     }
@@ -130,7 +130,7 @@ function LlmSettingsScreen() {
     return false;
   };
 
-  const shouldUseOpenHandsKey = isOpenHandsProvider() && isSaasMode;
+  const shouldUseMaestristKey = isMaestristProvider() && isSaasMode;
 
   // Determine if we should hide the agent dropdown when V1 conversation API is enabled
   const isV1Enabled = settings?.v1_enabled;
@@ -225,8 +225,8 @@ function LlmSettingsScreen() {
 
     const fullLlmModel = provider && model && `${provider}/${model}`;
 
-    // Use OpenHands-managed key for OpenHands provider in SaaS mode
-    const finalApiKey = shouldUseOpenHandsKey ? null : apiKey;
+    // Use Maestrist-managed key for Maestrist provider in SaaS mode
+    const finalApiKey = shouldUseMaestristKey ? null : apiKey;
 
     saveSettings(
       {
@@ -276,8 +276,8 @@ function LlmSettingsScreen() {
       .get("security-analyzer-input")
       ?.toString();
 
-    // Use OpenHands-managed key for OpenHands provider in SaaS mode
-    const finalApiKey = shouldUseOpenHandsKey ? null : apiKey;
+    // Use Maestrist-managed key for Maestrist provider in SaaS mode
+    const finalApiKey = shouldUseMaestristKey ? null : apiKey;
 
     saveSettings(
       {
@@ -519,12 +519,12 @@ function LlmSettingsScreen() {
                   />
                   {(settings.llm_model?.startsWith("openhands/") ||
                     currentSelectedModel?.startsWith("openhands/")) && (
-                    <OpenHandsApiKeyHelp testId="openhands-api-key-help" />
+                    <MaestristApiKeyHelp testId="openhands-api-key-help" />
                   )}
                 </>
               )}
 
-              {!shouldUseOpenHandsKey && (
+              {!shouldUseMaestristKey && (
                 <>
                   <SettingsInput
                     testId="llm-api-key-input"
@@ -545,7 +545,7 @@ function LlmSettingsScreen() {
                     testId="llm-api-key-help-anchor"
                     text={t(I18nKey.SETTINGS$DONT_KNOW_API_KEY)}
                     linkText={t(I18nKey.SETTINGS$CLICK_FOR_INSTRUCTIONS)}
-                    href="https://docs.all-hands.dev/usage/local-setup#getting-an-api-key"
+                    href="https://docs.orcest.ai/usage/local-setup#getting-an-api-key"
                   />
                 </>
               )}
@@ -569,7 +569,7 @@ function LlmSettingsScreen() {
               />
               {(settings.llm_model?.startsWith("openhands/") ||
                 currentSelectedModel?.startsWith("openhands/")) && (
-                <OpenHandsApiKeyHelp testId="openhands-api-key-help-2" />
+                <MaestristApiKeyHelp testId="openhands-api-key-help-2" />
               )}
 
               <SettingsInput
@@ -583,7 +583,7 @@ function LlmSettingsScreen() {
                 onChange={handleBaseUrlIsDirty}
               />
 
-              {!shouldUseOpenHandsKey && (
+              {!shouldUseMaestristKey && (
                 <>
                   <SettingsInput
                     testId="llm-api-key-input"
@@ -603,7 +603,7 @@ function LlmSettingsScreen() {
                     testId="llm-api-key-help-anchor-advanced"
                     text={t(I18nKey.SETTINGS$DONT_KNOW_API_KEY)}
                     linkText={t(I18nKey.SETTINGS$CLICK_FOR_INSTRUCTIONS)}
-                    href="https://docs.all-hands.dev/usage/local-setup#getting-an-api-key"
+                    href="https://docs.orcest.ai/usage/local-setup#getting-an-api-key"
                   />
                 </>
               )}

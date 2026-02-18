@@ -1,6 +1,6 @@
-# راهنمای API و زیرساخت برای OpenHands
+# راهنمای API و زیرساخت برای Maestrist
 
-## تنظیمات پیشنهادی در OpenHands
+## تنظیمات پیشنهادی در Maestrist
 
 در **Settings → LLM** این مقادیر را تنظیم کنید:
 
@@ -65,7 +65,7 @@
 ### DigitalOcean
 - **پیشنهاد:** Droplet با ۴GB+ RAM
 - **قیمت:** از حدود $24/ماه
-- **مناسب برای:** اجرای OpenHands + Docker + مدل‌های کوچک محلی
+- **مناسب برای:** اجرای Maestrist + Docker + مدل‌های کوچک محلی
 - **لینک:** https://www.digitalocean.com
 
 ### سرور در ایران (پیشنهاد کلی)

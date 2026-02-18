@@ -5,7 +5,7 @@ import pytest
 from pydantic import ValidationError
 
 from openhands.controller.agent import Agent
-from openhands.core.config import OpenHandsConfig, load_from_env
+from openhands.core.config import MaestristConfig, load_from_env
 from openhands.core.config.mcp_config import (
     MCPConfig,
     MCPSHTTPServerConfig,
@@ -292,7 +292,7 @@ def test_env_var_mcp_shttp_server_config(monkeypatch):
     )
 
     # Create a config object
-    config = OpenHandsConfig()
+    config = MaestristConfig()
 
     # Load from environment
     load_from_env(config, os.environ)
@@ -346,7 +346,7 @@ shttp_servers = [
     )
 
     # Create a config object
-    config = OpenHandsConfig()
+    config = MaestristConfig()
 
     # Load from TOML first
     from openhands.core.config import load_from_toml
@@ -383,7 +383,7 @@ def test_env_var_mcp_shttp_servers_with_python_str_representation(monkeypatch):
     monkeypatch.setenv('MCP_SHTTP_SERVERS', str(mcp_shttp_servers))
 
     # Create a config object
-    config = OpenHandsConfig()
+    config = MaestristConfig()
 
     # Load from environment
     load_from_env(config, os.environ)
@@ -413,7 +413,7 @@ async def test_session_preserves_env_mcp_config(monkeypatch):
     monkeypatch.setenv('MCP_HOST', 'dummy')
 
     # Create a config object and load from environment
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     load_from_env(config, os.environ)
 
     # Verify the environment variables were loaded into the config
@@ -430,7 +430,7 @@ async def test_session_preserves_env_mcp_config(monkeypatch):
         file_store=InMemoryFileStore({}),
         config=config,
         sio=AsyncMock(),
-        llm_registry=LLMRegistry(config=OpenHandsConfig()),
+        llm_registry=LLMRegistry(config=MaestristConfig()),
         conversation_stats=ConversationStats(None, 'test-sid', None),
     )
 

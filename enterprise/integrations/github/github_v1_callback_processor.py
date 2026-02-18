@@ -89,7 +89,7 @@ class GithubV1CallbackProcessor(EventCallbackProcessor):
                     and GITHUB_APP_PRIVATE_KEY
                 ):
                     await self._post_summary_to_github(
-                        f'OpenHands encountered an error: **{str(e)}**.\n\n'
+                        f'Maestrist encountered an error: **{str(e)}**.\n\n'
                         f'[See the conversation]({CONVERSATION_URL.format(conversation_id)})'
                         'for more information.'
                     )

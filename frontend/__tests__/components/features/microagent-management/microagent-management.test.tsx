@@ -187,8 +187,8 @@ describe("MicroagentManagement", () => {
     },
   ];
 
-  // Helper function to filter repositories with OpenHands suffixes
-  const getRepositoriesWithOpenHandsSuffix = (
+  // Helper function to filter repositories with Maestrist suffixes
+  const getRepositoriesWithMaestristSuffix = (
     repositories: GitRepository[],
   ) => {
     return repositories.filter(
@@ -331,9 +331,9 @@ describe("MicroagentManagement", () => {
       isPending: false,
     });
 
-    // Mock the search repositories hook to return repositories with OpenHands suffixes
+    // Mock the search repositories hook to return repositories with Maestrist suffixes
     const mockSearchResults =
-      getRepositoriesWithOpenHandsSuffix(mockRepositories);
+      getRepositoriesWithMaestristSuffix(mockRepositories);
 
     mockSearchRepositoriesWithData(mockSearchResults);
 

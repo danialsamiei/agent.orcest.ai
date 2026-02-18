@@ -1,11 +1,11 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
-"""Centralized command line argument configuration for OpenHands CLI and headless modes."""
+"""Centralized command line argument configuration for Maestrist CLI and headless modes."""
 
 import argparse
 from argparse import ArgumentParser, _SubParsersAction
@@ -153,10 +153,10 @@ def get_cli_parser() -> argparse.ArgumentParser:
     """Create argument parser for CLI mode with simplified argument set."""
     # Create a description with welcome message explaining available commands
     description = (
-        'Welcome to OpenHands: Code Less, Make More\n\n'
-        'OpenHands supports two main commands:\n'
-        '  serve - Launch the OpenHands GUI server (web interface)\n'
-        '  cli   - Run OpenHands in CLI mode (terminal interface)\n\n'
+        'Welcome to Maestrist: Code Less, Make More\n\n'
+        'Maestrist supports two main commands:\n'
+        '  serve - Launch the Maestrist GUI server (web interface)\n'
+        '  cli   - Run Maestrist in CLI mode (terminal interface)\n\n'
         'Running "openhands" without a command is the same as "openhands cli"'
     )
 
@@ -171,13 +171,13 @@ def get_cli_parser() -> argparse.ArgumentParser:
     subparsers = parser.add_subparsers(
         dest='command',
         title='commands',
-        description='OpenHands supports two main commands:',
+        description='Maestrist supports two main commands:',
         metavar='COMMAND',
     )
 
     # Add 'serve' subcommand
     serve_parser = subparsers.add_parser(
-        'serve', help='Launch the OpenHands GUI server using Docker (web interface)'
+        'serve', help='Launch the Maestrist GUI server using Docker (web interface)'
     )
     serve_parser.add_argument(
         '--mount-cwd',
@@ -194,7 +194,7 @@ def get_cli_parser() -> argparse.ArgumentParser:
 
     # Add 'cli' subcommand - import all the existing CLI arguments
     cli_parser = subparsers.add_parser(
-        'cli', help='Run OpenHands in CLI mode (terminal interface)'
+        'cli', help='Run Maestrist in CLI mode (terminal interface)'
     )
     add_common_arguments(cli_parser)
 
@@ -224,7 +224,7 @@ def get_headless_parser() -> argparse.ArgumentParser:
 
 def get_evaluation_parser() -> argparse.ArgumentParser:
     """Create argument parser for evaluation mode."""
-    parser = argparse.ArgumentParser(description='Run OpenHands in evaluation mode')
+    parser = argparse.ArgumentParser(description='Run Maestrist in evaluation mode')
     add_common_arguments(parser)
     add_headless_specific_arguments(parser)
     add_evaluation_arguments(parser)

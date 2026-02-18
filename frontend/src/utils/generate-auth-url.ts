@@ -21,9 +21,9 @@ export const generateAuthUrl = (
     finalAuthUrl = `https://${authUrl.replace(/^https?:\/\//, "")}`;
   } else {
     finalAuthUrl = requestUrl.hostname
-      .replace(/(^|\.)staging\.all-hands\.dev$/, "$1auth.staging.all-hands.dev")
-      .replace(/(^|\.)app\.all-hands\.dev$/, "auth.app.all-hands.dev")
-      .replace(/(^|\.)localhost$/, "auth.staging.all-hands.dev");
+      .replace(/(^|\.)staging\.all-hands\.dev$/, "$1auth.staging.orcest.ai")
+      .replace(/(^|\.)app\.all-hands\.dev$/, "auth.app.orcest.ai")
+      .replace(/(^|\.)localhost$/, "auth.staging.orcest.ai");
 
     // If no replacements matched, prepend "auth." (excluding localhost)
     if (

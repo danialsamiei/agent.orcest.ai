@@ -338,7 +338,7 @@ def register_conversation_activity(
                 'value': f'Started a new conversation: {conversation_title or "Untitled"}',
             },
             'timestamp': formatted_timestamp,
-            'url': f'https://app.all-hands.dev/conversations/{conversation_id}',
+            'url': f'https://agent.orcest.ai/conversations/{conversation_id}',
         }
 
         # Log the activity data for debugging

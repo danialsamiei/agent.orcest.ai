@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Iterable
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.storage.data_models.conversation_metadata import ConversationMetadata
 from openhands.storage.data_models.conversation_metadata_result_set import (
     ConversationMetadataResultSet,
@@ -14,7 +14,7 @@ from openhands.utils.async_utils import wait_all
 class ConversationStore(ABC):
     """Abstract base class for conversation metadata storage.
 
-    This is an extension point in OpenHands that allows applications to customize how
+    This is an extension point in Maestrist that allows applications to customize how
     conversation metadata is stored. Applications can substitute their own implementation by:
     1. Creating a class that inherits from ConversationStore
     2. Implementing all required methods
@@ -66,6 +66,6 @@ class ConversationStore(ABC):
     @classmethod
     @abstractmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str | None
+        cls, config: MaestristConfig, user_id: str | None
     ) -> ConversationStore:
         """Get a store for the user represented by the token given."""

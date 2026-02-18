@@ -4,7 +4,7 @@ import json
 import os
 from dataclasses import dataclass
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.storage import get_file_store
 from openhands.storage.data_models.settings import Settings
 from openhands.storage.files import FileStore
@@ -23,7 +23,7 @@ class FileSettingsStore(SettingsStore):
             kwargs = json.loads(json_str)
             settings = Settings(**kwargs)
 
-            # Turn on V1 in OpenHands unless using CLI runtime
+            # Turn on V1 in Maestrist unless using CLI runtime
             # ProcessSandboxService (V1) doesn't work with CLIRuntime
             settings.v1_enabled = os.getenv('RUNTIME') != 'cli'
 
@@ -37,7 +37,7 @@ class FileSettingsStore(SettingsStore):
 
     @classmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str | None
+        cls, config: MaestristConfig, user_id: str | None
     ) -> FileSettingsStore:
         file_store = get_file_store(
             file_store_type=config.file_store,

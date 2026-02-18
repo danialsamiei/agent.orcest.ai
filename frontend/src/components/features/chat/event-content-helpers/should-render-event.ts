@@ -1,27 +1,27 @@
-import { OpenHandsAction } from "#/types/core/actions";
-import { OpenHandsEventType } from "#/types/core/base";
+import { MaestristAction } from "#/types/core/actions";
+import { MaestristEventType } from "#/types/core/base";
 import {
   isCommandAction,
   isCommandObservation,
-  isOpenHandsAction,
-  isOpenHandsObservation,
+  isMaestristAction,
+  isMaestristObservation,
 } from "#/types/core/guards";
-import { OpenHandsObservation } from "#/types/core/observations";
+import { MaestristObservation } from "#/types/core/observations";
 
-const COMMON_NO_RENDER_LIST: OpenHandsEventType[] = [
+const COMMON_NO_RENDER_LIST: MaestristEventType[] = [
   "system",
   "agent_state_changed",
   "change_agent_state",
 ];
 
-const ACTION_NO_RENDER_LIST: OpenHandsEventType[] = ["recall"];
+const ACTION_NO_RENDER_LIST: MaestristEventType[] = ["recall"];
 
-const OBSERVATION_NO_RENDER_LIST: OpenHandsEventType[] = ["think"];
+const OBSERVATION_NO_RENDER_LIST: MaestristEventType[] = ["think"];
 
 export const shouldRenderEvent = (
-  event: OpenHandsAction | OpenHandsObservation,
+  event: MaestristAction | MaestristObservation,
 ) => {
-  if (isOpenHandsAction(event)) {
+  if (isMaestristAction(event)) {
     if (isCommandAction(event) && event.source === "user") {
       // For user commands, we always hide them from the chat interface
       return false;
@@ -31,7 +31,7 @@ export const shouldRenderEvent = (
     return !noRenderList.includes(event.action);
   }
 
-  if (isOpenHandsObservation(event)) {
+  if (isMaestristObservation(event)) {
     if (isCommandObservation(event) && event.source === "user") {
       // For user commands, we always hide them from the chat interface
       return false;
@@ -47,6 +47,6 @@ export const shouldRenderEvent = (
 };
 
 export const hasUserEvent = (
-  events: (OpenHandsAction | OpenHandsObservation)[],
+  events: (MaestristAction | MaestristObservation)[],
 ) =>
-  events.some((event) => isOpenHandsAction(event) && event.source === "user");
+  events.some((event) => isMaestristAction(event) && event.source === "user");

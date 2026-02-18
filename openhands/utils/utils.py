@@ -1,7 +1,7 @@
 import os
 from copy import deepcopy
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.llm.llm_registry import LLMRegistry
 from openhands.server.services.conversation_stats import ConversationStats
 from openhands.storage import get_file_store
@@ -9,7 +9,7 @@ from openhands.storage.data_models.settings import Settings
 from openhands.utils.environment import get_effective_llm_base_url
 
 
-def setup_llm_config(config: OpenHandsConfig, settings: Settings) -> OpenHandsConfig:
+def setup_llm_config(config: MaestristConfig, settings: Settings) -> MaestristConfig:
     # Copying this means that when we update variables they are not applied to the shared global configuration!
     config = deepcopy(config)
 
@@ -34,11 +34,11 @@ def setup_llm_config(config: OpenHandsConfig, settings: Settings) -> OpenHandsCo
 
 
 def create_registry_and_conversation_stats(
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     sid: str,
     user_id: str | None,
     user_settings: Settings | None = None,
-) -> tuple[LLMRegistry, ConversationStats, OpenHandsConfig]:
+) -> tuple[LLMRegistry, ConversationStats, MaestristConfig]:
     user_config = config
     if user_settings:
         user_config = setup_llm_config(config, user_settings)

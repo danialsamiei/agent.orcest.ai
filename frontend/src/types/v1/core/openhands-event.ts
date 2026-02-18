@@ -15,10 +15,10 @@ import {
 } from "./events/index";
 
 /**
- * Union type representing all possible OpenHands events.
+ * Union type representing all possible Maestrist events.
  * This includes all main event types that can occur in the system.
  */
-export type OpenHandsEvent =
+export type MaestristEvent =
   // Core action and observation events
   | ActionEvent
   | MessageEvent

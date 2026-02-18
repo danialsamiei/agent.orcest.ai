@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -13,7 +13,7 @@ from pydantic import BaseModel, ConfigDict
 
 from openhands.core.config.agent_config import AgentConfig
 from openhands.core.config.llm_config import LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.llm.llm import LLM
 
@@ -30,7 +30,7 @@ class RegistryEvent(BaseModel):
 class LLMRegistry:
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         agent_cls: str | None = None,
         retry_listener: Callable[[int, int], None] | None = None,
     ):

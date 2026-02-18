@@ -12,7 +12,7 @@ from openhands.controller.state.control_flags import (
     IterationControlFlag,
 )
 from openhands.controller.state.state import State
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.config.agent_config import AgentConfig
 from openhands.core.config.llm_config import LLMConfig
 from openhands.core.schema import AgentState
@@ -39,7 +39,7 @@ from openhands.storage.memory import InMemoryFileStore
 
 @pytest.fixture
 def llm_registry():
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     return LLMRegistry(config=config)
 
 

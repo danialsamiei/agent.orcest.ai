@@ -10,8 +10,8 @@ logging.getLogger('alembic.runtime.plugins').setLevel(logging.WARNING)
 
 from alembic import context  # noqa: E402
 
-# Add the project root to the Python path so we can import OpenHands modules
-# From alembic/env.py, we need to go up 5 levels to reach the OpenHands project root
+# Add the project root to the Python path so we can import Maestrist modules
+# From alembic/env.py, we need to go up 5 levels to reach the Maestrist project root
 project_root = Path(__file__).absolute().parent.parent.parent.parent.parent
 sys.path.insert(0, str(project_root))
 

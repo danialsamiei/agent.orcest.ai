@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -32,7 +32,7 @@ from openhands.core.config.kubernetes_config import KubernetesConfig
 from openhands.core.config.llm_config import LLMConfig
 from openhands.core.config.mcp_config import MCPConfig
 from openhands.core.config.model_routing_config import ModelRoutingConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.config.sandbox_config import SandboxConfig
 from openhands.core.config.security_config import SecurityConfig
 from openhands.storage import get_file_store
@@ -44,7 +44,7 @@ load_dotenv()
 
 
 def load_from_env(
-    cfg: OpenHandsConfig, env_or_toml_dict: dict | MutableMapping[str, str]
+    cfg: MaestristConfig, env_or_toml_dict: dict | MutableMapping[str, str]
 ) -> None:
     """Sets config attributes from environment variables or TOML dictionary.
 
@@ -53,7 +53,7 @@ def load_from_env(
     (e.g., AGENT_MEMORY_ENABLED), sandbox settings (e.g., SANDBOX_TIMEOUT), and more.
 
     Args:
-        cfg: The OpenHandsConfig object to set attributes on.
+        cfg: The MaestristConfig object to set attributes on.
         env_or_toml_dict: The environment variables or a config.toml dict.
     """
 
@@ -141,11 +141,11 @@ def load_from_env(
     set_attr_from_env(default_agent_config, 'AGENT_')
 
 
-def load_from_toml(cfg: OpenHandsConfig, toml_file: str = 'config.toml') -> None:
+def load_from_toml(cfg: MaestristConfig, toml_file: str = 'config.toml') -> None:
     """Load the config from the toml file. Supports both styles of config vars.
 
     Args:
-        cfg: The OpenHandsConfig object to update attributes of.
+        cfg: The MaestristConfig object to update attributes of.
         toml_file: The path to the toml file. Defaults to 'config.toml'.
 
     See Also:
@@ -383,7 +383,7 @@ def get_or_create_jwt_secret(file_store: FileStore) -> str:
         return new_secret
 
 
-def finalize_config(cfg: OpenHandsConfig) -> None:
+def finalize_config(cfg: MaestristConfig) -> None:
     """More tweaks to the config after it's been loaded."""
     # Handle the sandbox.volumes parameter
     if cfg.sandbox.volumes is not None:
@@ -795,13 +795,13 @@ def parse_arguments() -> argparse.Namespace:
     from openhands import get_version
 
     if args.version:
-        print(f'OpenHands version: {get_version()}')
+        print(f'Maestrist version: {get_version()}')
         sys.exit(0)
 
     return args
 
 
-def register_custom_agents(config: OpenHandsConfig) -> None:
+def register_custom_agents(config: MaestristConfig) -> None:
     """Register custom agents from configuration.
 
     This function is called after configuration is loaded to ensure all custom agents
@@ -826,14 +826,14 @@ def register_custom_agents(config: OpenHandsConfig) -> None:
 
 def load_openhands_config(
     set_logging_levels: bool = True, config_file: str = 'config.toml'
-) -> OpenHandsConfig:
+) -> MaestristConfig:
     """Load the configuration from the specified config file and environment variables.
 
     Args:
         set_logging_levels: Whether to set the global variables for logging levels.
         config_file: Path to the config file. Defaults to 'config.toml' in the current directory.
     """
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     load_from_toml(config, config_file)
     load_from_env(config, os.environ)
     finalize_config(config)
@@ -844,7 +844,7 @@ def load_openhands_config(
     return config
 
 
-def setup_config_from_args(args: argparse.Namespace) -> OpenHandsConfig:
+def setup_config_from_args(args: argparse.Namespace) -> MaestristConfig:
     """Load config from toml and override with command line arguments.
 
     Common setup used by both CLI and main.py entry points.

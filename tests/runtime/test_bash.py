@@ -271,7 +271,7 @@ def test_no_ps2_in_output(temp_dir, runtime_cls, run_as_openhands):
     is_windows(), reason='Test uses Linux-specific bash loops and sed commands'
 )
 def test_multiline_command_loop(temp_dir, runtime_cls):
-    # https://github.com/OpenHands/OpenHands/issues/3143
+    # https://github.com/orcest-ai/Maestrist/issues/3143
     init_cmd = """mkdir -p _modules && \
 for month in {01..04}; do
     for day in {01..05}; do
@@ -855,7 +855,7 @@ def test_git_operation(temp_dir, runtime_cls):
             logger.info('Setting git config author')
             obs = _run_cmd_action(
                 runtime,
-                'git config user.name "openhands" && git config user.email "openhands@all-hands.dev"',
+                'git config user.name "openhands" && git config user.email "openhands@orcest.ai"',
             )
             assert obs.exit_code == 0
 
@@ -1453,7 +1453,7 @@ def test_bash_remove_prefix(temp_dir, runtime_cls, run_as_openhands):
     try:
         # create a git repo - same for both platforms
         action = CmdRunAction(
-            'git init && git remote add origin https://github.com/OpenHands/OpenHands'
+            'git init && git remote add origin https://github.com/orcest-ai/Maestrist'
         )
         obs = runtime.run_action(action)
         # logger.info(obs, extra={'msg_type': 'OBSERVATION'})
@@ -1463,7 +1463,7 @@ def test_bash_remove_prefix(temp_dir, runtime_cls, run_as_openhands):
         obs = runtime.run_action(CmdRunAction('git remote -v'))
         # logger.info(obs, extra={'msg_type': 'OBSERVATION'})
         assert obs.metadata.exit_code == 0
-        assert 'https://github.com/OpenHands/OpenHands' in obs.content
+        assert 'https://github.com/orcest-ai/Maestrist' in obs.content
         assert 'git remote -v' not in obs.content
     finally:
         _close_test_runtime(runtime)

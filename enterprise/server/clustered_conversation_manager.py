@@ -11,7 +11,7 @@ from storage.database import session_maker
 from storage.stored_conversation_metadata_saas import StoredConversationMetadataSaas
 
 from openhands.core.config import LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.config.utils import load_openhands_config
 from openhands.core.schema.agent import AgentState
 from openhands.events.action import MessageAction
@@ -697,7 +697,7 @@ class ClusteredConversationManager(StandaloneConversationManager):
     def get_instance(
         cls,
         sio: socketio.AsyncServer,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         file_store: FileStore,
         server_config: ServerConfig,
         monitoring_listener: MonitoringListener | None,

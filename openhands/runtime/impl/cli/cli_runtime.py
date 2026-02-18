@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -29,7 +29,7 @@ from openhands_aci.editor.results import ToolResult
 from openhands_aci.utils.diff import get_diff
 from pydantic import SecretStr
 
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.config.mcp_config import MCPConfig, MCPStdioServerConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.events import EventStream
@@ -71,11 +71,11 @@ if sys.platform == 'win32':
         friendly_message = """
 ERROR: PowerShell and .NET SDK are required but not properly configured
 
-The .NET SDK and PowerShell are required for OpenHands CLI on Windows.
+The .NET SDK and PowerShell are required for Maestrist CLI on Windows.
 PowerShell integration cannot function without .NET Core.
 
 Please install the .NET SDK by following the instructions at:
-https://docs.all-hands.dev/usage/windows-without-wsl
+https://orcest.ai/docs/maestrist/usage/windows-without-wsl
 
 After installing .NET SDK, restart your terminal and try again.
 """
@@ -99,7 +99,7 @@ class CLIRuntime(Runtime):
     file operations using Python's standard library. It does not implement browser functionality.
 
     Args:
-        config (OpenHandsConfig): The application configuration.
+        config (MaestristConfig): The application configuration.
         event_stream (EventStream): The event stream to subscribe to.
         sid (str, optional): The session ID. Defaults to 'default'.
         plugins (list[PluginRequirement] | None, optional): List of plugin requirements. Defaults to None.
@@ -113,7 +113,7 @@ class CLIRuntime(Runtime):
 
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         event_stream: EventStream,
         llm_registry: LLMRegistry,
         sid: str = 'default',

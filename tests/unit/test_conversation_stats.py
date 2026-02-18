@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 import pytest
 
-from openhands.core.config import LLMConfig, OpenHandsConfig
+from openhands.core.config import LLMConfig, MaestristConfig
 from openhands.llm.llm import LLM
 from openhands.llm.llm_registry import LLMRegistry, RegistryEvent
 from openhands.llm.metrics import Metrics
@@ -31,7 +31,7 @@ def conversation_stats(mock_file_store):
 @pytest.fixture
 def mock_llm_registry():
     """Create a mock LLM registry that properly simulates LLM registration."""
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     registry = LLMRegistry(config=config, agent_cls=None, retry_listener=None)
     return registry
 

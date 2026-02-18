@@ -61,8 +61,8 @@ def get_session_expired_message(username: str | None = None) -> str:
         A formatted session expired message
     """
     if username:
-        return f'@{username} your session has expired. Please login again at [OpenHands Cloud]({HOST_URL}) and try again.'
-    return f'Your session has expired. Please login again at [OpenHands Cloud]({HOST_URL}) and try again.'
+        return f'@{username} your session has expired. Please login again at [Maestrist Cloud]({HOST_URL}) and try again.'
+    return f'Your session has expired. Please login again at [Maestrist Cloud]({HOST_URL}) and try again.'
 
 
 # Toggle for solvability report feature
@@ -87,7 +87,7 @@ jinja_env = Environment(loader=FileSystemLoader(OPENHANDS_RESOLVER_TEMPLATES_DIR
 
 
 def get_oh_labels(web_host: str) -> tuple[str, str]:
-    """Get the OpenHands labels based on the web host.
+    """Get the Maestrist labels based on the web host.
 
     Args:
         web_host: The web host string to check
@@ -147,7 +147,7 @@ def has_exact_mention(text: str, mention: str) -> bool:
         >>> has_exact_mention("Hello @openhands-agent!", "@openhands")  # False
         >>> has_exact_mention("(@openhands)", "@openhands")  # True
         >>> has_exact_mention("user@openhands.com", "@openhands")  # False
-        >>> has_exact_mention("Hello @OpenHands!", "@openhands")  # True (case-insensitive)
+        >>> has_exact_mention("Hello @Maestrist!", "@openhands")  # True (case-insensitive)
     """
     # Convert both text and mention to lowercase for case-insensitive matching
     text_lower = text.lower()
@@ -185,7 +185,7 @@ def get_readable_error_reason(reason: str):
 def get_summary_for_agent_state(
     observations: list[AgentStateChangedObservation], conversation_link: str
 ) -> str:
-    unknown_error_msg = f'OpenHands encountered an unknown error. [See the conversation]({conversation_link}) for more information, or try again'
+    unknown_error_msg = f'Maestrist encountered an unknown error. [See the conversation]({conversation_link}) for more information, or try again'
 
     if len(observations) == 0:
         logger.error(
@@ -206,7 +206,7 @@ def get_summary_for_agent_state(
                 'observation_reason': getattr(observation, 'reason', None),
             },
         )
-        return 'OpenHands was rate limited by the LLM provider. Please try again later.'
+        return 'Maestrist was rate limited by the LLM provider. Please try again later.'
 
     if state == AgentState.ERROR:
         reason = observation.reason
@@ -222,7 +222,7 @@ def get_summary_for_agent_state(
             },
         )
 
-        return f'OpenHands encountered an error: **{reason}**.\n\n[See the conversation]({conversation_link}) for more information.'
+        return f'Maestrist encountered an error: **{reason}**.\n\n[See the conversation]({conversation_link}) for more information.'
 
     if state == AgentState.AWAITING_USER_INPUT:
         logger.info(
@@ -233,7 +233,7 @@ def get_summary_for_agent_state(
                 'observation_reason': getattr(observation, 'reason', None),
             },
         )
-        return f'OpenHands is waiting for your input. [Continue the conversation]({conversation_link}) to provide additional instructions.'
+        return f'Maestrist is waiting for your input. [Continue the conversation]({conversation_link}) to provide additional instructions.'
 
     # Log unknown agent state as error
     logger.error(

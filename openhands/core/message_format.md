@@ -1,8 +1,8 @@
-# OpenHands Message Format and litellm Integration
+# Maestrist Message Format and litellm Integration
 
 ## Overview
 
-OpenHands uses its own `Message` class (`openhands/core/message.py`) which provides rich content support while maintaining compatibility with litellm's message handling system.
+Maestrist uses its own `Message` class (`openhands/core/message.py`) which provides rich content support while maintaining compatibility with litellm's message handling system.
 
 ## Class Structure
 

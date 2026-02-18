@@ -396,7 +396,7 @@ def test_microagent_observation_environment_serialization():
     original = RecallObservation(
         content='Environment information',
         recall_type=RecallType.WORKSPACE_CONTEXT,
-        repo_name='OpenHands',
+        repo_name='Maestrist',
         repo_directory='/workspace/openhands',
         repo_branch='main',
         repo_instructions="Follow the project's coding style guide.",
@@ -411,7 +411,7 @@ def test_microagent_observation_environment_serialization():
     assert serialized['observation'] == ObservationType.RECALL
     assert serialized['content'] == 'Environment information'
     assert serialized['extras']['recall_type'] == RecallType.WORKSPACE_CONTEXT.value
-    assert serialized['extras']['repo_name'] == 'OpenHands'
+    assert serialized['extras']['repo_name'] == 'Maestrist'
     assert serialized['extras']['runtime_hosts'] == {
         '127.0.0.1': 8080,
         'localhost': 5000,
@@ -446,7 +446,7 @@ def test_microagent_observation_combined_serialization():
         content='Combined information',
         recall_type=RecallType.WORKSPACE_CONTEXT,
         # Environment info
-        repo_name='OpenHands',
+        repo_name='Maestrist',
         repo_directory='/workspace/openhands',
         repo_branch='main',
         repo_instructions="Follow the project's coding style guide.",
@@ -467,7 +467,7 @@ def test_microagent_observation_combined_serialization():
 
     # Verify serialized data has both types of fields
     assert serialized['extras']['recall_type'] == RecallType.WORKSPACE_CONTEXT.value
-    assert serialized['extras']['repo_name'] == 'OpenHands'
+    assert serialized['extras']['repo_name'] == 'Maestrist'
     assert (
         serialized['extras']['microagent_knowledge'][0]['name']
         == 'python_best_practices'

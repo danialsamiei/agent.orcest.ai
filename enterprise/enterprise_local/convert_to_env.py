@@ -97,8 +97,8 @@ convert_yaml_to_env(yaml_file, target_parameters, output_env_file, 'KEYCLOAK_')
 os.remove(yaml_file)
 
 lines = []
-lines.append('KEYCLOAK_SERVER_URL=https://auth.staging.all-hands.dev/')
-lines.append('KEYCLOAK_SERVER_URL_EXT=https://auth.staging.all-hands.dev/')
+lines.append('KEYCLOAK_SERVER_URL=https://auth.staging.orcest.ai/')
+lines.append('KEYCLOAK_SERVER_URL_EXT=https://auth.staging.orcest.ai/')
 lines.append('OPENHANDS_CONFIG_CLS=server.config.SaaSServerConfig')
 lines.append(
     'OPENHANDS_GITHUB_SERVICE_CLS=integrations.github.github_service.SaaSGitHubService'
@@ -115,7 +115,7 @@ lines.append(
 lines.append('POSTHOG_CLIENT_KEY=test')
 lines.append('ENABLE_PROACTIVE_CONVERSATION_STARTERS=true')
 lines.append('MAX_CONCURRENT_CONVERSATIONS=10')
-lines.append('LITE_LLM_API_URL=https://llm-proxy.eval.all-hands.dev')
+lines.append('LITE_LLM_API_URL=https://llm-proxy.eval.orcest.ai')
 lines.append('LITELLM_DEFAULT_MODEL=litellm_proxy/claude-opus-4-5-20251101')
 lines.append(f'LITE_LLM_API_KEY={lite_llm_api_key}')
 lines.append('LOCAL_DEPLOYMENT=true')

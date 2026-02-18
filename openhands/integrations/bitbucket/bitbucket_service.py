@@ -26,7 +26,7 @@ class BitBucketService(
 ):
     """Default implementation of GitService for Bitbucket integration.
 
-    This is an extension point in OpenHands that allows applications to customize Bitbucket
+    This is an extension point in Maestrist that allows applications to customize Bitbucket
     integration behavior. Applications can substitute their own implementation by:
     1. Creating a class that inherits from GitService
     2. Implementing all required methods

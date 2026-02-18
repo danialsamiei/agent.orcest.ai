@@ -81,7 +81,7 @@ class MCPClient(BaseModel):
             )
 
             if conversation_id:
-                headers['X-OpenHands-ServerConversation-ID'] = conversation_id
+                headers['X-Maestrist-ServerConversation-ID'] = conversation_id
 
             # Instantiate custom transports due to custom headers
             if isinstance(server, MCPSHTTPServerConfig):

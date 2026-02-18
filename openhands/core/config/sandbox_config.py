@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -48,9 +48,9 @@ class SandboxConfig(BaseModel):
         enable_gpu: Whether to enable GPU.
         docker_runtime_kwargs: Additional keyword arguments to pass to the Docker runtime when running containers.
             This should be a Python dictionary literal string that will be parsed into a dictionary.
-        trusted_dirs: List of directories that can be trusted to run the OpenHands CLI.
+        trusted_dirs: List of directories that can be trusted to run the Maestrist CLI.
         vscode_port: The port to use for VSCode. If None, a random port will be chosen.
-            This is useful when deploying OpenHands in a remote machine where you need to expose a specific port.
+            This is useful when deploying Maestrist in a remote machine where you need to expose a specific port.
     """
 
     remote_runtime_api_url: str | None = Field(default='http://localhost:8000')
@@ -74,7 +74,7 @@ class SandboxConfig(BaseModel):
     )  # can be "None" (default to gvisor) or "sysbox" (support docker inside runtime + more stable)
     enable_auto_lint: bool = Field(
         default=False
-    )  # once enabled, OpenHands would lint files after editing
+    )  # once enabled, Maestrist would lint files after editing
     use_host_network: bool = Field(default=False)
     additional_networks: list[str] = Field(default=[])
     runtime_binding_address: str = Field(default='0.0.0.0')

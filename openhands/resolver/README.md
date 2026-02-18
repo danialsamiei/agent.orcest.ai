@@ -1,8 +1,8 @@
-# OpenHands GitHub, GitLab, Bitbucket & Azure DevOps Issue Resolver 🙌
+# Maestrist GitHub, GitLab, Bitbucket & Azure DevOps Issue Resolver 🙌
 
 Need help resolving a GitHub, GitLab, Bitbucket, or Azure DevOps issue but don't have the time to do it yourself? Let an AI agent help you out!
 
-This tool allows you to use open-source AI agents based on [OpenHands](https://github.com/openhands/openhands)
+This tool allows you to use open-source AI agents based on [Maestrist](https://github.com/openhands/openhands)
 to attempt to resolve GitHub, GitLab, Bitbucket, and Azure DevOps issues automatically. While it can handle multiple issues, it's primarily designed
 to help you resolve one issue at a time with high quality.
 
@@ -40,16 +40,16 @@ Follow these steps to use this workflow in your own repository:
 
    Note: You can set these secrets at the organization level to use across multiple repositories.
 
-6. Set up any [custom configurations required](https://docs.openhands.dev/usage/how-to/github-action#custom-configurations)
+6. Set up any [custom configurations required](https://orcest.ai/docs/maestrist/usage/how-to/github-action#custom-configurations)
 
 7. Usage:
-   There are two ways to trigger the OpenHands agent:
+   There are two ways to trigger the Maestrist agent:
 
    a. Using the 'fix-me' label:
       - Add the 'fix-me' label to any issue you want the AI to resolve
       - The agent will consider all comments in the issue thread when resolving
       - The workflow will:
-        1. Attempt to resolve the issue using OpenHands
+        1. Attempt to resolve the issue using Maestrist
         2. Create a draft PR if successful, or push a branch if unsuccessful
         3. Comment on the issue with the results
         4. Remove the 'fix-me' label once processed
@@ -141,7 +141,7 @@ export LLM_API_KEY="your-llm-api-key"
 export LLM_BASE_URL="your-api-url"  # Optional, for API proxies
 ```
 
-Note: OpenHands works best with powerful models like Anthropic's Claude or OpenAI's GPT-4. While other models are supported, they may not perform as well for complex issue resolution.
+Note: Maestrist works best with powerful models like Anthropic's Claude or OpenAI's GPT-4. While other models are supported, they may not perform as well for complex issue resolution.
 
 ## Resolving Issues
 
@@ -210,9 +210,9 @@ python -m openhands.resolver.send_pull_request --issue-number ISSUE_NUMBER --use
 
 ## Providing Custom Instructions
 
-You can customize how the AI agent approaches issue resolution by adding a repository microagent file at `.openhands/microagents/repo.md` in your repository. This file's contents will be automatically loaded in the prompt when working with your repository. For more information about repository microagents, see [Repository Instructions](https://github.com/OpenHands/OpenHands/tree/main/microagents#2-repository-instructions-private).
+You can customize how the AI agent approaches issue resolution by adding a repository microagent file at `.openhands/microagents/repo.md` in your repository. This file's contents will be automatically loaded in the prompt when working with your repository. For more information about repository microagents, see [Repository Instructions](https://github.com/orcest-ai/Maestrist/tree/main/microagents#2-repository-instructions-private).
 
 ## Troubleshooting
 
 If you have any issues, please open an issue on this GitHub, GitLab, or Bitbucket repo, we're happy to help!
-Alternatively, you can [email us](mailto:contact@openhands.dev) or join the OpenHands Slack workspace (see [the README](/README.md) for an invite link).
+Alternatively, you can [email us](mailto:contact@orcest.ai) or join the Maestrist Slack workspace (see [the README](/README.md) for an invite link).

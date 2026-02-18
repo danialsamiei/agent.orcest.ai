@@ -469,7 +469,7 @@ class TestLiveStatusAppConversationService:
         )
 
         # Assert
-        assert llm.base_url == 'https://llm-proxy.app.all-hands.dev/'
+        assert llm.base_url == 'https://llm-proxy.app.orcest.ai/'
 
     @pytest.mark.asyncio
     async def test_configure_llm_and_mcp_non_openhands_model_ignores_provider(self):

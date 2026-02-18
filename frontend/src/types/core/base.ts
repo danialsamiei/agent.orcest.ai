@@ -1,4 +1,4 @@
-export type OpenHandsEventType =
+export type MaestristEventType =
   | "message"
   | "system"
   | "agent_state_changed"
@@ -21,25 +21,25 @@ export type OpenHandsEventType =
   | "task_tracking"
   | "user_rejected";
 
-export type OpenHandsSourceType = "agent" | "user" | "environment";
+export type MaestristSourceType = "agent" | "user" | "environment";
 
-interface OpenHandsBaseEvent {
+interface MaestristBaseEvent {
   id: number;
-  source: OpenHandsSourceType;
+  source: MaestristSourceType;
   message: string;
   timestamp: string; // ISO 8601
 }
 
-export interface OpenHandsActionEvent<
-  T extends OpenHandsEventType,
-> extends OpenHandsBaseEvent {
+export interface MaestristActionEvent<
+  T extends MaestristEventType,
+> extends MaestristBaseEvent {
   action: T;
   args: Record<string, unknown>;
 }
 
-export interface OpenHandsObservationEvent<
-  T extends OpenHandsEventType,
-> extends OpenHandsBaseEvent {
+export interface MaestristObservationEvent<
+  T extends MaestristEventType,
+> extends MaestristBaseEvent {
   cause: number;
   observation: T;
   content: string;

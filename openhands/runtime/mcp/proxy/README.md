@@ -1,6 +1,6 @@
 # MCP Proxy Manager
 
-This module provides a manager class for handling FastMCP proxy instances in OpenHands, including initialization, configuration, and mounting to FastAPI applications.
+This module provides a manager class for handling FastMCP proxy instances in Maestrist, including initialization, configuration, and mounting to FastAPI applications.
 
 ## Overview
 

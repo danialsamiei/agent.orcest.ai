@@ -1,5 +1,5 @@
 SHELL=/usr/bin/env bash
-# Makefile for OpenHands project
+# Makefile for Maestrist project
 
 # Variables
 BACKEND_HOST ?= "127.0.0.1"
@@ -356,14 +356,14 @@ help:
 	@echo "Targets:"
 	@echo "  $(GREEN)build$(RESET)               - Build project, including environment setup and dependencies."
 	@echo "  $(GREEN)lint$(RESET)                - Run linters on the project."
-	@echo "  $(GREEN)setup-config$(RESET)        - Setup the configuration for OpenHands by providing LLM API key,"
+	@echo "  $(GREEN)setup-config$(RESET)        - Setup the configuration for Maestrist by providing LLM API key,"
 	@echo "                        LLM Model name, and workspace directory."
-	@echo "  $(GREEN)start-backend$(RESET)       - Start the backend server for the OpenHands project."
-	@echo "  $(GREEN)start-frontend$(RESET)      - Start the frontend server for the OpenHands project."
-	@echo "  $(GREEN)run$(RESET)                 - Run the OpenHands application, starting both backend and frontend servers."
+	@echo "  $(GREEN)start-backend$(RESET)       - Start the backend server for the Maestrist project."
+	@echo "  $(GREEN)start-frontend$(RESET)      - Start the frontend server for the Maestrist project."
+	@echo "  $(GREEN)run$(RESET)                 - Run the Maestrist application, starting both backend and frontend servers."
 	@echo "                        Backend Log file will be stored in the 'logs' directory."
-	@echo "  $(GREEN)docker-dev$(RESET)          - Build and run the OpenHands application in Docker."
-	@echo "  $(GREEN)docker-run$(RESET)          - Run the OpenHands application, starting both backend and frontend servers in Docker."
+	@echo "  $(GREEN)docker-dev$(RESET)          - Build and run the Maestrist application in Docker."
+	@echo "  $(GREEN)docker-run$(RESET)          - Run the Maestrist application, starting both backend and frontend servers in Docker."
 	@echo "  $(GREEN)help$(RESET)                - Display this help message, providing information on available targets."
 
 # Phony targets

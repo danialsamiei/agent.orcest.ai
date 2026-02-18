@@ -86,7 +86,7 @@ def setup_json_logger(
 def setup_all_loggers():
     """
     Setup JSON logging for all libraries that may be logging.
-    Leave OpenHands alone since it's already configured.
+    Leave Maestrist alone since it's already configured.
     """
     if LOG_JSON:
         # Setup the root logger

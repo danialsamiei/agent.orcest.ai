@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import HTTPException, status
 
 
-class OpenHandsError(HTTPException):
+class MaestristError(HTTPException):
     """General Error"""
 
     def __init__(
@@ -15,7 +15,7 @@ class OpenHandsError(HTTPException):
         super().__init__(status_code=status_code, detail=detail, headers=headers)
 
 
-class AuthError(OpenHandsError):
+class AuthError(MaestristError):
     """Error in authentication."""
 
     def __init__(
@@ -27,7 +27,7 @@ class AuthError(OpenHandsError):
         super().__init__(status_code=status_code, detail=detail, headers=headers)
 
 
-class PermissionsError(OpenHandsError):
+class PermissionsError(MaestristError):
     """Error in permissions."""
 
     def __init__(
@@ -39,5 +39,5 @@ class PermissionsError(OpenHandsError):
         super().__init__(status_code=status_code, detail=detail, headers=headers)
 
 
-class SandboxError(OpenHandsError):
+class SandboxError(MaestristError):
     """Error in Sandbox."""

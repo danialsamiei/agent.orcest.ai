@@ -627,11 +627,11 @@ export const shouldIncludeRepository = (
 };
 
 /**
- * Get the OpenHands query string based on the provider
+ * Get the Maestrist query string based on the provider
  * @param provider The git provider
- * @returns The query string for searching OpenHands repositories
+ * @returns The query string for searching Maestrist repositories
  */
-export const getOpenHandsQuery = (provider: Provider | null): string => {
+export const getMaestristQuery = (provider: Provider | null): string => {
   const providerRepositorySuffix: Record<string, string> = {
     gitlab: "openhands-config",
     azure_devops: "openhands-config",
@@ -644,15 +644,15 @@ export const getOpenHandsQuery = (provider: Provider | null): string => {
 };
 
 /**
- * Check if a repository has the OpenHands suffix based on the provider
+ * Check if a repository has the Maestrist suffix based on the provider
  * @param repo The Git repository to check
  * @param provider The git provider
- * @returns True if the repository has the OpenHands suffix
+ * @returns True if the repository has the Maestrist suffix
  */
-export const hasOpenHandsSuffix = (
+export const hasMaestristSuffix = (
   repo: GitRepository,
   provider: Provider | null,
-): boolean => repo.full_name.endsWith(`/${getOpenHandsQuery(provider)}`);
+): boolean => repo.full_name.endsWith(`/${getMaestristQuery(provider)}`);
 
 /**
  * Build headers for V1 API requests that require session authentication

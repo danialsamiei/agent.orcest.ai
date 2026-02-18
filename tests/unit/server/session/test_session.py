@@ -6,7 +6,7 @@ from litellm.exceptions import (
 )
 
 from openhands.core.config.llm_config import LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.llm.llm_registry import LLMRegistry
 from openhands.runtime.runtime_status import RuntimeStatus
 from openhands.server.services.conversation_stats import ConversationStats
@@ -37,7 +37,7 @@ def default_llm_config():
 
 @pytest.fixture
 def llm_registry():
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     return LLMRegistry(config=config)
 
 
@@ -58,7 +58,7 @@ async def test_notify_on_llm_retry(
     llm_registry,
     conversation_stats,
 ):
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     config.set_llm_config(default_llm_config)
     session = Session(
         sid='..sid..',

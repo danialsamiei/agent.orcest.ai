@@ -3,7 +3,7 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.sdk import Agent
 from openhands.server.session.conversation_init_data import ConversationInitData
@@ -47,8 +47,8 @@ class ExperimentManager:
 
     @staticmethod
     def run_config_variant_test(
-        user_id: str | None, conversation_id: str, config: OpenHandsConfig
-    ) -> OpenHandsConfig:
+        user_id: str | None, conversation_id: str, config: MaestristConfig
+    ) -> MaestristConfig:
         exp_config = load_experiment_config(conversation_id)
         if exp_config and exp_config.config:
             agent_cfg = config.get_agent_config(config.default_agent)

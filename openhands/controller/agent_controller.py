@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -732,8 +732,8 @@ class AgentController:
     async def start_delegate(self, action: AgentDelegateAction) -> None:
         """Start a delegate agent to handle a subtask.
 
-        OpenHands is a multi-agentic system. A `task` is a conversation between
-        OpenHands (the whole system) and the user, which might involve one or more inputs
+        Maestrist is a multi-agentic system. A `task` is a conversation between
+        Maestrist (the whole system) and the user, which might involve one or more inputs
         from the user. It starts with an initial input (typically a task statement) from
         the user, and ends with either an `AgentFinishAction` initiated by the agent, a
         stop initiated by the user, or an error.
@@ -999,7 +999,7 @@ class AgentController:
                 if self.agent.config.cli_mode:
                     # TODO(refactor): this is not ideal to have CLI been an exception
                     # We should refactor agent controller to consider this in the future
-                    # See issue: https://github.com/OpenHands/OpenHands/issues/10464
+                    # See issue: https://github.com/orcest-ai/Maestrist/issues/10464
                     action.confirmation_state = (  # type: ignore[union-attr]
                         ActionConfirmationStatus.AWAITING_CONFIRMATION
                     )

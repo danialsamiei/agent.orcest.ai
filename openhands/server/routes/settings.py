@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -34,7 +34,7 @@ from openhands.storage.settings.settings_store import SettingsStore
 from openhands.utils.llm import get_provider_api_base, is_openhands_model
 
 LITE_LLM_API_URL = os.environ.get(
-    'LITE_LLM_API_URL', 'https://llm-proxy.app.all-hands.dev'
+    'LITE_LLM_API_URL', 'https://llm-proxy.app.orcest.ai'
 )
 
 app = APIRouter(prefix='/api', dependencies=get_dependencies())
@@ -144,7 +144,7 @@ async def store_llm_settings(
         # if llm_base_url is missing or empty, try to determine appropriate URL
         if not settings.llm_base_url:
             if is_openhands_model(settings.llm_model):
-                # OpenHands models use the LiteLLM proxy
+                # Maestrist models use the LiteLLM proxy
                 settings.llm_base_url = LITE_LLM_API_URL
             elif settings.llm_model:
                 # For non-openhands models, try to get URL from litellm

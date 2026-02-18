@@ -17,7 +17,7 @@ See the [LiteLLM docs for `self.llm.completion`](https://docs.litellm.ai/docs/co
 
 ## State
 
-The `state` represents the running state of an agent in the OpenHands system. The class handles saving and restoring the agent session. It is serialized in a pickle.
+The `state` represents the running state of an agent in the Maestrist system. The class handles saving and restoring the agent session. It is serialized in a pickle.
 
 The State object stores information about:
 
@@ -94,7 +94,7 @@ sending a prompt to the LLM, then parsing the response into an `Action`.
 
 ## Agent Delegation
 
-OpenHands is a multi-agentic system. Agents can delegate tasks to other agents, whether
+Maestrist is a multi-agentic system. Agents can delegate tasks to other agents, whether
 prompted by the user, or when the agent decides to ask another agent for help. For example,
 the `CodeActAgent` might delegate to the `BrowsingAgent` to answer questions that involve browsing
 the web. The Delegator Agent forwards tasks to micro-agents, such as 'RepoStudyAgent' to study a repo,
@@ -102,7 +102,7 @@ or 'VerifierAgent' to verify a task completion.
 
 ### Understanding the terminology
 
-A `task` is an end-to-end conversation between OpenHands (the whole system) and the user,
+A `task` is an end-to-end conversation between Maestrist (the whole system) and the user,
 which might involve one or more inputs from the user. It starts with an initial input
 (typically a task statement) from the user, and ends with either an `AgentFinishAction`
 initiated by the agent, a stop initiated by the user, or an error.
@@ -113,7 +113,7 @@ itself. Otherwise, a `task` consists of multiple `subtasks`, each executed by
 one agent.
 
 For example, considering a task from the user: `tell me how many GitHub stars
-OpenHands repo has`. Let's assume the default agent is CodeActAgent.
+Maestrist repo has`. Let's assume the default agent is CodeActAgent.
 
 ```
 -- TASK STARTS (SUBTASK 0 STARTS) --

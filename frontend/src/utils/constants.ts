@@ -32,14 +32,14 @@ export const JSON_VIEW_THEME = {
 export const DOCUMENTATION_URL = {
   MICROAGENTS: {
     MICROAGENTS_OVERVIEW:
-      "https://docs.all-hands.dev/usage/prompting/microagents-overview",
+      "https://docs.orcest.ai/usage/prompting/microagents-overview",
     ORGANIZATION_AND_USER_MICROAGENTS:
-      "https://docs.all-hands.dev/usage/prompting/microagents-org",
+      "https://docs.orcest.ai/usage/prompting/microagents-org",
   },
 };
 
 export const PRODUCT_URL = {
-  PRODUCTION: "https://app.all-hands.dev",
+  PRODUCTION: "https://app.orcest.ai",
 };
 
 export const SETTINGS_FORM = {

@@ -28,9 +28,9 @@ def test_has_exact_mention():
     assert has_exact_mention('With @open_hands_ai', '@open_hands_ai') is True
 
     # Test case insensitivity (function now handles case conversion internally)
-    assert has_exact_mention('Hi @OpenHands', '@OpenHands') is True
-    assert has_exact_mention('Hi @OpenHands', '@openhands') is True
-    assert has_exact_mention('Hi @openhands', '@OpenHands') is True
+    assert has_exact_mention('Hi @Maestrist', '@Maestrist') is True
+    assert has_exact_mention('Hi @Maestrist', '@openhands') is True
+    assert has_exact_mention('Hi @openhands', '@Maestrist') is True
     assert has_exact_mention('Hi @OPENHANDS', '@openhands') is True
 
     # Test multiple mentions
@@ -74,8 +74,8 @@ def test_infer_repo_from_message():
         # Single GitHub URLs
         ('Clone https://github.com/demo123/demo1.git', ['demo123/demo1']),
         (
-            'Check out https://github.com/OpenHands/OpenHands.git for details',
-            ['OpenHands/OpenHands'],
+            'Check out https://github.com/orcest-ai/Maestrist.git for details',
+            ['Maestrist/Maestrist'],
         ),
         ('Visit https://github.com/microsoft/vscode', ['microsoft/vscode']),
         # Single GitLab URLs
@@ -92,7 +92,7 @@ def test_infer_repo_from_message():
             ['atlassian/atlassian-connect-express'],
         ),
         # Single direct owner/repo mentions
-        ('Please deploy the OpenHands/OpenHands repo', ['OpenHands/OpenHands']),
+        ('Please deploy the Maestrist/Maestrist repo', ['Maestrist/Maestrist']),
         ('I need help with the microsoft/vscode repository', ['microsoft/vscode']),
         ('Check facebook/react for examples', ['facebook/react']),
         ('The torvalds/linux kernel', ['torvalds/linux']),
@@ -151,12 +151,12 @@ def test_infer_repo_from_message():
         ('repos: user_1/repo-1 and user.2/repo_2', ['user_1/repo-1', 'user.2/repo_2']),
         # Backtick-wrapped repo mentions (common in Slack/Discord messages)
         (
-            '@openhands-exp just echo hello world in `OpenHands/OpenHands-CLI` repository',
-            ['OpenHands/OpenHands-CLI'],
+            '@openhands-exp just echo hello world in `Maestrist/Maestrist-CLI` repository',
+            ['Maestrist/Maestrist-CLI'],
         ),
         (
-            '@openhands-exp echo hello world with {{OpenHands/OpenHands-CLI}}',
-            ['OpenHands/OpenHands-CLI'],
+            '@openhands-exp echo hello world with {{Maestrist/Maestrist-CLI}}',
+            ['Maestrist/Maestrist-CLI'],
         ),
         ('Deploy the `test/project` repo', ['test/project']),
         # Colon-wrapped repo mentions

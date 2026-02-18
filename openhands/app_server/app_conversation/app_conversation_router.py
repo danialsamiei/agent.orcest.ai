@@ -1,4 +1,4 @@
-"""Sandboxed Conversation router for OpenHands App Server."""
+"""Sandboxed Conversation router for Maestrist App Server."""
 
 import asyncio
 import logging
@@ -468,7 +468,7 @@ async def get_conversation_skills(
     This endpoint returns all skills that are loaded for the v1 conversation.
     Skills are loaded from multiple sources:
     - Sandbox skills (exposed URLs)
-    - Global skills (OpenHands/skills/)
+    - Global skills (Maestrist/skills/)
     - User skills (~/.openhands/skills/)
     - Organization skills (org/.openhands repository)
     - Repository skills (repo/.openhands/skills/ or .openhands/microagents/)

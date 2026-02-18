@@ -78,7 +78,7 @@ class Memory:
         self.conversation_instructions: ConversationInstructions | None = None
 
         # Load global microagents (Knowledge + Repo)
-        # from typically OpenHands/skills (i.e., the PUBLIC microagents)
+        # from typically Maestrist/skills (i.e., the PUBLIC microagents)
         self._load_global_microagents()
 
         # Load user microagents from ~/.openhands/microagents/

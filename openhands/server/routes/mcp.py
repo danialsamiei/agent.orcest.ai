@@ -27,14 +27,14 @@ from openhands.storage.data_models.conversation_metadata import ConversationMeta
 
 mcp_server = FastMCP('mcp', mask_error_details=True)
 
-HOST = f'https://{os.getenv("WEB_HOST", "app.all-hands.dev").strip()}'
+HOST = f'https://{os.getenv("WEB_HOST", "app.orcest.ai").strip()}'
 CONVERSATION_URL = HOST + '/conversations/{}'
 
 
 async def get_conversation_link(
     service: GitService, conversation_id: str, body: str
 ) -> str:
-    """Appends a followup link, in the PR body, to the OpenHands conversation that opened the PR"""
+    """Appends a followup link, in the PR body, to the Maestrist conversation that opened the PR"""
     if server_config.app_mode != AppMode.SAAS:
         return body
 
@@ -98,11 +98,11 @@ async def create_pr(
     ] = None,
 ) -> str:
     """Open a PR in GitHub"""
-    logger.info('Calling OpenHands MCP create_pr')
+    logger.info('Calling Maestrist MCP create_pr')
 
     request = get_http_request()
     headers = request.headers
-    conversation_id = headers.get('X-OpenHands-ServerConversation-ID', None)
+    conversation_id = headers.get('X-Maestrist-ServerConversation-ID', None)
 
     provider_tokens = await get_provider_tokens(request)
     access_token = await get_access_token(request)
@@ -171,11 +171,11 @@ async def create_mr(
     ] = None,
 ) -> str:
     """Open a MR in GitLab"""
-    logger.info('Calling OpenHands MCP create_mr')
+    logger.info('Calling Maestrist MCP create_mr')
 
     request = get_http_request()
     headers = request.headers
-    conversation_id = headers.get('X-OpenHands-ServerConversation-ID', None)
+    conversation_id = headers.get('X-Maestrist-ServerConversation-ID', None)
 
     provider_tokens = await get_provider_tokens(request)
     access_token = await get_access_token(request)
@@ -238,11 +238,11 @@ async def create_bitbucket_pr(
     description: Annotated[str | None, Field(description='PR description')],
 ) -> str:
     """Open a PR in Bitbucket"""
-    logger.info('Calling OpenHands MCP create_bitbucket_pr')
+    logger.info('Calling Maestrist MCP create_bitbucket_pr')
 
     request = get_http_request()
     headers = request.headers
-    conversation_id = headers.get('X-OpenHands-ServerConversation-ID', None)
+    conversation_id = headers.get('X-Maestrist-ServerConversation-ID', None)
 
     provider_tokens = await get_provider_tokens(request)
     access_token = await get_access_token(request)
@@ -305,11 +305,11 @@ async def create_azure_devops_pr(
     description: Annotated[str | None, Field(description='PR description')],
 ) -> str:
     """Open a PR in Azure DevOps"""
-    logger.info('Calling OpenHands MCP create_azure_devops_pr')
+    logger.info('Calling Maestrist MCP create_azure_devops_pr')
 
     request = get_http_request()
     headers = request.headers
-    conversation_id = headers.get('X-OpenHands-ServerConversation-ID', None)
+    conversation_id = headers.get('X-Maestrist-ServerConversation-ID', None)
 
     provider_tokens = await get_provider_tokens(request)
     access_token = await get_access_token(request)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Update OpenHands OpenAPI documentation.
+Update Maestrist OpenAPI documentation.
 
 Generates the OpenAPI specification from the FastAPI application and writes it
 to docs/openapi.json.
@@ -44,7 +44,7 @@ try:
     from openhands import __version__
     from openhands.server.app import app
 except ImportError as e:
-    print(f'Error importing OpenHands modules: {e}')
+    print(f'Error importing Maestrist modules: {e}')
     print(
         "Make sure you're running this script from the project root and dependencies are installed."
     )
@@ -171,7 +171,7 @@ def update_openapi_spec(spec_path, backup=True):
     else:
         # Default servers if none exist
         new_spec['servers'] = [
-            {'url': 'https://app.all-hands.dev', 'description': 'Production server'},
+            {'url': 'https://agent.orcest.ai', 'description': 'Production server'},
             {'url': 'http://localhost:3000', 'description': 'Local server'},
         ]
 

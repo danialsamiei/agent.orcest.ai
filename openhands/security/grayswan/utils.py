@@ -1,4 +1,4 @@
-"""Utility for converting OpenHands events to OpenAI message format."""
+"""Utility for converting Maestrist events to OpenAI message format."""
 
 from typing import Any
 
@@ -21,7 +21,7 @@ from openhands.events.observation.observation import Observation
 
 
 def convert_events_to_openai_messages(events: list[Any]) -> list[dict[str, Any]]:
-    """Convert OpenHands events to OpenAI message format for LLM APIs."""
+    """Convert Maestrist events to OpenAI message format for LLM APIs."""
     openai_messages = []
 
     logger.info(f'Converting {len(events)} events to OpenAI messages')

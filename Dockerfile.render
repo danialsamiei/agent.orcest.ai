@@ -1,4 +1,4 @@
-# Dockerfile for Render deployment of OpenHands (agent.orcest.ai)
+# Dockerfile for Render deployment of Maestrist (agent.orcest.ai)
 # Multi-stage build: frontend (Node) + backend (Python) with system deps
 
 # --- Stage 1: Build frontend ---
@@ -12,7 +12,7 @@ RUN npm run build
 # --- Stage 2: Final image ---
 FROM python:3.12-slim
 
-# Install system dependencies required by LocalRuntime and OpenHands
+# Install system dependencies required by LocalRuntime and Maestrist
 RUN apt-get update && apt-get install -y --no-install-recommends \
     tmux \
     git \

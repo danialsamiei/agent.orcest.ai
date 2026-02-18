@@ -5,10 +5,10 @@ from unittest.mock import patch
 
 import pytest
 
-from openhands.core.config import LLMConfig, OpenHandsConfig
+from openhands.core.config import LLMConfig, MaestristConfig
 from openhands.core.logger import (
     LOG_JSON_LEVEL_KEY,
-    OpenHandsLoggerAdapter,
+    MaestristLoggerAdapter,
     json_log_handler,
 )
 from openhands.core.logger import openhands_logger as openhands_logger
@@ -88,7 +88,7 @@ def test_llm_config_attributes_masking(test_handler):
 
 def test_app_config_attributes_masking(test_handler):
     logger, stream = test_handler
-    app_config = OpenHandsConfig(search_api_key='search-xyz789')
+    app_config = MaestristConfig(search_api_key='search-xyz789')
     logger.info(f'App Config: {app_config}')
     log_output = stream.getvalue()
     assert 'github_token' not in log_output
@@ -167,7 +167,7 @@ class TestJsonOutput:
 
     def test_extra_fields_from_adapter(self, json_handler):
         logger, string_io = json_handler
-        subject = OpenHandsLoggerAdapter(logger, extra={'context_field': '..val..'})
+        subject = MaestristLoggerAdapter(logger, extra={'context_field': '..val..'})
         subject.info('Test message', extra={'log_fied': '..val..'})
         output = json.loads(string_io.getvalue())
         del output['timestamp']
@@ -180,7 +180,7 @@ class TestJsonOutput:
 
     def test_extra_fields_from_adapter_can_override(self, json_handler):
         logger, string_io = json_handler
-        subject = OpenHandsLoggerAdapter(logger, extra={'override': 'a'})
+        subject = MaestristLoggerAdapter(logger, extra={'override': 'a'})
         subject.info('Test message', extra={'override': 'b'})
         output = json.loads(string_io.getvalue())
         del output['timestamp']

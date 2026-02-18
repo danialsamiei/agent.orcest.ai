@@ -1,4 +1,4 @@
-# OpenHands Server
+# Maestrist Server
 
 This is a WebSocket server that executes tasks using an agent.
 
@@ -105,7 +105,7 @@ This list may grow over time.
 
 ## Server Components
 
-The following section describes the server-side components of the OpenHands project.
+The following section describes the server-side components of the Maestrist project.
 
 ### 1. session/session.py
 

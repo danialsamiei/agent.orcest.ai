@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -17,7 +17,7 @@ from openhands.controller import AgentController
 from openhands.controller.agent import Agent
 from openhands.controller.state.state import State
 from openhands.core.config import (
-    OpenHandsConfig,
+    MaestristConfig,
 )
 from openhands.core.config.config_utils import DEFAULT_WORKSPACE_MOUNT_PATH_IN_SANDBOX
 from openhands.core.logger import openhands_logger as logger
@@ -40,7 +40,7 @@ from openhands.utils.async_utils import GENERAL_TIMEOUT, call_async_from_sync
 
 
 def create_runtime(
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     llm_registry: LLMRegistry | None = None,
     sid: str | None = None,
     headless_mode: bool = True,
@@ -230,7 +230,7 @@ def create_memory(
     return memory
 
 
-def create_agent(config: OpenHandsConfig, llm_registry: LLMRegistry) -> Agent:
+def create_agent(config: MaestristConfig, llm_registry: LLMRegistry) -> Agent:
     agent_cls: type[Agent] = Agent.get_cls(config.default_agent)
     agent_config = config.get_agent_config(config.default_agent)
     # Pass the runtime information from the main config to the agent config
@@ -243,7 +243,7 @@ def create_agent(config: OpenHandsConfig, llm_registry: LLMRegistry) -> Agent:
 def create_controller(
     agent: Agent,
     runtime: Runtime,
-    config: OpenHandsConfig,
+    config: MaestristConfig,
     conversation_stats: ConversationStats,
     headless_mode: bool = True,
     replay_events: list[Event] | None = None,
@@ -276,7 +276,7 @@ def create_controller(
     return (controller, initial_state)
 
 
-def generate_sid(config: OpenHandsConfig, session_name: str | None = None) -> str:
+def generate_sid(config: MaestristConfig, session_name: str | None = None) -> str:
     """Generate a session id based on the session name and the jwt secret.
 
     The session ID is kept short to ensure Kubernetes resource names don't exceed

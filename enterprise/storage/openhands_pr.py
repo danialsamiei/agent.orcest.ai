@@ -14,7 +14,7 @@ from storage.base import Base
 
 class OpenhandsPR(Base):  # type: ignore
     """
-    Represents a pull request created by OpenHands.
+    Represents a pull request created by Maestrist.
     """
 
     __tablename__ = 'openhands_prs'

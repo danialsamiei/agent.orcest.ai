@@ -32,8 +32,8 @@ UNLIMITED_BUDGET_SETTING = 1000000000.0
 
 
 def get_openhands_cloud_key_alias(keycloak_user_id: str, org_id: str) -> str:
-    """Generate the key alias for OpenHands Cloud managed keys."""
-    return f'OpenHands Cloud - user {keycloak_user_id} - org {org_id}'
+    """Generate the key alias for Maestrist Cloud managed keys."""
+    return f'Maestrist Cloud - user {keycloak_user_id} - org {org_id}'
 
 
 def get_byor_key_alias(keycloak_user_id: str, org_id: str) -> str:
@@ -1203,7 +1203,7 @@ class LiteLlmManager:
                 and metadata.get('type') == 'openhands'
                 and team_id == org_id
             ):
-                # Found an existing OpenHands key for this org
+                # Found an existing Maestrist key for this org
                 key_name = key_info.get('key_name')
                 token = key_name[-4:] if key_name else None  # last 4 digits of key
                 if token and key_value.endswith(

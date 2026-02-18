@@ -545,7 +545,7 @@ def live_docker_image():
     RUN mkdir -p /openhands
 
     FROM intermediate AS final
-    RUN echo "Hello, OpenHands!" > /openhands/hello.txt
+    RUN echo "Hello, Maestrist!" > /openhands/hello.txt
     """
 
     with tempfile.TemporaryDirectory() as temp_dir:

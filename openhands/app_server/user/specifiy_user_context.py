@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from fastapi import Request
 
-from openhands.app_server.errors import OpenHandsError
+from openhands.app_server.errors import MaestristError
 from openhands.app_server.user.user_context import UserContext
 from openhands.app_server.user.user_models import UserInfo
 from openhands.integrations.provider import PROVIDER_TOKEN_TYPE, ProviderType
@@ -48,7 +48,7 @@ def as_admin(request: Request):
     handle security."""
     user_context = getattr(request.state, USER_CONTEXT_ATTR, None)
     if user_context not in (None, ADMIN):
-        raise OpenHandsError(
+        raise MaestristError(
             'Non admin context already present! '
             '(Do you need to move the as_admin dependency to the start of the args?)'
         )

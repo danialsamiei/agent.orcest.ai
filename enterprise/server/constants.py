@@ -2,16 +2,16 @@ import os
 import re
 
 # Get the host from environment variable
-HOST = os.getenv('WEB_HOST', 'app.all-hands.dev').strip()
+HOST = os.getenv('WEB_HOST', 'app.orcest.ai').strip()
 
 # Check if this is a feature environment
-# Feature environments have a host format like {some-text}.staging.all-hands.dev
-# Just staging.all-hands.dev doesn't count as a feature environment
+# Feature environments have a host format like {some-text}.staging.orcest.ai
+# Just staging.orcest.ai doesn't count as a feature environment
 IS_STAGING_ENV = bool(
-    re.match(r'^.+\.staging\.all-hands\.dev$', HOST) or HOST == 'staging.all-hands.dev'
+    re.match(r'^.+\.staging\.all-hands\.dev$', HOST) or HOST == 'staging.orcest.ai'
 )  # Includes the staging deployment + feature deployments
 IS_FEATURE_ENV = (
-    IS_STAGING_ENV and HOST != 'staging.all-hands.dev'
+    IS_STAGING_ENV and HOST != 'staging.orcest.ai'
 )  # Does not include the staging deployment
 IS_LOCAL_ENV = bool(HOST == 'localhost')
 
@@ -40,7 +40,7 @@ ORG_SETTINGS_VERSION = max(PERSONAL_WORKSPACE_VERSION_TO_MODEL.keys())
 PERSONAL_WORKSPACE_VERSION = max(PERSONAL_WORKSPACE_VERSION_TO_MODEL.keys())
 
 LITE_LLM_API_URL = os.environ.get(
-    'LITE_LLM_API_URL', 'https://llm-proxy.app.all-hands.dev'
+    'LITE_LLM_API_URL', 'https://llm-proxy.app.orcest.ai'
 )
 LITE_LLM_TEAM_ID = os.environ.get('LITE_LLM_TEAM_ID', None)
 LITE_LLM_API_KEY = os.environ.get('LITE_LLM_API_KEY', None)
@@ -51,7 +51,7 @@ SUBSCRIPTION_PRICE_DATA = {
         'unit_amount': 2000,
         'currency': 'usd',
         'product_data': {
-            'name': 'OpenHands Monthly',
+            'name': 'Maestrist Monthly',
             'tax_code': 'txcd_10000000',
         },
         'tax_behavior': 'exclusive',
@@ -68,7 +68,7 @@ SLACK_CLIENT_SECRET = os.environ.get('SLACK_CLIENT_SECRET', None)
 SLACK_SIGNING_SECRET = os.environ.get('SLACK_SIGNING_SECRET', None)
 SLACK_WEBHOOKS_ENABLED = os.environ.get('SLACK_WEBHOOKS_ENABLED', '0') in ('1', 'true')
 
-WEB_HOST = os.getenv('WEB_HOST', 'app.all-hands.dev').strip()
+WEB_HOST = os.getenv('WEB_HOST', 'app.orcest.ai').strip()
 PERMITTED_CORS_ORIGINS = [
     host.strip()
     for host in (os.getenv('PERMITTED_CORS_ORIGINS') or f'https://{WEB_HOST}').split(

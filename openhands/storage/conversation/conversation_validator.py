@@ -13,7 +13,7 @@ from openhands.utils.import_utils import get_impl
 class ConversationValidator:
     """Abstract base class for validating conversation access.
 
-    This is an extension point in OpenHands that allows applications to customize how
+    This is an extension point in Maestrist that allows applications to customize how
     conversation access is validated. Applications can substitute their own implementation by:
     1. Creating a class that inherits from ConversationValidator
     2. Implementing the validate method

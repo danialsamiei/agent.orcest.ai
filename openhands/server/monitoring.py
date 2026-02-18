@@ -1,19 +1,19 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
 # This module belongs to the old V0 web server. The V1 application server lives under openhands/app_server/.
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.events.event import Event
 
 
 class MonitoringListener:
     """Abstract base class for monitoring application activity.
 
-    This is an extension point in OpenHands that allows applications to customize how
+    This is an extension point in Maestrist that allows applications to customize how
     application activity is monitored. Applications can substitute their own implementation by:
     1. Creating a class that inherits from MonitoringListener
     2. Implementing desired methods (all methods have default no-op implementations)
@@ -44,6 +44,6 @@ class MonitoringListener:
     @classmethod
     def get_instance(
         cls,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
     ) -> 'MonitoringListener':
         return cls()

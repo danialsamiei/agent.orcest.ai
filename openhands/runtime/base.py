@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -24,7 +24,7 @@ from zipfile import ZipFile
 
 import httpx
 
-from openhands.core.config import OpenHandsConfig, SandboxConfig
+from openhands.core.config import MaestristConfig, SandboxConfig
 from openhands.core.config.mcp_config import MCPConfig, MCPStdioServerConfig
 from openhands.core.exceptions import (
     AgentRuntimeDisconnectedError,
@@ -106,7 +106,7 @@ def _default_env_vars(sandbox_config: SandboxConfig) -> dict[str, str]:
 class Runtime(FileEditRuntimeMixin):
     """Abstract base class for agent runtime environments.
 
-    This is an extension point in OpenHands that allows applications to customize how
+    This is an extension point in Maestrist that allows applications to customize how
     agents interact with the external environment. The runtime provides a sandbox with:
     - Bash shell access
     - Browser interaction
@@ -133,7 +133,7 @@ class Runtime(FileEditRuntimeMixin):
     """
 
     sid: str
-    config: OpenHandsConfig
+    config: MaestristConfig
     initial_env_vars: dict[str, str]
     attach_to_existing: bool
     status_callback: Callable[[str, RuntimeStatus, str], None] | None
@@ -143,7 +143,7 @@ class Runtime(FileEditRuntimeMixin):
 
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         event_stream: EventStream,
         llm_registry: LLMRegistry,
         sid: str = 'default',
@@ -632,8 +632,8 @@ class Runtime(FileEditRuntimeMixin):
         # Read the existing pre-commit hook if it exists
         read_obs = self.read(FileReadAction(path=pre_commit_hook))
         if not isinstance(read_obs, ErrorObservation):
-            # If the existing hook wasn't created by OpenHands, preserve it
-            if 'This hook was installed by OpenHands' not in read_obs.content:
+            # If the existing hook wasn't created by Maestrist, preserve it
+            if 'This hook was installed by Maestrist' not in read_obs.content:
                 self.log('info', 'Preserving existing pre-commit hook')
                 # Move the existing hook to pre-commit.local
                 action = CmdRunAction(f'mv {pre_commit_hook} {pre_commit_local}')
@@ -657,7 +657,7 @@ class Runtime(FileEditRuntimeMixin):
 
         # Create the pre-commit hook that calls our script
         pre_commit_hook_content = f"""#!/bin/bash
-# This hook was installed by OpenHands
+# This hook was installed by Maestrist
 # It calls the pre-commit script in the .openhands directory
 
 if [ -x "{pre_commit_script}" ]; then
@@ -1337,9 +1337,9 @@ fi
         return False
 
     @classmethod
-    def setup(cls, config: OpenHandsConfig, headless_mode: bool = False):
+    def setup(cls, config: MaestristConfig, headless_mode: bool = False):
         """Set up the environment for runtimes to be created."""
 
     @classmethod
-    def teardown(cls, config: OpenHandsConfig):
+    def teardown(cls, config: MaestristConfig):
         """Tear down the environment in which runtimes are created."""

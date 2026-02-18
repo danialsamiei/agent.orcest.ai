@@ -67,7 +67,7 @@ class SlackV1CallbackProcessor(EventCallbackProcessor):
             # Only try to post error to Slack if we have basic requirements
             try:
                 await self._post_summary_to_slack(
-                    f'OpenHands encountered an error: **{str(e)}**.\n\n'
+                    f'Maestrist encountered an error: **{str(e)}**.\n\n'
                     f'[See the conversation]({CONVERSATION_URL.format(conversation_id)})'
                     'for more information.'
                 )

@@ -238,21 +238,21 @@ class GitlabManager(Manager):
                 )
 
                 conversation_link = CONVERSATION_URL.format(conversation_id)
-                msg_info = f"I'm on it! {user_info.username} can [track my progress at all-hands.dev]({conversation_link})"
+                msg_info = f"I'm on it! {user_info.username} can [track my progress at orcest.ai]({conversation_link})"
 
             except MissingSettingsError as e:
                 logger.warning(
                     f'[GitLab] Missing settings error for user {user_info.username}: {str(e)}'
                 )
 
-                msg_info = f'@{user_info.username} please re-login into [OpenHands Cloud]({HOST_URL}) before starting a job.'
+                msg_info = f'@{user_info.username} please re-login into [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
             except LLMAuthenticationError as e:
                 logger.warning(
                     f'[GitLab] LLM authentication error for user {user_info.username}: {str(e)}'
                 )
 
-                msg_info = f'@{user_info.username} please set a valid LLM API key in [OpenHands Cloud]({HOST_URL}) before starting a job.'
+                msg_info = f'@{user_info.username} please set a valid LLM API key in [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
             except SessionExpiredError as e:
                 logger.warning(

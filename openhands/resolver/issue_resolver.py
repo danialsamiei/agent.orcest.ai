@@ -15,7 +15,7 @@ from termcolor import colored
 
 import openhands
 from openhands.controller.state.state import State
-from openhands.core.config import AgentConfig, OpenHandsConfig, SandboxConfig
+from openhands.core.config import AgentConfig, MaestristConfig, SandboxConfig
 from openhands.core.config.utils import load_openhands_config
 from openhands.core.logger import openhands_logger as logger
 from openhands.core.main import create_runtime, run_controller
@@ -182,14 +182,14 @@ class IssueResolver:
     @classmethod
     def update_openhands_config(
         cls,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         max_iterations: int,
         workspace_base: str,
         base_container_image: str | None,
         runtime_container_image: str | None,
         is_experimental: bool,
         runtime: str | None = None,
-    ) -> OpenHandsConfig:
+    ) -> MaestristConfig:
         config.default_agent = 'CodeActAgent'
         # Use provided runtime or fallback to config value or default to 'docker'
         config.runtime = runtime or config.runtime or 'docker'
@@ -213,7 +213,7 @@ class IssueResolver:
     @classmethod
     def update_sandbox_config(
         cls,
-        openhands_config: OpenHandsConfig,
+        openhands_config: MaestristConfig,
         base_container_image: str | None,
         runtime_container_image: str | None,
         is_experimental: bool,

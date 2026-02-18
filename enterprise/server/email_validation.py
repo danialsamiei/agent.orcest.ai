@@ -12,11 +12,11 @@ async def get_admin_user_id(
     request: Request, user_id: str | None = Depends(get_user_id)
 ) -> str:
     """
-    Dependency that validates user has @openhands.dev email domain.
+    Dependency that validates user has @orcest.ai email domain.
 
     This dependency can be used in place of get_user_id for endpoints that
     should only be accessible to admin users. Currently, this is implemented
-    by checking for @openhands.dev email domain.
+    by checking for @orcest.ai email domain.
 
     TODO: In the future, this should be replaced with an explicit is_admin flag
     in user/org settings instead of relying on email domain validation.
@@ -29,7 +29,7 @@ async def get_admin_user_id(
         str: User ID if email domain is valid
 
     Raises:
-        HTTPException: 403 if email domain is not @openhands.dev
+        HTTPException: 403 if email domain is not @orcest.ai
         HTTPException: 401 if user is not authenticated
 
     Example:
@@ -55,14 +55,14 @@ async def get_admin_user_id(
             detail='User email not available',
         )
 
-    if not user_email.endswith('@openhands.dev'):
+    if not user_email.endswith('@orcest.ai'):
         logger.warning(
             'Access denied - invalid email domain',
             extra={'user_id': user_id, 'email_domain': user_email.split('@')[-1]},
         )
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail='Access restricted to @openhands.dev users',
+            detail='Access restricted to @orcest.ai users',
         )
 
     return user_id

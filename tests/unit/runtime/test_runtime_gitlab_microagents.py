@@ -6,7 +6,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from openhands.core.config import OpenHandsConfig, SandboxConfig
+from openhands.core.config import MaestristConfig, SandboxConfig
 from openhands.events import EventStream
 from openhands.integrations.service_types import ProviderType, Repository
 from openhands.llm.llm_registry import LLMRegistry
@@ -22,7 +22,7 @@ class MockRuntime(Runtime):
 
     def __init__(self, workspace_root: Path):
         # Create a minimal config for testing
-        config = OpenHandsConfig()
+        config = MaestristConfig()
         config.workspace_mount_path_in_sandbox = str(workspace_root)
         config.sandbox = SandboxConfig()
 

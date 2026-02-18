@@ -3,7 +3,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from pydantic import SecretStr
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.server.settings import Settings
 from openhands.storage.data_models.settings import Settings as DataSettings
 
@@ -18,7 +18,7 @@ with patch('storage.database.engine'), patch('storage.database.a_engine'):
 
 @pytest.fixture
 def mock_config():
-    config = MagicMock(spec=OpenHandsConfig)
+    config = MagicMock(spec=MaestristConfig)
     config.jwt_secret = SecretStr('test_secret')
     config.file_store = 'google_cloud'
     config.file_store_path = 'bucket'

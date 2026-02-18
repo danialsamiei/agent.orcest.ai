@@ -1,7 +1,7 @@
 """
 Unit tests for email validation dependency (get_admin_user_id).
 
-Tests the FastAPI dependency that validates @openhands.dev email domain.
+Tests the FastAPI dependency that validates @orcest.ai email domain.
 """
 
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -28,13 +28,13 @@ def mock_user_auth():
 @pytest.mark.asyncio
 async def test_get_openhands_user_id_success(mock_request, mock_user_auth):
     """
-    GIVEN: Valid user ID and @openhands.dev email
+    GIVEN: Valid user ID and @orcest.ai email
     WHEN: get_admin_user_id is called
     THEN: User ID is returned successfully
     """
     # Arrange
     user_id = 'test-user-123'
-    mock_user_auth.get_user_email.return_value = 'test@openhands.dev'
+    mock_user_auth.get_user_email.return_value = 'test@orcest.ai'
 
     with patch('server.email_validation.get_user_auth', return_value=mock_user_auth):
         # Act
@@ -86,7 +86,7 @@ async def test_get_openhands_user_id_no_email(mock_request, mock_user_auth):
 @pytest.mark.asyncio
 async def test_get_openhands_user_id_invalid_domain(mock_request, mock_user_auth):
     """
-    GIVEN: User ID and email with non-@openhands.dev domain
+    GIVEN: User ID and email with non-@orcest.ai domain
     WHEN: get_admin_user_id is called
     THEN: 403 Forbidden is raised
     """
@@ -100,7 +100,7 @@ async def test_get_openhands_user_id_invalid_domain(mock_request, mock_user_auth
             await get_admin_user_id(mock_request, user_id)
 
         assert exc_info.value.status_code == 403
-        assert 'openhands.dev' in exc_info.value.detail.lower()
+        assert 'orcest.ai' in exc_info.value.detail.lower()
 
 
 @pytest.mark.asyncio
@@ -145,13 +145,13 @@ async def test_get_openhands_user_id_subdomain_not_allowed(
     mock_request, mock_user_auth
 ):
     """
-    GIVEN: Email with subdomain like @test.openhands.dev
+    GIVEN: Email with subdomain like @test.orcest.ai
     WHEN: get_admin_user_id is called
     THEN: 403 Forbidden is raised
     """
     # Arrange
     user_id = 'test-user-123'
-    mock_user_auth.get_user_email.return_value = 'test@test.openhands.dev'
+    mock_user_auth.get_user_email.return_value = 'test@test.orcest.ai'
 
     with patch('server.email_validation.get_user_auth', return_value=mock_user_auth):
         # Act & Assert
@@ -166,13 +166,13 @@ async def test_get_openhands_user_id_similar_domain_not_allowed(
     mock_request, mock_user_auth
 ):
     """
-    GIVEN: Email with similar but different domain like @openhands.dev.fake.com
+    GIVEN: Email with similar but different domain like @orcest.ai.fake.com
     WHEN: get_admin_user_id is called
     THEN: 403 Forbidden is raised
     """
     # Arrange
     user_id = 'test-user-123'
-    mock_user_auth.get_user_email.return_value = 'test@openhands.dev.fake.com'
+    mock_user_auth.get_user_email.return_value = 'test@orcest.ai.fake.com'
 
     with patch('server.email_validation.get_user_auth', return_value=mock_user_auth):
         # Act & Assert
@@ -215,13 +215,13 @@ async def test_get_openhands_user_id_logs_warning_on_invalid_domain(
 @pytest.mark.asyncio
 async def test_get_openhands_user_id_with_plus_addressing(mock_request, mock_user_auth):
     """
-    GIVEN: Email with plus addressing (test+tag@openhands.dev)
+    GIVEN: Email with plus addressing (test+tag@orcest.ai)
     WHEN: get_admin_user_id is called
     THEN: User ID is returned successfully
     """
     # Arrange
     user_id = 'test-user-123'
-    mock_user_auth.get_user_email.return_value = 'test+tag@openhands.dev'
+    mock_user_auth.get_user_email.return_value = 'test+tag@orcest.ai'
 
     with patch('server.email_validation.get_user_auth', return_value=mock_user_auth):
         # Act
@@ -236,13 +236,13 @@ async def test_get_openhands_user_id_with_dots_in_local_part(
     mock_request, mock_user_auth
 ):
     """
-    GIVEN: Email with dots in local part (first.last@openhands.dev)
+    GIVEN: Email with dots in local part (first.last@orcest.ai)
     WHEN: get_admin_user_id is called
     THEN: User ID is returned successfully
     """
     # Arrange
     user_id = 'test-user-123'
-    mock_user_auth.get_user_email.return_value = 'first.last@openhands.dev'
+    mock_user_auth.get_user_email.return_value = 'first.last@orcest.ai'
 
     with patch('server.email_validation.get_user_auth', return_value=mock_user_auth):
         # Act

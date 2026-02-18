@@ -8,7 +8,7 @@ import { BrandButton } from "../settings/brand-button";
 import { useActiveConversation } from "#/hooks/query/use-active-conversation";
 
 const FEEDBACK_VERSION = "1.0";
-const VIEWER_PAGE = "https://www.all-hands.dev/share";
+const VIEWER_PAGE = "https://www.orcest.ai/share";
 
 interface FeedbackFormProps {
   onClose: () => void;

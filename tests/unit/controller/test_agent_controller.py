@@ -16,7 +16,7 @@ from openhands.controller.state.control_flags import (
     BudgetControlFlag,
 )
 from openhands.controller.state.state import State
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.config.agent_config import AgentConfig
 from openhands.core.config.llm_config import LLMConfig
 from openhands.core.main import run_controller
@@ -70,7 +70,7 @@ def mock_agent_with_stats():
     import uuid
 
     # Create LLM registry
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     llm_registry = LLMRegistry(config=config)
 
     # Create conversation stats
@@ -362,7 +362,7 @@ async def test_tool_call_validation_error_handling(
 async def test_run_controller_with_fatal_error(
     test_event_stream, mock_memory, mock_agent_with_stats
 ):
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     mock_agent, conversation_stats, llm_registry = mock_agent_with_stats
 
     def agent_step_fn(state):
@@ -427,7 +427,7 @@ async def test_run_controller_with_fatal_error(
 async def test_run_controller_stop_with_stuck(
     test_event_stream, mock_memory, mock_agent_with_stats
 ):
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     mock_agent, conversation_stats, llm_registry = mock_agent_with_stats
 
     def agent_step_fn(state):
@@ -941,7 +941,7 @@ async def test_reset_with_pending_action_no_metadata(
 async def test_run_controller_max_iterations_has_metrics(
     test_event_stream, mock_memory, mock_agent_with_stats
 ):
-    config = OpenHandsConfig(
+    config = MaestristConfig(
         max_iterations=3,
     )
     event_stream = test_event_stream
@@ -1133,7 +1133,7 @@ async def test_context_window_exceeded_error_handling(
     test_event_stream.subscribe(
         EventStreamSubscriber.MEMORY, on_event_memory, str(uuid4())
     )
-    config = OpenHandsConfig(max_iterations=max_iterations)
+    config = MaestristConfig(max_iterations=max_iterations)
     mock_runtime.event_stream = test_event_stream
     mock_runtime.config = copy.deepcopy(config)
 
@@ -1290,7 +1290,7 @@ async def test_run_controller_with_context_window_exceeded_with_truncation(
         EventStreamSubscriber.MEMORY, on_event_memory, str(uuid4())
     )
     mock_runtime.event_stream = test_event_stream
-    config = OpenHandsConfig(max_iterations=5)
+    config = MaestristConfig(max_iterations=5)
     mock_runtime.config = copy.deepcopy(config)
 
     try:
@@ -1374,7 +1374,7 @@ async def test_run_controller_with_context_window_exceeded_without_truncation(
         EventStreamSubscriber.MEMORY, on_event_memory, str(uuid4())
     )
     mock_runtime.event_stream = test_event_stream
-    config = OpenHandsConfig(max_iterations=3)
+    config = MaestristConfig(max_iterations=3)
     mock_runtime.config = copy.deepcopy(config)
     try:
         # Mock the create_agent function to return our mock agent
@@ -1428,7 +1428,7 @@ async def test_run_controller_with_memory_error(
 ):
     mock_agent, conversation_stats, llm_registry = mock_agent_with_stats
 
-    config = OpenHandsConfig()
+    config = MaestristConfig()
     event_stream = test_event_stream
 
     # Create a proper agent that returns an action without an ID

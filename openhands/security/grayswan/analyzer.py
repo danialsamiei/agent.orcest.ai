@@ -1,4 +1,4 @@
-"""GraySwan security analyzer for OpenHands."""
+"""GraySwan security analyzer for Maestrist."""
 
 import asyncio
 import os
@@ -107,7 +107,7 @@ class GraySwanAnalyzer(SecurityAnalyzer):
         return self.session
 
     def _map_violation_to_risk(self, violation_score: float) -> ActionSecurityRisk:
-        """Map GraySwan violation score to OpenHands ActionSecurityRisk."""
+        """Map GraySwan violation score to Maestrist ActionSecurityRisk."""
         if violation_score <= self.violation_thresholds['low']:
             return ActionSecurityRisk.LOW
         elif violation_score <= self.violation_thresholds['medium']:

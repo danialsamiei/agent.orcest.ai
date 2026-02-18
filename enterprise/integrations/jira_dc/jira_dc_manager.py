@@ -53,7 +53,7 @@ class JiraDcManager(Manager):
     async def authenticate_user(
         self, user_email: str, jira_dc_user_id: str, workspace_id: int
     ) -> tuple[JiraDcUser | None, UserAuth | None]:
-        """Authenticate Jira DC user and get their OpenHands user auth."""
+        """Authenticate Jira DC user and get their Maestrist user auth."""
 
         if not jira_dc_user_id or jira_dc_user_id == 'none':
             # Get Keycloak user ID from email
@@ -396,11 +396,11 @@ class JiraDcManager(Manager):
 
         except MissingSettingsError as e:
             logger.warning(f'[Jira DC] Missing settings error: {str(e)}')
-            msg_info = f'Please re-login into [OpenHands Cloud]({HOST_URL}) before starting a job.'
+            msg_info = f'Please re-login into [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
         except LLMAuthenticationError as e:
             logger.warning(f'[Jira DC] LLM authentication error: {str(e)}')
-            msg_info = f'Please set a valid LLM API key in [OpenHands Cloud]({HOST_URL}) before starting a job.'
+            msg_info = f'Please set a valid LLM API key in [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
         except SessionExpiredError as e:
             logger.warning(f'[Jira DC] Session expired: {str(e)}')

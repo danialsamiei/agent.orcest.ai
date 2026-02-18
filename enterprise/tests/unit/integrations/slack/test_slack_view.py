@@ -58,7 +58,7 @@ def slack_new_conversation_view(mock_slack_user, mock_user_auth):
     """Create a SlackNewConversationView instance."""
     return SlackNewConversationView(
         bot_access_token='xoxb-test-token',
-        user_msg='Hello OpenHands!',
+        user_msg='Hello Maestrist!',
         slack_user_id='U1234567890',
         slack_to_openhands_user=mock_slack_user,
         saas_user_auth=mock_user_auth,

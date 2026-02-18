@@ -329,12 +329,12 @@ class GitHubDataCollector:
     def _count_openhands_activity(
         self, commits: list, review_comments: list, pr_comments: list
     ) -> tuple[int, int, int]:
-        """Count OpenHands commits, review comments, and general PR comments"""
+        """Count Maestrist commits, review comments, and general PR comments"""
         openhands_commit_count = 0
         openhands_review_comment_count = 0
         openhands_general_comment_count = 0
 
-        # Count commits by OpenHands (check both name and login)
+        # Count commits by Maestrist (check both name and login)
         for commit in commits:
             author = commit.get('author', {})
             author_name = author.get('name', '').lower()
@@ -347,7 +347,7 @@ class GitHubDataCollector:
             if self._check_openhands_author(author_name, author_login):
                 openhands_commit_count += 1
 
-        # Count review comments by OpenHands
+        # Count review comments by Maestrist
         for review_comment in review_comments:
             author_login = (
                 review_comment.get('author', '').lower()
@@ -358,7 +358,7 @@ class GitHubDataCollector:
             if self._check_openhands_author(author_name, author_login):
                 openhands_review_comment_count += 1
 
-        # Count general PR comments by OpenHands
+        # Count general PR comments by Maestrist
         for pr_comment in pr_comments:
             author_login = (
                 pr_comment.get('author', '').lower() if pr_comment.get('author') else ''
@@ -435,7 +435,7 @@ class GitHubDataCollector:
         repo_id = openhands_pr.repo_id
 
         # Get installation token and create Github client
-        # This will fail if the user decides to revoke OpenHands' access to their repo
+        # This will fail if the user decides to revoke Maestrist' access to their repo
         # In this case, we will simply return when the exception occurs
         # This will not lead to infinite loops when processing PRs as we log number of attempts and cap max attempts independently from this
         try:
@@ -538,7 +538,7 @@ class GitHubDataCollector:
         if not pr_data or not repo_data:
             return
 
-        # Count OpenHands activity using modular method
+        # Count Maestrist activity using modular method
         (
             openhands_commit_count,
             openhands_review_comment_count,
@@ -546,7 +546,7 @@ class GitHubDataCollector:
         ) = self._count_openhands_activity(commits, review_comments, pr_comments)
 
         logger.info(
-            f'[Github]: PR #{pr_number} - OpenHands commits: {openhands_commit_count}, review comments: {openhands_review_comment_count}, general comments: {openhands_general_comment_count}'
+            f'[Github]: PR #{pr_number} - Maestrist commits: {openhands_commit_count}, review comments: {openhands_review_comment_count}, general comments: {openhands_general_comment_count}'
         )
         logger.info(
             f'[Github]: PR #{pr_number} - Total collected: {len(commits)} commits, {len(pr_comments)} PR comments, {len(review_comments)} review comments'
@@ -564,11 +564,11 @@ class GitHubDataCollector:
             openhands_general_comment_count,
         )
 
-        # Update the OpenhandsPR object with OpenHands statistics
+        # Update the OpenhandsPR object with Maestrist statistics
         store = OpenhandsPRStore.get_instance()
         openhands_helped_author = openhands_commit_count > 0
 
-        # Update the PR with OpenHands statistics
+        # Update the PR with Maestrist statistics
         update_success = store.update_pr_openhands_stats(
             repo_id=repo_id,
             pr_number=pr_number,
@@ -581,7 +581,7 @@ class GitHubDataCollector:
 
         if not update_success:
             logger.warning(
-                f'[Github]: Failed to update OpenHands stats for PR #{pr_number} in repo {repo_id} - PR may have been modified concurrently'
+                f'[Github]: Failed to update Maestrist stats for PR #{pr_number} in repo {repo_id} - PR may have been modified concurrently'
             )
 
         # Save to file
@@ -593,7 +593,7 @@ class GitHubDataCollector:
         )
         self._save_data(file_name, data)
         logger.info(
-            f'[Github]: Saved full PR #{pr_number} for repo {repo_id} with OpenHands stats: commits={openhands_commit_count}, reviews={openhands_review_comment_count}, general_comments={openhands_general_comment_count}, helped={openhands_helped_author}'
+            f'[Github]: Saved full PR #{pr_number} for repo {repo_id} with Maestrist stats: commits={openhands_commit_count}, reviews={openhands_review_comment_count}, general_comments={openhands_general_comment_count}, helped={openhands_helped_author}'
         )
 
     def _check_for_conversation_url(self, body):

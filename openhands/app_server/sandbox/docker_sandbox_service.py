@@ -369,7 +369,7 @@ class DockerSandboxService(SandboxService):
 
         # Set CORS origins for remote browser access when web_url is configured.
         # This allows the agent-server container to accept requests from the
-        # frontend when running OpenHands on a remote machine.
+        # frontend when running Maestrist on a remote machine.
         if self.web_url:
             env_vars[ALLOW_CORS_ORIGINS_VARIABLE] = self.web_url
 
@@ -517,9 +517,9 @@ class DockerSandboxServiceInjector(SandboxServiceInjector):
     host_port: int = Field(
         default=3000,
         description=(
-            'The port on which the main OpenHands app server is running. '
+            'The port on which the main Maestrist app server is running. '
             'Used for webhook callbacks from agent-server containers. '
-            'If running OpenHands on a non-default port, set this to match. '
+            'If running Maestrist on a non-default port, set this to match. '
             'Configure via OH_SANDBOX_HOST_PORT environment variable.'
         ),
     )

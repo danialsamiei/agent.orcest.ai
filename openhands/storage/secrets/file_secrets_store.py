@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.storage import get_file_store
 from openhands.storage.data_models.secrets import Secrets
 from openhands.storage.files import FileStore
@@ -37,7 +37,7 @@ class FileSecretsStore(SecretsStore):
 
     @classmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str | None
+        cls, config: MaestristConfig, user_id: str | None
     ) -> FileSecretsStore:
         file_store = get_file_store(
             file_store_type=config.file_store,

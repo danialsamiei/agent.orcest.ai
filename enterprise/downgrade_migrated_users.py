@@ -26,7 +26,7 @@ import asyncio
 import sys
 
 # Add the enterprise directory to the path
-sys.path.insert(0, '/workspace/project/OpenHands/enterprise')
+sys.path.insert(0, '/workspace/project/Maestrist/enterprise')
 
 from server.logger import logger
 from sqlalchemy import select, text

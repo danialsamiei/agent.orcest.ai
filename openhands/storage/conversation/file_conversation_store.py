@@ -6,7 +6,7 @@ from pathlib import Path
 
 from pydantic import TypeAdapter
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.storage import get_file_store
 from openhands.storage.conversation.conversation_store import ConversationStore
@@ -103,7 +103,7 @@ class FileConversationStore(ConversationStore):
 
     @classmethod
     async def get_instance(
-        cls, config: OpenHandsConfig, user_id: str | None
+        cls, config: MaestristConfig, user_id: str | None
     ) -> FileConversationStore:
         file_store = get_file_store(
             file_store_type=config.file_store,

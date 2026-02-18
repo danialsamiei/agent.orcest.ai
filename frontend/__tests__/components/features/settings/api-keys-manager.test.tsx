@@ -16,7 +16,7 @@ vi.mock("react-i18next", async () => {
       if (i18nKey === "SETTINGS$API_KEYS_DESCRIPTION") {
         return (
           <span>
-            API keys allow you to authenticate with the OpenHands API programmatically.
+            API keys allow you to authenticate with the Maestrist API programmatically.
             Keep your API keys secure; anyone with your API key can access your account.
             For more information on how to use the API, see our {components.a}
           </span>
@@ -52,7 +52,7 @@ describe("ApiKeysManager", () => {
     // Find the link to the API documentation
     const link = screen.getByRole("link");
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "https://docs.all-hands.dev/usage/cloud/cloud-api");
+    expect(link).toHaveAttribute("href", "https://docs.orcest.ai/usage/cloud/cloud-api");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
   });

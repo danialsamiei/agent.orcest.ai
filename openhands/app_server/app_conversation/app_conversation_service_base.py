@@ -68,7 +68,7 @@ class AppConversationServiceBase(AppConversationService, ABC):
 
         This method calls the agent-server's /api/skills endpoint to load and
         merge skills from all sources. The agent-server handles:
-        - Public skills (from OpenHands/skills GitHub repo)
+        - Public skills (from Maestrist/skills GitHub repo)
         - User skills (from ~/.openhands/skills/)
         - Organization skills (from {org}/.openhands repo)
         - Project/repo skills (from workspace .openhands/skills/)
@@ -363,7 +363,7 @@ class AppConversationServiceBase(AppConversationService, ABC):
             if result.get('success'):
                 _logger.info('Preserving existing pre-commit hook')
                 # an existing pre-commit hook exists
-                if 'This hook was installed by OpenHands' not in temp_file.read():
+                if 'This hook was installed by Maestrist' not in temp_file.read():
                     # Move the existing hook to pre-commit.local
                     command = (
                         f'mv {PRE_COMMIT_HOOK} {PRE_COMMIT_LOCAL} &&'

@@ -161,7 +161,7 @@ def handle_condenser_max_step_experiment(
 
     try:
         # Apply the variant to this conversation only; do not persist to DB.
-        # Not all OpenHands versions expose `condenser_max_size` on settings.
+        # Not all Maestrist versions expose `condenser_max_size` on settings.
         if hasattr(conversation_settings, 'condenser_max_size'):
             conversation_settings.condenser_max_size = condenser_max_size
             logger.info(

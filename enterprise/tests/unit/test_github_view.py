@@ -9,12 +9,12 @@ from integrations.types import UserData
 
 class TestGithubLabels(TestCase):
     def test_labels_with_staging(self):
-        oh_label, inline_oh_label = get_oh_labels('staging.all-hands.dev')
+        oh_label, inline_oh_label = get_oh_labels('staging.orcest.ai')
         self.assertEqual(oh_label, 'openhands-exp')
         self.assertEqual(inline_oh_label, '@openhands-exp')
 
     def test_labels_with_staging_v2(self):
-        oh_label, inline_oh_label = get_oh_labels('main.staging.all-hands.dev')
+        oh_label, inline_oh_label = get_oh_labels('main.staging.orcest.ai')
         self.assertEqual(oh_label, 'openhands-exp')
         self.assertEqual(inline_oh_label, '@openhands-exp')
 
@@ -24,7 +24,7 @@ class TestGithubLabels(TestCase):
         self.assertEqual(inline_oh_label, '@openhands-exp')
 
     def test_labels_with_prod(self):
-        oh_label, inline_oh_label = get_oh_labels('app.all-hands.dev')
+        oh_label, inline_oh_label = get_oh_labels('app.orcest.ai')
         self.assertEqual(oh_label, 'openhands')
         self.assertEqual(inline_oh_label, '@openhands')
 
@@ -68,7 +68,7 @@ class TestGithubCommentCaseInsensitivity(TestCase):
             message={
                 'payload': {
                     'action': 'created',
-                    'comment': {'body': 'hello @OpenHands please help'},
+                    'comment': {'body': 'hello @Maestrist please help'},
                     'issue': {'number': 1},
                 }
             },

@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -17,9 +17,9 @@ from openhands.controller import AgentController
 from openhands.controller.agent import Agent
 from openhands.controller.replay import ReplayManager
 from openhands.controller.state.state import State
-from openhands.core.config import AgentConfig, LLMConfig, OpenHandsConfig
+from openhands.core.config import AgentConfig, LLMConfig, MaestristConfig
 from openhands.core.exceptions import AgentRuntimeUnavailableError
-from openhands.core.logger import OpenHandsLoggerAdapter
+from openhands.core.logger import MaestristLoggerAdapter
 from openhands.core.schema.agent import AgentState
 from openhands.events.action import ChangeAgentStateAction, MessageAction
 from openhands.events.event import Event, EventSource
@@ -89,7 +89,7 @@ class AgentSession:
         self.file_store = file_store
         self._status_callback = status_callback
         self.user_id = user_id
-        self.logger = OpenHandsLoggerAdapter(
+        self.logger = MaestristLoggerAdapter(
             extra={'session_id': sid, 'user_id': user_id}
         )
         self.llm_registry = llm_registry
@@ -98,7 +98,7 @@ class AgentSession:
     async def start(
         self,
         runtime_name: str,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         agent: Agent,
         max_iterations: int,
         git_provider_tokens: PROVIDER_TOKEN_TYPE | None = None,
@@ -257,7 +257,7 @@ class AgentSession:
         initial_message: MessageAction | None,
         replay_json: str,
         agent: Agent,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         max_iterations: int,
         max_budget_per_task: float | None,
         agent_to_llm_config: dict[str, LLMConfig] | None,
@@ -304,7 +304,7 @@ class AgentSession:
     async def _create_runtime(
         self,
         runtime_name: str,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         agent: Agent,
         git_provider_tokens: PROVIDER_TOKEN_TYPE | None = None,
         custom_secrets: CUSTOM_SECRETS_TYPE | None = None,
@@ -422,7 +422,7 @@ class AgentSession:
             )
 
         msg = (
-            '\n--------------------------------- OpenHands Configuration ---------------------------------\n'
+            '\n--------------------------------- Maestrist Configuration ---------------------------------\n'
             f'LLM: {agent.llm.config.model}\n'
             f'Base URL: {agent.llm.config.base_url}\n'
             f'Agent: {agent.name}\n'

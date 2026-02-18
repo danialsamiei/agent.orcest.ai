@@ -26,7 +26,7 @@ from storage.stored_conversation_metadata import StoredConversationMetadata
 from storage.stored_conversation_metadata_saas import StoredConversationMetadataSaas
 
 from openhands.controller.agent import Agent
-from openhands.core.config import LLMConfig, OpenHandsConfig
+from openhands.core.config import LLMConfig, MaestristConfig
 from openhands.core.config.mcp_config import MCPConfig, MCPSHTTPServerConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.events.action import MessageAction
@@ -67,7 +67,7 @@ from openhands.utils.utils import create_registry_and_conversation_stats
 
 # Pattern for accessing runtime pods externally
 RUNTIME_URL_PATTERN = os.getenv(
-    'RUNTIME_URL_PATTERN', 'https://{runtime_id}.prod-runtime.all-hands.dev'
+    'RUNTIME_URL_PATTERN', 'https://{runtime_id}.prod-runtime.orcest.ai'
 )
 RUNTIME_ROUTING_MODE = os.getenv('RUNTIME_ROUTING_MODE', 'subdomain').lower()
 
@@ -109,7 +109,7 @@ class SaasNestedConversationManager(ConversationManager):
     """Conversation manager where the agent loops exist inside the remote containers."""
 
     sio: socketio.AsyncServer
-    config: OpenHandsConfig
+    config: MaestristConfig
     server_config: ServerConfig
     file_store: FileStore
     event_retrieval: EventRetrieval
@@ -407,7 +407,7 @@ class SaasNestedConversationManager(ConversationManager):
             ExperimentManagerImpl,
         )
 
-        config: OpenHandsConfig = ExperimentManagerImpl.run_config_variant_test(
+        config: MaestristConfig = ExperimentManagerImpl.run_config_variant_test(
             user_id, sid, self.config
         )
 
@@ -525,7 +525,7 @@ class SaasNestedConversationManager(ConversationManager):
             )
         if not mcp_api_key:
             return None
-        web_host = os.environ.get('WEB_HOST', 'app.all-hands.dev')
+        web_host = os.environ.get('WEB_HOST', 'app.orcest.ai')
         shttp_servers = [
             MCPSHTTPServerConfig(url=f'https://{web_host}/mcp/mcp', api_key=mcp_api_key)
         ]
@@ -789,7 +789,7 @@ class SaasNestedConversationManager(ConversationManager):
     def get_instance(
         cls,
         sio: socketio.AsyncServer,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         file_store: FileStore,
         server_config: ServerConfig,
         monitoring_listener: MonitoringListener,

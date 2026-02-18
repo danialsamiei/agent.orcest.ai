@@ -315,7 +315,7 @@ class AzureDevOpsPRsMixin(AzureDevOpsMixinBase):
         self, repository: str, pr_number: int, reaction_type: str = ':thumbsup:'
     ) -> dict:
         org, project, repo = self._parse_repository(repository)
-        comment_text = f'{reaction_type} OpenHands is processing this PR...'
+        comment_text = f'{reaction_type} Maestrist is processing this PR...'
         return await self.add_pr_thread(
             repository, pr_number, comment_text, status='closed'
         )

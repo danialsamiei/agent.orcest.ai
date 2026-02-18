@@ -1,6 +1,6 @@
-# OpenHands Storage Module
+# Maestrist Storage Module
 
-The storage module provides different storage options for file operations in OpenHands, used for storing events, settings and other metadata. This module implements a common interface (`FileStore`) that allows for interchangeable storage backends.
+The storage module provides different storage options for file operations in Maestrist, used for storing events, settings and other metadata. This module implements a common interface (`FileStore`) that allows for interchangeable storage backends.
 
 **Usage:**
 ```python
@@ -99,7 +99,7 @@ The `BatchedWebHookFileStore` extends the webhook functionality by batching mult
 
 ## Configuration
 
-To configure the storage module in OpenHands, use the following configuration options:
+To configure the storage module in Maestrist, use the following configuration options:
 
 ```toml
 [core]

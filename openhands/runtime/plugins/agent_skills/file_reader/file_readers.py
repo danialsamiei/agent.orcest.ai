@@ -1,11 +1,11 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
-"""File reader skills for the OpenHands agent.
+"""File reader skills for the Maestrist agent.
 
 This module provides various functions to parse and extract content from different file types,
 including PDF, DOCX, LaTeX, audio, image, video, and PowerPoint files. It utilizes different
@@ -246,7 +246,7 @@ __all__ = [
     'parse_pptx',
 ]
 
-# This is called from OpenHands's side
+# This is called from Maestrist's side
 # If SANDBOX_ENV_OPENAI_API_KEY is set, we will be able to use these tools in the sandbox environment
 if _get_openai_api_key() and _get_openai_base_url():
     __all__ += ['parse_audio', 'parse_video', 'parse_image']

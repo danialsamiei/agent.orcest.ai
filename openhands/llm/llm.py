@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -132,7 +132,7 @@ class LLM(RetryMixin, DebugMixin):
             # openai doesn't expose top_p, but litellm does
             kwargs['top_p'] = self.config.top_p
 
-        # Handle OpenHands provider - rewrite to litellm_proxy
+        # Handle Maestrist provider - rewrite to litellm_proxy
         if self.config.model.startswith('openhands/'):
             model_name = self.config.model.removeprefix('openhands/')
             self.config.model = f'litellm_proxy/{model_name}'
@@ -171,7 +171,7 @@ class LLM(RetryMixin, DebugMixin):
                 'temperature'
             )  # temperature is not supported for reasoning models
             kwargs.pop('top_p')  # reasoning model like o3 doesn't support top_p
-        # Azure issue: https://github.com/OpenHands/OpenHands/issues/6777
+        # Azure issue: https://github.com/orcest-ai/Maestrist/issues/6777
         if self.config.model.startswith('azure'):
             kwargs['max_tokens'] = self.config.max_output_tokens
             kwargs.pop('max_completion_tokens')
@@ -862,7 +862,7 @@ def _get_openhands_llm_base_url():
     # Fallback to using web_host.
     web_host = os.getenv('WEB_HOST')
     if web_host and ('.staging.' in web_host or web_host.startswith('staging')):
-        return 'https://llm-proxy.staging.all-hands.dev/'
+        return 'https://llm-proxy.staging.orcest.ai/'
 
     # Use the default
-    return 'https://llm-proxy.app.all-hands.dev/'
+    return 'https://llm-proxy.app.orcest.ai/'

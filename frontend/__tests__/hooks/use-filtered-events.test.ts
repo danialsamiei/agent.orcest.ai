@@ -2,13 +2,13 @@ import { describe, expect, it, beforeEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useFilteredEvents } from "#/hooks/use-filtered-events";
 import { useEventStore } from "#/stores/use-event-store";
-import type { OpenHandsAction } from "#/types/core/actions";
+import type { MaestristAction } from "#/types/core/actions";
 import type { ActionEvent, MessageEvent } from "#/types/v1/core";
 import { SecurityRisk } from "#/types/v1/core";
 
 // --- V0 event factories ---
 
-function createV0UserMessage(id: number): OpenHandsAction {
+function createV0UserMessage(id: number): MaestristAction {
   return {
     id,
     source: "user",
@@ -19,7 +19,7 @@ function createV0UserMessage(id: number): OpenHandsAction {
   };
 }
 
-function createV0AgentMessage(id: number): OpenHandsAction {
+function createV0AgentMessage(id: number): MaestristAction {
   return {
     id,
     source: "agent",
@@ -35,7 +35,7 @@ function createV0AgentMessage(id: number): OpenHandsAction {
   };
 }
 
-function createV0SystemEvent(id: number): OpenHandsAction {
+function createV0SystemEvent(id: number): MaestristAction {
   return {
     id,
     source: "environment",

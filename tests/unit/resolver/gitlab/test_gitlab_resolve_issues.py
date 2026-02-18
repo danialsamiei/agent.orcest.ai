@@ -526,7 +526,7 @@ async def test_process_issue(
             'openhands.resolver.issue_resolver.SandboxConfig', return_value=MagicMock()
         ),
         patch(
-            'openhands.resolver.issue_resolver.OpenHandsConfig',
+            'openhands.resolver.issue_resolver.MaestristConfig',
             return_value=MagicMock(),
         ),
     ):
@@ -708,7 +708,7 @@ This is a test issue"""
 You SHOULD INCLUDE PROPER INDENTATION in your edit commands.
 
 Some basic information about this repository:
-This is a Python repo for openhands-resolver, a library that attempts to resolve github issues with the AI agent OpenHands.
+This is a Python repo for openhands-resolver, a library that attempts to resolve github issues with the AI agent Maestrist.
 
 - Setup: `poetry install --with test --with dev`
 - Testing: `poetry run pytest tests/test_*.py`

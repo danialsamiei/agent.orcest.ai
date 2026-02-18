@@ -804,7 +804,7 @@ class TestGithubV1CallbackProcessor:
         call_args = mock_issue.create_comment.call_args
         error_comment = call_args[1].get('body') or call_args[0][0]
         assert (
-            'OpenHands encountered an error: **Simulated agent server error**'
+            'Maestrist encountered an error: **Simulated agent server error**'
             in error_comment
         )
         assert f'conversations/{conversation_id}' in error_comment

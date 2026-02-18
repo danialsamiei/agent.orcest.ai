@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -22,7 +22,7 @@ import socketio
 from docker.models.containers import Container
 
 from openhands.controller.agent import Agent
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.config.llm_config import LLMConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.events.action import MessageAction
@@ -60,7 +60,7 @@ class DockerNestedConversationManager(ConversationManager):
     """ServerConversation manager where the agent loops exist inside the docker containers."""
 
     sio: socketio.AsyncServer
-    config: OpenHandsConfig
+    config: MaestristConfig
     server_config: ServerConfig
     file_store: FileStore
     docker_client: docker.DockerClient = field(default_factory=docker.from_env)
@@ -446,7 +446,7 @@ class DockerNestedConversationManager(ConversationManager):
     def get_instance(
         cls,
         sio: socketio.AsyncServer,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         file_store: FileStore,
         server_config: ServerConfig,
         monitoring_listener: MonitoringListener,
@@ -551,7 +551,7 @@ class DockerNestedConversationManager(ConversationManager):
         # This session is created here only because it is the easiest way to get a runtime, which
         # is the easiest way to create the needed docker container
 
-        config: OpenHandsConfig = ExperimentManagerImpl.run_config_variant_test(
+        config: MaestristConfig = ExperimentManagerImpl.run_config_variant_test(
             user_id, sid, self.config
         )
 

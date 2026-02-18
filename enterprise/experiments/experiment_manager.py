@@ -8,7 +8,7 @@ from experiments.experiment_versions import (
     handle_system_prompt_experiment,
 )
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.experiments.experiment_manager import ExperimentManager
 from openhands.sdk import Agent
@@ -59,19 +59,19 @@ class SaaSExperimentManager(ExperimentManager):
 
     @staticmethod
     def run_config_variant_test(
-        user_id: str | None, conversation_id: str, config: OpenHandsConfig
-    ) -> OpenHandsConfig:
+        user_id: str | None, conversation_id: str, config: MaestristConfig
+    ) -> MaestristConfig:
         """
-        Run agent config variant test and potentially modify the OpenHands config
+        Run agent config variant test and potentially modify the Maestrist config
         based on the current experiment type and PostHog feature flags.
 
         Args:
             user_id: The user ID
             conversation_id: The conversation ID
-            config: The OpenHands configuration
+            config: The Maestrist configuration
 
         Returns:
-            The modified OpenHands configuration
+            The modified Maestrist configuration
         """
         logger.info(
             'experiment_manager:run_config_variant_test:started',
@@ -86,7 +86,7 @@ class SaaSExperimentManager(ExperimentManager):
             )
             return config
 
-        # Pass the entire OpenHands config to the system prompt experiment
+        # Pass the entire Maestrist config to the system prompt experiment
         # Let the experiment handler directly modify the config as needed
         modified_config = handle_system_prompt_experiment(
             user_id, conversation_id, config

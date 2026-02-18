@@ -772,7 +772,7 @@ def test_process_single_pr_update(
         None,
         None,
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
 
     mock_initialize_repo.assert_called_once_with(mock_output_dir, 1, 'pr', 'branch 1')
@@ -784,7 +784,7 @@ def test_process_single_pr_update(
         resolver_output.issue,
         'pr',
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
     mock_update_existing_pull_request.assert_called_once_with(
         issue=resolver_output.issue,
@@ -858,7 +858,7 @@ def test_process_single_issue(
         None,
         None,
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
 
     # Assert that the mocked functions were called with correct arguments
@@ -871,7 +871,7 @@ def test_process_single_issue(
         resolver_output.issue,
         'issue',
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
     mock_send_pull_request.assert_called_once_with(
         issue=resolver_output.issue,
@@ -887,7 +887,7 @@ def test_process_single_issue(
         pr_title=None,
         base_domain='gitlab.com',
         git_user_name='openhands',
-        git_user_email='openhands@all-hands.dev',
+        git_user_email='openhands@orcest.ai',
     )
 
 
@@ -944,7 +944,7 @@ def test_process_single_issue_unsuccessful(
         None,
         None,
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
 
     # Assert that none of the mocked functions were called
@@ -1049,7 +1049,7 @@ def test_main(
     mock_args.pr_title = None
     mock_args.selected_repo = None
     mock_args.git_user_name = 'openhands'
-    mock_args.git_user_email = 'openhands@all-hands.dev'
+    mock_args.git_user_email = 'openhands@orcest.ai'
     mock_parser.return_value.parse_args.return_value = mock_args
 
     # Setup environment variables

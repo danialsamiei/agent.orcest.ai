@@ -1,7 +1,7 @@
 """
 E2E: Web browsing catchphrase test (Issue #10378)
 
-Goal: In a new conversation, instruct the agent to browse to all-hands.dev and
+Goal: In a new conversation, instruct the agent to browse to orcest.ai and
 return the page's main catchphrase. We assert that a browsing action/observation
 is emitted and that the agent returns the expected catchphrase.
 
@@ -41,7 +41,7 @@ def _wait_for_home_and_repo_selection(page: Page) -> None:
     # Try to search and pick the official repo
     try:
         page.keyboard.press('Control+a')
-        page.keyboard.type('openhands-agent/OpenHands')
+        page.keyboard.type('openhands-agent/Maestrist')
     except Exception:
         pass
 
@@ -49,12 +49,12 @@ def _wait_for_home_and_repo_selection(page: Page) -> None:
 
     # Try multiple selectors for the option
     option_selectors = [
-        '[data-testid="repo-dropdown"] [role="option"]:has-text("openhands-agent/OpenHands")',
-        '[data-testid="repo-dropdown"] [role="option"]:has-text("OpenHands")',
-        '[role="option"]:has-text("openhands-agent/OpenHands")',
-        '[role="option"]:has-text("OpenHands")',
-        'div:has-text("openhands-agent/OpenHands"):not([id="aria-results"])',
-        'div:has-text("OpenHands"):not([id="aria-results"])',
+        '[data-testid="repo-dropdown"] [role="option"]:has-text("openhands-agent/Maestrist")',
+        '[data-testid="repo-dropdown"] [role="option"]:has-text("Maestrist")',
+        '[role="option"]:has-text("openhands-agent/Maestrist")',
+        '[role="option"]:has-text("Maestrist")',
+        'div:has-text("openhands-agent/Maestrist"):not([id="aria-results"])',
+        'div:has-text("Maestrist"):not([id="aria-results"])',
     ]
 
     for selector in option_selectors:
@@ -276,7 +276,7 @@ def test_browsing_catchphrase(page: Page):
 
     # 3) Send browsing instruction
     prompt = (
-        'Use the web-browsing tool to navigate to https://www.all-hands.dev and '
+        'Use the web-browsing tool to navigate to https://www.orcest.ai and '
         'tell me the main catchphrase displayed on the page. Do not answer from '
         'memory; perform the browsing action and respond with only the exact catchphrase.'
     )

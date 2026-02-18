@@ -1,7 +1,7 @@
 import os
 from typing import Callable
 
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.events.action import (
     BrowseURLAction,
@@ -42,7 +42,7 @@ class E2BRuntime(ActionExecutionClient):
     
     def __init__(
         self,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         event_stream: EventStream,
         llm_registry: LLMRegistry,
         sid: str = "default",
@@ -390,13 +390,13 @@ class E2BRuntime(ActionExecutionClient):
         return ""
     
     @classmethod
-    def setup(cls, config: OpenHandsConfig, headless_mode: bool = False) -> None:
+    def setup(cls, config: MaestristConfig, headless_mode: bool = False) -> None:
         """Set up the E2B runtime environment."""
         logger.info("E2B runtime setup called")
         pass
     
     @classmethod
-    def teardown(cls, config: OpenHandsConfig) -> None:
+    def teardown(cls, config: MaestristConfig) -> None:
         """Tear down the E2B runtime environment."""
         logger.info("E2B runtime teardown called")
         pass

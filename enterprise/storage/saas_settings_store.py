@@ -20,7 +20,7 @@ from storage.user import User
 from storage.user_settings import UserSettings
 from storage.user_store import UserStore
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.server.settings import Settings
 from openhands.storage.settings.settings_store import SettingsStore
 from openhands.utils.async_utils import call_sync_from_async
@@ -31,7 +31,7 @@ from openhands.utils.llm import is_openhands_model
 class SaasSettingsStore(SettingsStore):
     user_id: str
     session_maker: sessionmaker
-    config: OpenHandsConfig
+    config: MaestristConfig
     ENCRYPT_VALUES = ['llm_api_key', 'llm_api_key_for_byor', 'search_api_key']
 
     def _get_user_settings_by_keycloak_id(
@@ -178,7 +178,7 @@ class SaasSettingsStore(SettingsStore):
     @classmethod
     async def get_instance(
         cls,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         user_id: str,  # type: ignore[override]
     ) -> SaasSettingsStore:
         logger.debug(f'saas_settings_store.get_instance::{user_id}')
@@ -233,7 +233,7 @@ class SaasSettingsStore(SettingsStore):
     async def _ensure_api_key(
         self, item: Settings, org_id: str, openhands_type: bool = False
     ) -> None:
-        """Generate and set the OpenHands API key for the given settings.
+        """Generate and set the Maestrist API key for the given settings.
 
         First checks if an existing key exists for the user and verifies it
         is valid in LiteLLM. If valid, reuses it. Otherwise, generates a new key.

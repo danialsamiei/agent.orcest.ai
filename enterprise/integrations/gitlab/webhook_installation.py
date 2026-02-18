@@ -16,7 +16,7 @@ from openhands.core.logger import openhands_logger as logger
 from openhands.integrations.service_types import GitService
 
 # Webhook configuration constants
-WEBHOOK_NAME = 'OpenHands Resolver'
+WEBHOOK_NAME = 'Maestrist Resolver'
 SCOPES: list[str] = [
     'note_events',
     'merge_requests_events',

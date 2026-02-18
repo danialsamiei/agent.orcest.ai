@@ -173,7 +173,7 @@ async def create_checkout_session(
                     'unit_amount': body.amount * 100,
                     'currency': 'usd',
                     'product_data': {
-                        'name': 'OpenHands Credits',
+                        'name': 'Maestrist Credits',
                         'tax_code': 'txcd_10000000',
                     },
                     'tax_behavior': 'exclusive',

@@ -89,7 +89,7 @@ def get_cookie_domain(request: Request) -> str | None:
     return (
         None
         if not request.url.hostname
-        or request.url.hostname.endswith('staging.all-hands.dev')
+        or request.url.hostname.endswith('staging.orcest.ai')
         else request.url.hostname
     )
 
@@ -99,7 +99,7 @@ def get_cookie_samesite(request: Request) -> Literal['lax', 'strict']:
     return (
         'lax'
         if request.url.hostname == 'localhost'
-        or (request.url.hostname or '').endswith('staging.all-hands.dev')
+        or (request.url.hostname or '').endswith('staging.orcest.ai')
         else 'strict'
     )
 

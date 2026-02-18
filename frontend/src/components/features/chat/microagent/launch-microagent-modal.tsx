@@ -75,7 +75,7 @@ export function LaunchMicroagentModal({
             <h2 className="font-bold text-[20px] leading-6 -tracking-[0.01em] flex items-center gap-2">
               {t("MICROAGENT$ADD_TO_MICROAGENT")}
               <a
-                href="https://docs.all-hands.dev/usage/prompting/microagents-overview#microagents-overview"
+                href="https://docs.orcest.ai/usage/prompting/microagents-overview#microagents-overview"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -142,7 +142,7 @@ export function LaunchMicroagentModal({
               <div className="flex items-center gap-2">
                 {t("MICROAGENT$ADD_TRIGGERS")}
                 <a
-                  href="https://docs.all-hands.dev/usage/prompting/microagents-keyword"
+                  href="https://docs.orcest.ai/usage/prompting/microagents-keyword"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

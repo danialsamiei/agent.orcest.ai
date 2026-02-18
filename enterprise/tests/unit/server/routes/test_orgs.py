@@ -332,7 +332,7 @@ async def test_create_org_unauthorized():
 @pytest.mark.asyncio
 async def test_create_org_forbidden_non_openhands_email():
     """
-    GIVEN: User email is not @openhands.dev
+    GIVEN: User email is not @orcest.ai
     WHEN: POST /api/organizations is called
     THEN: 403 Forbidden error is returned
     """
@@ -340,10 +340,10 @@ async def test_create_org_forbidden_non_openhands_email():
     app = FastAPI()
     app.include_router(org_router)
 
-    # Override to simulate non-@openhands.dev user
+    # Override to simulate non-@orcest.ai user
     async def mock_forbidden():
         raise HTTPException(
-            status_code=403, detail='Access restricted to @openhands.dev users'
+            status_code=403, detail='Access restricted to @orcest.ai users'
         )
 
     app.dependency_overrides[get_admin_user_id] = mock_forbidden
@@ -361,7 +361,7 @@ async def test_create_org_forbidden_non_openhands_email():
 
     # Assert
     assert response.status_code == status.HTTP_403_FORBIDDEN
-    assert 'openhands.dev' in response.json()['detail'].lower()
+    assert 'orcest.ai' in response.json()['detail'].lower()
 
 
 @pytest.mark.asyncio

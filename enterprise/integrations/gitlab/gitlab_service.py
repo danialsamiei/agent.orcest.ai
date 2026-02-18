@@ -459,7 +459,7 @@ class SaaSGitLabService(GitLabService):
                 - str: A reason message explaining the result
         """
 
-        description = 'Cloud OpenHands Resolver'
+        description = 'Cloud Maestrist Resolver'
 
         # Set up webhook parameters
         webhook_data = {
@@ -476,8 +476,8 @@ class SaaSGitLabService(GitLabService):
         # Add custom headers with user id
         if self.external_auth_id:
             webhook_data['custom_headers'] = [
-                {'key': 'X-OpenHands-User-ID', 'value': self.external_auth_id},
-                {'key': 'X-OpenHands-Webhook-ID', 'value': webhook_uuid},
+                {'key': 'X-Maestrist-User-ID', 'value': self.external_auth_id},
+                {'key': 'X-Maestrist-Webhook-ID', 'value': webhook_uuid},
             ]
 
         if resource_type == GitLabResourceType.GROUP:

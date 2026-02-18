@@ -47,7 +47,7 @@ class SlackManager(Manager):
     def __init__(self, token_manager):
         self.token_manager = token_manager
         self.login_link = (
-            'User has not yet authenticated: [Click here to Login to OpenHands]({}).'
+            'User has not yet authenticated: [Click here to Login to Maestrist]({}).'
         )
 
         self.jinja_env = Environment(
@@ -61,7 +61,7 @@ class SlackManager(Manager):
     async def authenticate_user(
         self, slack_user_id: str
     ) -> tuple[SlackUser | None, UserAuth | None]:
-        # We get the user and correlate them back to a user in OpenHands - if we can
+        # We get the user and correlate them back to a user in Maestrist - if we can
         slack_user = None
         with session_maker() as session:
             slack_user = (
@@ -82,7 +82,7 @@ class SlackManager(Manager):
         return slack_user, saas_user_auth
 
     def _infer_repo_from_message(self, user_msg: str) -> str | None:
-        # Regular expression to match patterns like "OpenHands/OpenHands" or "deploy repo"
+        # Regular expression to match patterns like "Maestrist/Maestrist" or "deploy repo"
         pattern = r'([a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+)|([a-zA-Z0-9_-]+)(?=\s+repo)'
         match = re.search(pattern, user_msg)
 
@@ -349,14 +349,14 @@ class SlackManager(Manager):
                     f'[Slack] Missing settings error for user {user_info.slack_display_name}: {str(e)}'
                 )
 
-                msg_info = f'{user_info.slack_display_name} please re-login into [OpenHands Cloud]({HOST_URL}) before starting a job.'
+                msg_info = f'{user_info.slack_display_name} please re-login into [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
             except LLMAuthenticationError as e:
                 logger.warning(
                     f'[Slack] LLM authentication error for user {user_info.slack_display_name}: {str(e)}'
                 )
 
-                msg_info = f'@{user_info.slack_display_name} please set a valid LLM API key in [OpenHands Cloud]({HOST_URL}) before starting a job.'
+                msg_info = f'@{user_info.slack_display_name} please set a valid LLM API key in [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
             except SessionExpiredError as e:
                 logger.warning(

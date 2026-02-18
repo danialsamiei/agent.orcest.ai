@@ -1,8 +1,8 @@
-# Configuration Management in OpenHands
+# Configuration Management in Maestrist
 
 ## Overview
 
-OpenHands uses a flexible configuration system that allows settings to be defined through environment variables, TOML files, and command-line arguments. The configuration is managed through a package structure in `openhands/core/config/`.
+Maestrist uses a flexible configuration system that allows settings to be defined through environment variables, TOML files, and command-line arguments. The configuration is managed through a package structure in `openhands/core/config/`.
 
 ## Configuration Classes
 
@@ -89,7 +89,7 @@ By using `load_app_config()`, you ensure that all configuration sources are prop
 
 ## Additional Configuration Methods
 
-While this document focuses on environment variable configuration, OpenHands also supports:
+While this document focuses on environment variable configuration, Maestrist also supports:
 
 - Loading from TOML files
 - Parsing command-line arguments
@@ -98,4 +98,4 @@ These methods are handled by separate functions in the config package.
 
 ## Conclusion
 
-The OpenHands configuration system provides a flexible and type-safe way to manage application settings. By following the naming conventions and utilizing the provided functions, developers can easily customize the behavior of OpenHands components through environment variables and other configuration sources.
+The Maestrist configuration system provides a flexible and type-safe way to manage application settings. By following the naming conventions and utilizing the provided functions, developers can easily customize the behavior of Maestrist components through environment variables and other configuration sources.

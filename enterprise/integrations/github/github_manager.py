@@ -333,7 +333,7 @@ class GithubManager(Manager):
 
                 # Send message with conversation link
                 conversation_link = CONVERSATION_URL.format(conversation_id)
-                base_msg = f"I'm on it! {user_info.username} can [track my progress at all-hands.dev]({conversation_link})"
+                base_msg = f"I'm on it! {user_info.username} can [track my progress at orcest.ai]({conversation_link})"
                 # Combine messages: include solvability report with "I'm on it!" if successful
                 if solvability_summary:
                     msg_info = f'{base_msg}\n\n{solvability_summary}'
@@ -345,14 +345,14 @@ class GithubManager(Manager):
                     f'[GitHub] Missing settings error for user {user_info.username}: {str(e)}'
                 )
 
-                msg_info = f'@{user_info.username} please re-login into [OpenHands Cloud]({HOST_URL}) before starting a job.'
+                msg_info = f'@{user_info.username} please re-login into [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
             except LLMAuthenticationError as e:
                 logger.warning(
                     f'[GitHub] LLM authentication error for user {user_info.username}: {str(e)}'
                 )
 
-                msg_info = f'@{user_info.username} please set a valid LLM API key in [OpenHands Cloud]({HOST_URL}) before starting a job.'
+                msg_info = f'@{user_info.username} please set a valid LLM API key in [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
             except (AuthenticationError, ExpiredError, SessionExpiredError) as e:
                 logger.warning(

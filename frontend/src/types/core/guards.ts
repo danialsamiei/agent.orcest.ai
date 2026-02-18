@@ -1,8 +1,8 @@
-import { OpenHandsParsedEvent } from ".";
+import { MaestristParsedEvent } from ".";
 import {
   UserMessageAction,
   AssistantMessageAction,
-  OpenHandsAction,
+  MaestristAction,
   SystemMessageAction,
   CommandAction,
   FinishAction,
@@ -13,14 +13,14 @@ import {
   CommandObservation,
   ErrorObservation,
   MCPObservation,
-  OpenHandsObservation,
+  MaestristObservation,
   TaskTrackingObservation,
 } from "./observations";
 import { StatusUpdate } from "./variances";
 
-export const isOpenHandsEvent = (
+export const isMaestristEvent = (
   event: unknown,
-): event is OpenHandsParsedEvent =>
+): event is MaestristParsedEvent =>
   typeof event === "object" &&
   event !== null &&
   "id" in event &&
@@ -28,76 +28,76 @@ export const isOpenHandsEvent = (
   "message" in event &&
   "timestamp" in event;
 
-export const isOpenHandsAction = (
-  event: OpenHandsParsedEvent,
-): event is OpenHandsAction => "action" in event;
+export const isMaestristAction = (
+  event: MaestristParsedEvent,
+): event is MaestristAction => "action" in event;
 
-export const isOpenHandsObservation = (
-  event: OpenHandsParsedEvent,
-): event is OpenHandsObservation => "observation" in event;
+export const isMaestristObservation = (
+  event: MaestristParsedEvent,
+): event is MaestristObservation => "observation" in event;
 
 export const isUserMessage = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is UserMessageAction =>
-  isOpenHandsAction(event) &&
+  isMaestristAction(event) &&
   event.source === "user" &&
   event.action === "message";
 
 export const isAssistantMessage = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is AssistantMessageAction =>
-  isOpenHandsAction(event) &&
+  isMaestristAction(event) &&
   event.source === "agent" &&
   (event.action === "message" || event.action === "finish");
 
 export const isErrorObservation = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is ErrorObservation =>
-  isOpenHandsObservation(event) && event.observation === "error";
+  isMaestristObservation(event) && event.observation === "error";
 
 export const isCommandAction = (
-  event: OpenHandsParsedEvent,
-): event is CommandAction => isOpenHandsAction(event) && event.action === "run";
+  event: MaestristParsedEvent,
+): event is CommandAction => isMaestristAction(event) && event.action === "run";
 
 export const isAgentStateChangeObservation = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is AgentStateChangeObservation =>
-  isOpenHandsObservation(event) && event.observation === "agent_state_changed";
+  isMaestristObservation(event) && event.observation === "agent_state_changed";
 
 export const isCommandObservation = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is CommandObservation =>
-  isOpenHandsObservation(event) && event.observation === "run";
+  isMaestristObservation(event) && event.observation === "run";
 
 export const isFinishAction = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is FinishAction =>
-  isOpenHandsAction(event) && event.action === "finish";
+  isMaestristAction(event) && event.action === "finish";
 
 export const isSystemMessage = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is SystemMessageAction =>
-  isOpenHandsAction(event) && event.action === "system";
+  isMaestristAction(event) && event.action === "system";
 
 export const isRejectObservation = (
-  event: OpenHandsParsedEvent,
-): event is OpenHandsObservation =>
-  isOpenHandsObservation(event) && event.observation === "user_rejected";
+  event: MaestristParsedEvent,
+): event is MaestristObservation =>
+  isMaestristObservation(event) && event.observation === "user_rejected";
 
 export const isMcpObservation = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is MCPObservation =>
-  isOpenHandsObservation(event) && event.observation === "mcp";
+  isMaestristObservation(event) && event.observation === "mcp";
 
 export const isTaskTrackingAction = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is TaskTrackingAction =>
-  isOpenHandsAction(event) && event.action === "task_tracking";
+  isMaestristAction(event) && event.action === "task_tracking";
 
 export const isTaskTrackingObservation = (
-  event: OpenHandsParsedEvent,
+  event: MaestristParsedEvent,
 ): event is TaskTrackingObservation =>
-  isOpenHandsObservation(event) && event.observation === "task_tracking";
+  isMaestristObservation(event) && event.observation === "task_tracking";
 
 export const isStatusUpdate = (event: unknown): event is StatusUpdate =>
   typeof event === "object" &&
@@ -107,6 +107,6 @@ export const isStatusUpdate = (event: unknown): event is StatusUpdate =>
   "id" in event;
 
 export const isActionOrObservation = (
-  event: OpenHandsParsedEvent,
-): event is OpenHandsAction | OpenHandsObservation =>
-  isOpenHandsAction(event) || isOpenHandsObservation(event);
+  event: MaestristParsedEvent,
+): event is MaestristAction | MaestristObservation =>
+  isMaestristAction(event) || isMaestristObservation(event);

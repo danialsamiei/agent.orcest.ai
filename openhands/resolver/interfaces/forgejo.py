@@ -180,7 +180,7 @@ class ForgejoIssueHandler(IssueHandlerInterface):
 
     def reply_to_comment(self, pr_number: int, comment_id: str, reply: str) -> None:
         # Forgejo does not support threaded replies via API; add a regular comment referencing the original ID.
-        message = f'OpenHands reply to comment {comment_id}\n\n{reply}'
+        message = f'Maestrist reply to comment {comment_id}\n\n{reply}'
         self.send_comment_msg(pr_number, message)
 
     def create_pull_request(self, data: dict[str, Any] | None = None) -> dict[str, Any]:

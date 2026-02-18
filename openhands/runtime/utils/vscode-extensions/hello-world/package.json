@@ -1,7 +1,7 @@
 {
     "name": "openhands-hello-world",
-    "displayName": "OpenHands Hello World",
-    "description": "A simple hello world extension for OpenHands",
+    "displayName": "Maestrist Hello World",
+    "description": "A simple hello world extension for Maestrist",
     "version": "0.0.1",
     "publisher": "openhands",
     "engines": {
@@ -17,7 +17,7 @@
     "contributes": {
         "commands": [{
             "command": "openhands-hello-world.helloWorld",
-            "title": "Hello World from OpenHands"
+            "title": "Hello World from Maestrist"
         }]
     }
 }

@@ -215,7 +215,7 @@ class JiraManager(Manager):
     async def _authenticate_user(
         self, payload: JiraWebhookPayload, workspace: JiraWorkspace
     ) -> tuple[JiraUser | None, UserAuth | None]:
-        """Authenticate the Jira user and get OpenHands auth."""
+        """Authenticate the Jira user and get Maestrist auth."""
         jira_user = await self.integration_store.get_active_user(
             payload.account_id, workspace.id
         )
@@ -242,7 +242,7 @@ class JiraManager(Manager):
 
         if not saas_user_auth:
             logger.warning(
-                '[Jira] Failed to get OpenHands auth',
+                '[Jira] Failed to get Maestrist auth',
                 extra={
                     'keycloak_user_id': jira_user.keycloak_user_id,
                     'user_email': payload.user_email,
@@ -251,7 +251,7 @@ class JiraManager(Manager):
             await self._send_error_from_payload(
                 payload,
                 workspace,
-                f'User {payload.user_email} is not authenticated with OpenHands.',
+                f'User {payload.user_email} is not authenticated with Maestrist.',
             )
             return None, None
 
@@ -305,14 +305,14 @@ class JiraManager(Manager):
                 '[Jira] Missing settings error',
                 extra={'issue_key': view.payload.issue_key, 'error': str(e)},
             )
-            msg_info = f'Please re-login into [OpenHands Cloud]({HOST_URL}) before starting a job.'
+            msg_info = f'Please re-login into [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
         except LLMAuthenticationError as e:
             logger.warning(
                 '[Jira] LLM authentication error',
                 extra={'issue_key': view.payload.issue_key, 'error': str(e)},
             )
-            msg_info = f'Please set a valid LLM API key in [OpenHands Cloud]({HOST_URL}) before starting a job.'
+            msg_info = f'Please set a valid LLM API key in [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
         except SessionExpiredError as e:
             logger.warning(

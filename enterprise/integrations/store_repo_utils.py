@@ -3,7 +3,7 @@ from storage.stored_repository import StoredRepository
 from storage.user_repo_map import UserRepositoryMap
 from storage.user_repo_map_store import UserRepositoryMapStore
 
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.integrations.service_types import Repository
 
@@ -37,7 +37,7 @@ async def store_repositories_in_db(repos: list[Repository], user_id: str) -> Non
         user_repos.append(user_repo_map)
 
     # Get config instance
-    config = OpenHandsConfig()
+    config = MaestristConfig()
 
     try:
         # Store repositories in the repos table

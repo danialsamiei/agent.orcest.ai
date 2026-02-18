@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -13,7 +13,7 @@ from abc import ABC, abstractmethod
 import httpx
 import socketio
 
-from openhands.core.config import OpenHandsConfig
+from openhands.core.config import MaestristConfig
 from openhands.core.config.llm_config import LLMConfig
 from openhands.core.logger import openhands_logger as logger
 from openhands.events.action import MessageAction
@@ -29,13 +29,13 @@ from openhands.utils.http_session import httpx_verify_option
 
 
 class ConversationManager(ABC):
-    """Abstract base class for managing conversations in OpenHands.
+    """Abstract base class for managing conversations in Maestrist.
 
     This class defines the interface for managing conversations, whether in standalone
     or clustered mode. It handles the lifecycle of conversations, including creation,
     attachment, detachment, and cleanup.
 
-    This is an extension point in OpenHands, that applications built on it can use to modify behavior via server configuration, without modifying its code.
+    This is an extension point in Maestrist, that applications built on it can use to modify behavior via server configuration, without modifying its code.
     Applications can provide their own
     implementation by:
     1. Creating a class that inherits from ConversationManager
@@ -55,7 +55,7 @@ class ConversationManager(ABC):
     """
 
     sio: socketio.AsyncServer
-    config: OpenHandsConfig
+    config: MaestristConfig
     file_store: FileStore
     conversation_store: ConversationStore
 
@@ -365,7 +365,7 @@ class ConversationManager(ABC):
     def get_instance(
         cls,
         sio: socketio.AsyncServer,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         file_store: FileStore,
         server_config: ServerConfig,
         monitoring_listener: MonitoringListener,

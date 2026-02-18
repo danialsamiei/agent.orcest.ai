@@ -185,10 +185,10 @@ class TestGetSessionExpiredMessage:
         assert 'login again' in result
 
     def test_message_with_username_contains_host_url(self):
-        """Test that the message contains the OpenHands Cloud URL."""
+        """Test that the message contains the Maestrist Cloud URL."""
         result = get_session_expired_message('testuser')
         assert HOST_URL in result
-        assert 'OpenHands Cloud' in result
+        assert 'Maestrist Cloud' in result
 
     def test_different_usernames(self):
         """Test that different usernames produce different messages."""
@@ -210,10 +210,10 @@ class TestGetSessionExpiredMessage:
         assert 'login again' in result
 
     def test_message_without_username_contains_host_url(self):
-        """Test that the message without username contains the OpenHands Cloud URL."""
+        """Test that the message without username contains the Maestrist Cloud URL."""
         result = get_session_expired_message()
         assert HOST_URL in result
-        assert 'OpenHands Cloud' in result
+        assert 'Maestrist Cloud' in result
 
     def test_message_without_username_does_not_contain_at_prefix(self):
         """Test that the message without username does not contain @ prefix."""

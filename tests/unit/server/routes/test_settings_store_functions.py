@@ -288,7 +288,7 @@ async def test_store_llm_settings_openhands_model_gets_default_url():
     assert result.llm_api_key.get_secret_value() == 'existing-api-key'
     # openhands models get the LiteLLM proxy URL
     expected_base_url = os.environ.get(
-        'LITE_LLM_API_URL', 'https://llm-proxy.app.all-hands.dev'
+        'LITE_LLM_API_URL', 'https://llm-proxy.app.orcest.ai'
     )
     assert result.llm_base_url == expected_base_url
 

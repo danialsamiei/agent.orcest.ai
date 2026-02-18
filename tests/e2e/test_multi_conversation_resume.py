@@ -22,8 +22,8 @@ from playwright.sync_api import Page, expect
 def test_multi_conversation_resume(page: Page):
     """
     Test resuming an older conversation and continuing it:
-    1. Navigate to OpenHands (assumes GitHub token is already configured)
-    2. Select the OpenHands repository
+    1. Navigate to Maestrist (assumes GitHub token is already configured)
+    2. Select the Maestrist repository
     3. Start a conversation and ask about a specific file
     4. Wait for agent response
     5. Navigate away from the conversation
@@ -34,8 +34,8 @@ def test_multi_conversation_resume(page: Page):
     # Create test-results directory if it doesn't exist
     os.makedirs('test-results', exist_ok=True)
 
-    # Navigate to the OpenHands application
-    print('Step 1: Navigating to OpenHands application...')
+    # Navigate to the Maestrist application
+    print('Step 1: Navigating to Maestrist application...')
     page.goto('http://localhost:12000')
     page.wait_for_load_state('networkidle', timeout=30000)
 
@@ -43,8 +43,8 @@ def test_multi_conversation_resume(page: Page):
     page.screenshot(path='test-results/multi_conv_01_initial_load.png')
     print('Screenshot saved: multi_conv_01_initial_load.png')
 
-    # Step 2: Select the OpenHands repository
-    print('Step 2: Selecting openhands-agent/OpenHands repository...')
+    # Step 2: Select the Maestrist repository
+    print('Step 2: Selecting openhands-agent/Maestrist repository...')
 
     # Wait for the home screen to load
     home_screen = page.locator('[data-testid="home-screen"]')
@@ -63,7 +63,7 @@ def test_multi_conversation_resume(page: Page):
     # Type the repository name
     try:
         page.keyboard.press('Control+a')  # Select all
-        page.keyboard.type('openhands-agent/OpenHands')
+        page.keyboard.type('openhands-agent/Maestrist')
         print('Used keyboard.type() for React Select component')
     except Exception as e:
         print(f'Keyboard input failed: {e}')
@@ -72,14 +72,14 @@ def test_multi_conversation_resume(page: Page):
 
     # Try to find and click the repository option
     option_selectors = [
-        '[data-testid="repo-dropdown"] [role="option"]:has-text("openhands-agent/OpenHands")',
-        '[data-testid="repo-dropdown"] [role="option"]:has-text("OpenHands")',
-        '[data-testid="repo-dropdown"] div[id*="option"]:has-text("openhands-agent/OpenHands")',
-        '[data-testid="repo-dropdown"] div[id*="option"]:has-text("OpenHands")',
-        '[role="option"]:has-text("openhands-agent/OpenHands")',
-        '[role="option"]:has-text("OpenHands")',
-        'div:has-text("openhands-agent/OpenHands"):not([id="aria-results"])',
-        'div:has-text("OpenHands"):not([id="aria-results"])',
+        '[data-testid="repo-dropdown"] [role="option"]:has-text("openhands-agent/Maestrist")',
+        '[data-testid="repo-dropdown"] [role="option"]:has-text("Maestrist")',
+        '[data-testid="repo-dropdown"] div[id*="option"]:has-text("openhands-agent/Maestrist")',
+        '[data-testid="repo-dropdown"] div[id*="option"]:has-text("Maestrist")',
+        '[role="option"]:has-text("openhands-agent/Maestrist")',
+        '[role="option"]:has-text("Maestrist")',
+        'div:has-text("openhands-agent/Maestrist"):not([id="aria-results"])',
+        'div:has-text("Maestrist"):not([id="aria-results"])',
     ]
 
     option_found = False

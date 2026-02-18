@@ -51,7 +51,7 @@ class LinearManager(Manager):
     async def authenticate_user(
         self, linear_user_id: str, workspace_id: int
     ) -> tuple[LinearUser | None, UserAuth | None]:
-        """Authenticate Linear user and get their OpenHands user auth."""
+        """Authenticate Linear user and get their Maestrist user auth."""
 
         # Find active Linear user by Linear user ID and workspace ID
         linear_user = await self.integration_store.get_active_user(
@@ -386,11 +386,11 @@ class LinearManager(Manager):
 
         except MissingSettingsError as e:
             logger.warning(f'[Linear] Missing settings error: {str(e)}')
-            msg_info = f'Please re-login into [OpenHands Cloud]({HOST_URL}) before starting a job.'
+            msg_info = f'Please re-login into [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
         except LLMAuthenticationError as e:
             logger.warning(f'[Linear] LLM authentication error: {str(e)}')
-            msg_info = f'Please set a valid LLM API key in [OpenHands Cloud]({HOST_URL}) before starting a job.'
+            msg_info = f'Please set a valid LLM API key in [Maestrist Cloud]({HOST_URL}) before starting a job.'
 
         except SessionExpiredError as e:
             logger.warning(f'[Linear] Session expired: {str(e)}')

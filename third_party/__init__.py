@@ -1,9 +1,9 @@
-"""Third-party runtime implementations for OpenHands.
+"""Third-party runtime implementations for Maestrist.
 
 This module contains runtime implementations provided by third-party vendors.
 These runtimes are optional and require additional dependencies to be installed.
 
-To use third-party runtimes, install OpenHands with the third_party_runtimes extra:
+To use third-party runtimes, install Maestrist with the third_party_runtimes extra:
     pip install openhands-ai[third_party_runtimes]
 
 Available third-party runtimes:

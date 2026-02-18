@@ -4,7 +4,7 @@
 
 ## Overview
 
-Model routing enables OpenHands to switch between different LLM models during a conversation. An example use case is routing between a primary (expensive, multimodal) model and a secondary (cheaper, text-only) model.
+Model routing enables Maestrist to switch between different LLM models during a conversation. An example use case is routing between a primary (expensive, multimodal) model and a secondary (cheaper, text-only) model.
 
 ## Available Routers
 

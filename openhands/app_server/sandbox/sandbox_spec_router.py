@@ -1,4 +1,4 @@
-"""Runtime Images router for OpenHands App Server."""
+"""Runtime Images router for Maestrist App Server."""
 
 from typing import Annotated
 

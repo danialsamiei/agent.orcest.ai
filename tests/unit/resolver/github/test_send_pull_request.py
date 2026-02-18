@@ -878,7 +878,7 @@ def test_process_single_pr_update(
         resolver_output.issue,
         'pr',
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
     mock_update_existing_pull_request.assert_called_once_with(
         issue=resolver_output.issue,
@@ -960,7 +960,7 @@ def test_process_single_issue(
         resolver_output.issue,
         'issue',
         'openhands',
-        'openhands@all-hands.dev',
+        'openhands@orcest.ai',
     )
     mock_send_pull_request.assert_called_once_with(
         issue=resolver_output.issue,
@@ -976,7 +976,7 @@ def test_process_single_issue(
         pr_title=None,
         base_domain='github.com',
         git_user_name='openhands',
-        git_user_email='openhands@all-hands.dev',
+        git_user_email='openhands@orcest.ai',
     )
 
 

@@ -1,4 +1,4 @@
-"""Utility functions for LLM metadata in OpenHands V1 conversations."""
+"""Utility functions for LLM metadata in Maestrist V1 conversations."""
 
 import os
 from typing import Any
@@ -31,7 +31,7 @@ def get_llm_metadata(
     conversation_id: UUID | str | None = None,
     user_id: str | None = None,
 ) -> dict[str, Any]:
-    """Generate LLM metadata for OpenHands V1 conversations.
+    """Generate LLM metadata for Maestrist V1 conversations.
 
     This metadata is passed to the LiteLLM proxy for tracing and analytics.
 

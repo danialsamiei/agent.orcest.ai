@@ -1,4 +1,4 @@
-"""Event router for OpenHands App Server."""
+"""Event router for Maestrist App Server."""
 
 from datetime import datetime
 from typing import Annotated

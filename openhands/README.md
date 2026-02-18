@@ -1,12 +1,12 @@
-# OpenHands Architecture
+# Maestrist Architecture
 
-This directory contains the core components of OpenHands.
+This directory contains the core components of Maestrist.
 
-For an overview of the system architecture, see the [architecture documentation](https://docs.openhands.dev/usage/architecture/backend) (v0 backend architecture).
+For an overview of the system architecture, see the [architecture documentation](https://orcest.ai/docs/maestrist/usage/architecture/backend) (v0 backend architecture).
 
 ## Classes
 
-The key classes in OpenHands are:
+The key classes in Maestrist are:
 
 * LLM: brokers all interactions with large language models. Works with any underlying completion model, thanks to LiteLLM.
 * Agent: responsible for looking at the current State, and producing an Action that moves one step closer toward the end-goal.
@@ -18,7 +18,7 @@ The key classes in OpenHands are:
       * Observation: represents information collected from the environment, e.g. file contents or command output
 * Runtime: responsible for performing Actions, and sending back Observations
     * Sandbox: the part of the runtime responsible for running commands, e.g. inside of Docker
-* Server: brokers OpenHands sessions over HTTP, e.g. to drive the frontend
+* Server: brokers Maestrist sessions over HTTP, e.g. to drive the frontend
     * Session: holds a single EventStream, a single AgentController, and a single Runtime. Generally represents a single task (but potentially including several user prompts)
     * ConversationManager: keeps a list of active sessions, and ensures requests are routed to the correct Session
 
@@ -36,7 +36,7 @@ while True:
 ```
 
 In reality, most of this is achieved through message passing, via the EventStream.
-The EventStream serves as the backbone for all communication in OpenHands.
+The EventStream serves as the backbone for all communication in Maestrist.
 
 ```mermaid
 flowchart LR
@@ -51,4 +51,4 @@ flowchart LR
 
 ## Runtime
 
-Please refer to the [documentation](https://docs.openhands.dev/usage/architecture/runtime) to learn more about `Runtime`.
+Please refer to the [documentation](https://orcest.ai/docs/maestrist/usage/architecture/runtime) to learn more about `Runtime`.

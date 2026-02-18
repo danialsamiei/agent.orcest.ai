@@ -31,7 +31,7 @@ export const DEFAULT_SETTINGS: Settings = {
     shttp_servers: [],
   },
   git_user_name: "openhands",
-  git_user_email: "openhands@all-hands.dev",
+  git_user_email: "openhands@orcest.ai",
   v1_enabled: false,
 };
 

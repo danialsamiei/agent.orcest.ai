@@ -1,7 +1,7 @@
 # IMPORTANT: LEGACY V0 CODE - Deprecated since version 1.0.0, scheduled for removal April 1, 2026
-# This file is part of the legacy (V0) implementation of OpenHands and will be removed soon as we complete the migration to V1.
-# OpenHands V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
-#   - V1 agentic core (SDK): https://github.com/OpenHands/software-agent-sdk
+# This file is part of the legacy (V0) implementation of Maestrist and will be removed soon as we complete the migration to V1.
+# Maestrist V1 uses the Software Agent SDK for the agentic core and runs a new application server. Please refer to:
+#   - V1 agentic core (SDK): https://github.com/orcest-ai/Maestrist
 #   - V1 application server (in this repo): openhands/app_server/
 # Unless you are working on deprecation, please avoid extending this legacy file and consult the V1 codepaths above.
 # Tag: Legacy-V0
@@ -18,7 +18,7 @@ from pathspec import PathSpec
 from pathspec.patterns import GitWildMatchPattern
 
 from openhands.core.config.llm_config import LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.exceptions import AgentRuntimeUnavailableError
 from openhands.core.logger import openhands_logger as logger
 from openhands.core.schema.agent import AgentState
@@ -69,7 +69,7 @@ class StandaloneConversationManager(ConversationManager):
     """
 
     sio: socketio.AsyncServer
-    config: OpenHandsConfig
+    config: MaestristConfig
     file_store: FileStore
     server_config: ServerConfig
     # Defaulting monitoring_listener for temp backward compatibility.
@@ -599,7 +599,7 @@ class StandaloneConversationManager(ConversationManager):
     def get_instance(
         cls,
         sio: socketio.AsyncServer,
-        config: OpenHandsConfig,
+        config: MaestristConfig,
         file_store: FileStore,
         server_config: ServerConfig,
         monitoring_listener: MonitoringListener | None,

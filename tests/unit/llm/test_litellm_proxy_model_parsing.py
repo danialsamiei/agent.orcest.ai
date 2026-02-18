@@ -162,7 +162,7 @@ if 'deprecated' not in sys.modules:
     deprecated_mod.deprecated = deprecated
     sys.modules['deprecated'] = deprecated_mod
 
-# Import OpenHands after stubbing optional deps
+# Import Maestrist after stubbing optional deps
 from openhands.core.config.llm_config import LLMConfig
 from openhands.llm.llm import LLM
 from openhands.llm.metrics import Metrics

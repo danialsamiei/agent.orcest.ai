@@ -17,7 +17,7 @@ from openhands.core.config.condenser_config import (
     StructuredSummaryCondenserConfig,
 )
 from openhands.core.config.llm_config import LLMConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.message import Message, TextContent
 from openhands.core.schema.action import ActionType
 from openhands.events.event import Event, EventSource
@@ -111,8 +111,8 @@ def mock_conversation_stats() -> ConversationStats:
 @pytest.fixture
 def mock_llm_registry(mock_llm, mock_conversation_stats) -> LLMRegistry:
     """Creates an actual LLMRegistry that returns real LLMs."""
-    # Create an actual LLMRegistry with a basic OpenHandsConfig
-    config = OpenHandsConfig()
+    # Create an actual LLMRegistry with a basic MaestristConfig
+    config = MaestristConfig()
     registry = LLMRegistry(config=config, agent_cls=None, retry_listener=None)
 
     return registry

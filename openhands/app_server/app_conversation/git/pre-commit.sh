@@ -1,5 +1,5 @@
 #!/bin/bash
-# This hook was installed by OpenHands
+# This hook was installed by Maestrist
 # It calls the pre-commit script in the .openhands directory
 
 if [ -x ".openhands/pre-commit.sh" ]; then

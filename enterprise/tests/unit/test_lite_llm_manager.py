@@ -1649,7 +1649,7 @@ class TestVerifyExistingKey:
 
     @pytest.mark.asyncio
     async def test_verify_existing_key_openhands_type_found(self):
-        """Test _verify_existing_key finds matching OpenHands key."""
+        """Test _verify_existing_key finds matching Maestrist key."""
         mock_keys = [
             {
                 'key_name': 'sk-test1234',
@@ -1707,7 +1707,7 @@ class TestVerifyExistingKey:
 
     @pytest.mark.asyncio
     async def test_verify_existing_key_by_alias_openhands_cloud(self):
-        """Test _verify_existing_key finds key by OpenHands Cloud alias."""
+        """Test _verify_existing_key finds key by Maestrist Cloud alias."""
         user_id = 'test-user-id'
         org_id = 'test-org'
         mock_keys = [

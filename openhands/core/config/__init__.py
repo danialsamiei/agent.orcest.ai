@@ -12,7 +12,7 @@ from openhands.core.config.extended_config import ExtendedConfig
 from openhands.core.config.llm_config import LLMConfig
 from openhands.core.config.mcp_config import MCPConfig
 from openhands.core.config.model_routing_config import ModelRoutingConfig
-from openhands.core.config.openhands_config import OpenHandsConfig
+from openhands.core.config.openhands_config import MaestristConfig
 from openhands.core.config.sandbox_config import SandboxConfig
 from openhands.core.config.security_config import SecurityConfig
 from openhands.core.config.utils import (
@@ -32,7 +32,7 @@ __all__ = [
     'OH_DEFAULT_AGENT',
     'OH_MAX_ITERATIONS',
     'AgentConfig',
-    'OpenHandsConfig',
+    'MaestristConfig',
     'MCPConfig',
     'LLMConfig',
     'SandboxConfig',

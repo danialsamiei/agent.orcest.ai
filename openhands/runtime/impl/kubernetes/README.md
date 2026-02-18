@@ -1,10 +1,10 @@
-# OpenHands Kubernetes Runtime
+# Maestrist Kubernetes Runtime
 
-This directory contains the Kubernetes runtime implementation for OpenHands, which allows the software to run on Kubernetes clusters for scalable and isolated execution environments.
+This directory contains the Kubernetes runtime implementation for Maestrist, which allows the software to run on Kubernetes clusters for scalable and isolated execution environments.
 
 ## Local Development with KIND
 
-For local development and testing, OpenHands provides a convenient setup using KIND (Kubernetes IN Docker) that creates a local Kubernetes cluster.
+For local development and testing, Maestrist provides a convenient setup using KIND (Kubernetes IN Docker) that creates a local Kubernetes cluster.
 
 ### Prerequisites
 
@@ -24,7 +24,7 @@ Before setting up the local Kubernetes environment, ensure you have the followin
 
 ### Configuration
 
-To use the Kubernetes runtime, you need to configure OpenHands properly. The configuration is done through a TOML configuration file.
+To use the Kubernetes runtime, you need to configure Maestrist properly. The configuration is done through a TOML configuration file.
 
 #### Required Configuration
 
@@ -40,12 +40,12 @@ Two configuration options are required to use the Kubernetes runtime:
 2. **Runtime Container Image**: Specify the container image to use for the runtime environment
    ```toml
    [sandbox]
-   runtime_container_image = "docker.openhands.dev/openhands/runtime:1.2-nikolaik"
+   runtime_container_image = "docker.orcest.ai/openhands/runtime:1.2-nikolaik"
    ```
 
 #### Additional Kubernetes Options
 
-OpenHands provides extensive configuration options for Kubernetes deployments under the `[kubernetes]` section. These options allow you to customize:
+Maestrist provides extensive configuration options for Kubernetes deployments under the `[kubernetes]` section. These options allow you to customize:
 
 - Kubernetes namespace
 - Persistent volume configuration
@@ -59,7 +59,7 @@ For a complete list of available Kubernetes configuration options, refer to the 
 
 ### Quick Start
 
-To set up and run OpenHands with the Kubernetes runtime locally:
+To set up and run Maestrist with the Kubernetes runtime locally:
 
 First build the application with
 
@@ -120,7 +120,7 @@ The local setup includes several Kubernetes resources:
 Once the environment is set up with `make kind`, the system will:
 
 1. Wait for all deployments to be ready
-2. Automatically start the OpenHands application using mirrord
+2. Automatically start the Maestrist application using mirrord
 3. Provide access to the application at http://127.0.0.1:3000/
 
 The mirrord integration allows you to develop locally while your application has access to the Kubernetes cluster resources, providing a seamless development experience that mirrors production behavior.
