@@ -5,8 +5,8 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, Field
 
-from openhands.agent_server.models import MaestristModel, SendMessageRequest
-from openhands.agent_server.utils import MaestristUUID, utc_now
+from openhands.agent_server.models import OpenHandsModel, SendMessageRequest
+from openhands.agent_server.utils import OpenHandsUUID, utc_now
 from openhands.app_server.event_callback.event_callback_models import (
     EventCallbackProcessor,
 )
@@ -67,7 +67,7 @@ class PluginSpec(PluginSource):
 class AppConversationInfo(BaseModel):
     """Conversation info which does not contain status."""
 
-    id: MaestristUUID = Field(default_factory=uuid4)
+    id: OpenHandsUUID = Field(default_factory=uuid4)
 
     created_by_user_id: str | None
     sandbox_id: str
@@ -82,8 +82,8 @@ class AppConversationInfo(BaseModel):
 
     metrics: MetricsSnapshot | None = None
 
-    parent_conversation_id: MaestristUUID | None = None
-    sub_conversation_ids: list[MaestristUUID] = Field(default_factory=list)
+    parent_conversation_id: OpenHandsUUID | None = None
+    sub_conversation_ids: list[OpenHandsUUID] = Field(default_factory=list)
 
     public: bool | None = None
 
@@ -131,7 +131,7 @@ class AppConversationPage(BaseModel):
     next_page_id: str | None = None
 
 
-class AppConversationStartRequest(MaestristModel):
+class AppConversationStartRequest(OpenHandsModel):
     """Start conversation request object.
 
     Although a user can go directly to the sandbox and start conversations, they
@@ -153,7 +153,7 @@ class AppConversationStartRequest(MaestristModel):
     title: str | None = None
     trigger: ConversationTrigger | None = None
     pr_number: list[int] = Field(default_factory=list)
-    parent_conversation_id: MaestristUUID | None = None
+    parent_conversation_id: OpenHandsUUID | None = None
     agent_type: AgentType = Field(default=AgentType.DEFAULT)
 
     public: bool | None = None
@@ -191,7 +191,7 @@ class AppConversationStartTaskSortOrder(Enum):
     UPDATED_AT_DESC = 'UPDATED_AT_DESC'
 
 
-class AppConversationStartTask(MaestristModel):
+class AppConversationStartTask(OpenHandsModel):
     """Object describing the start process for an app conversation.
 
     Because starting an app conversation can be slow (And can involve starting a sandbox),
@@ -199,11 +199,11 @@ class AppConversationStartTask(MaestristModel):
     is populated.
     """
 
-    id: MaestristUUID = Field(default_factory=uuid4)
+    id: OpenHandsUUID = Field(default_factory=uuid4)
     created_by_user_id: str | None
     status: AppConversationStartTaskStatus = AppConversationStartTaskStatus.WORKING
     detail: str | None = None
-    app_conversation_id: MaestristUUID | None = Field(
+    app_conversation_id: OpenHandsUUID | None = Field(
         default=None, description='The id of the app_conversation, if READY'
     )
     sandbox_id: str | None = Field(
@@ -217,7 +217,7 @@ class AppConversationStartTask(MaestristModel):
     updated_at: datetime = Field(default_factory=utc_now)
 
 
-class AppConversationStartTaskPage(MaestristModel):
+class AppConversationStartTaskPage(OpenHandsModel):
     items: list[AppConversationStartTask]
     next_page_id: str | None = None
 

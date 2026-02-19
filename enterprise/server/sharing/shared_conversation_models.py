@@ -11,7 +11,7 @@ from uuid import uuid4
 
 from pydantic import BaseModel, Field
 
-from openhands.agent_server.utils import MaestristUUID, utc_now
+from openhands.agent_server.utils import OpenHandsUUID, utc_now
 
 ProviderType = Any
 MetricsSnapshot = Any
@@ -21,7 +21,7 @@ ConversationTrigger = Any
 class SharedConversation(BaseModel):
     """Shared conversation info model with all fields from AppConversationInfo."""
 
-    id: MaestristUUID = Field(default_factory=uuid4)
+    id: OpenHandsUUID = Field(default_factory=uuid4)
 
     created_by_user_id: str | None
     sandbox_id: str
@@ -35,8 +35,8 @@ class SharedConversation(BaseModel):
 
     metrics: MetricsSnapshot | None = None
 
-    parent_conversation_id: MaestristUUID | None = None
-    sub_conversation_ids: list[MaestristUUID] = Field(default_factory=list)
+    parent_conversation_id: OpenHandsUUID | None = None
+    sub_conversation_ids: list[OpenHandsUUID] = Field(default_factory=list)
 
     created_at: datetime = Field(default_factory=utc_now)
     updated_at: datetime = Field(default_factory=utc_now)

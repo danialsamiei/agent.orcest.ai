@@ -54,7 +54,7 @@ from openhands.app_server.web_client.default_web_client_config_injector import (
 from openhands.app_server.web_client.web_client_config_injector import (
     WebClientConfigInjector,
 )
-from openhands.sdk.utils.models import MaestristModel
+from openhands.sdk.utils.models import OpenHandsModel
 from openhands.server.types import AppMode
 
 
@@ -95,7 +95,7 @@ def _get_default_lifespan():
     return OssAppLifespanService()
 
 
-class AppServerConfig(MaestristModel):
+class AppServerConfig(OpenHandsModel):
     persistence_dir: Path = Field(default_factory=get_default_persistence_dir)
     web_url: str | None = Field(
         default_factory=get_default_web_url,
