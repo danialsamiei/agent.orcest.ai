@@ -1,0 +1,108 @@
+# Maestrist Production Configuration for Orcest AI
+# Pre-configured to use RainyModel proxy for seamless LLM integration
+
+[core]
+# Base path for the workspace
+workspace_base = "/tmp/workspace"
+
+# Cache directory path
+cache_dir = "/tmp/cache"
+
+# File store path
+file_store_path = "/tmp/openhands"
+
+# File store type
+file_store = "local"
+
+# Enable the browser environment
+enable_browser = true
+
+# Maximum number of iterations
+max_iterations = 100
+
+# Runtime environment
+runtime = "local"
+
+# Name of the default agent
+default_agent = "CodeActAgent"
+
+# Maximum number of concurrent conversations per user
+max_concurrent_conversations = 3
+
+[llm]
+# RainyModel configuration for unified LLM routing
+# Routes through FREE -> INTERNAL -> PREMIUM tiers automatically
+model = "rainymodel/agent"
+base_url = "https://rm.orcest.ai/v1"
+api_key = "${LLM_API_KEY}"
+
+# Optimized settings for agent use
+temperature = 0.1
+max_output_tokens = 4096
+timeout = 120
+
+# Enable prompt caching for cost reduction
+caching_prompt = true
+
+# Disable vision for cost optimization (can be enabled if needed)
+disable_vision = false
+
+# Use native tool calling for better performance
+native_tool_calling = true
+
+[llm.gpt4o-mini]
+# Fallback model configuration
+model = "rainymodel/auto"
+base_url = "https://rm.orcest.ai/v1"
+api_key = "${LLM_API_KEY}"
+
+[agent]
+# Agent capabilities configuration
+enable_browsing = true
+enable_llm_editor = false
+enable_editor = true
+enable_jupyter = true
+enable_cmd = true
+enable_think = true
+enable_finish = true
+
+# Enable history truncation for long conversations
+enable_history_truncation = true
+
+# Disable condensation request for better performance
+enable_condensation_request = false
+
+[sandbox]
+# Sandbox timeout in seconds
+timeout = 120
+
+# Sandbox user ID
+user_id = 1000
+
+# Use host network for better connectivity
+use_host_network = false
+
+# Enable auto linting after editing
+enable_auto_lint = true
+
+# Keep runtime alive for better performance
+keep_runtime_alive = true
+
+# Delay before closing idle runtimes (5 minutes)
+close_delay = 300
+
+[security]
+# Enable confirmation mode for safety
+confirmation_mode = false
+
+# Use LLM-based security analyzer
+security_analyzer = "llm"
+
+# Enable security analyzer
+enable_security_analyzer = true
+
+[condenser]
+# Use recent events condenser to manage context
+type = "recent"
+keep_first = 1
+max_events = 50
