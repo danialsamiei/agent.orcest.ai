@@ -24,6 +24,7 @@ uv run -- uvicorn openhands.server.listen:app --host 0.0.0.0 --port $PORT
 | `SKIP_DEPENDENCY_CHECK` | `1` | رد شدن از بررسی وابستگی‌ها |
 | `WORKSPACE_BASE` | `/tmp/workspace` | مسیر workspace |
 | `OH_SECRET_KEY` | (Generate) | حفظ secrets بین restart |
+| `PYTHON_VERSION` | `3.12.12` | تضمین نصب Python سازگار با `>=3.12,<3.14` برای `uv sync` |
 
 ### 5. کلید API
 

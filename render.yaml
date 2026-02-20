@@ -8,6 +8,8 @@ services:
     startCommand: uv run -- uvicorn openhands.server.listen:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
       - key: RUNTIME
         value: cli
       - key: SKIP_DEPENDENCY_CHECK
