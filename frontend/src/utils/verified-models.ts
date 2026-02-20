@@ -8,6 +8,7 @@ export const VERIFIED_PROVIDERS = [
   "clarifai",
 ];
 export const VERIFIED_MODELS = [
+  "rainymodel",
   "claude-opus-4-5-20251101",
   "claude-sonnet-4-5-20250929",
   "gpt-5.2-codex",
@@ -50,6 +51,7 @@ export const VERIFIED_MISTRAL_MODELS = ["devstral-medium-2512"];
 // LiteLLM does not return the compatible Maestrist models with the provider, so we list them here to set them ourselves
 // (e.g., they return `claude-sonnet-4-20250514` instead of `openhands/claude-sonnet-4-20250514`)
 export const VERIFIED_OPENHANDS_MODELS = [
+  "rainymodel",
   "claude-opus-4-5-20251101",
   "claude-sonnet-4-5-20250929",
   "gpt-5.2-codex",
@@ -63,4 +65,4 @@ export const VERIFIED_OPENHANDS_MODELS = [
 ];
 
 // Default model for Maestrist provider
-export const DEFAULT_OPENHANDS_MODEL = "openhands/claude-opus-4-5-20251101";
+export const DEFAULT_OPENHANDS_MODEL = "openhands/rainymodel";
