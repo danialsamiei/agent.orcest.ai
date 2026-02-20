@@ -18,6 +18,7 @@ from openhands.server.middleware import (
     LocalhostCORSMiddleware,
     RateLimitMiddleware,
 )
+from openhands.server.sso_middleware import SSOMiddleware
 from openhands.server.static import SPAStaticFiles
 
 if os.getenv('SERVE_FRONTEND', 'true').lower() == 'true':
@@ -30,6 +31,7 @@ if os.getenv('SERVE_FRONTEND', 'true').lower() == 'true':
         '/', SPAStaticFiles(directory=build_dir, html=True), name='dist'
     )
 
+base_app.add_middleware(SSOMiddleware)
 base_app.add_middleware(LocalhostCORSMiddleware)
 base_app.add_middleware(CacheControlMiddleware)
 base_app.add_middleware(
