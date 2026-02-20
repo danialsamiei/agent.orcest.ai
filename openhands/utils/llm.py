@@ -112,6 +112,11 @@ def get_supported_llm_models(config: MaestristConfig) -> list[str]:
     # Add Maestrist provider models
     openhands_models = [
         'openhands/rainymodel',
+        'openhands/rainymodel/auto',
+        'openhands/rainymodel/chat',
+        'openhands/rainymodel/code',
+        'openhands/rainymodel/agent',
+        'openhands/rainymodel/document',
         'openhands/claude-opus-4-5-20251101',
         'openhands/claude-sonnet-4-5-20250929',
         'openhands/gpt-5.2-codex',

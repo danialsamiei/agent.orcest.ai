@@ -9,6 +9,11 @@ export const VERIFIED_PROVIDERS = [
 ];
 export const VERIFIED_MODELS = [
   "rainymodel",
+  "rainymodel/auto",
+  "rainymodel/chat",
+  "rainymodel/code",
+  "rainymodel/agent",
+  "rainymodel/document",
   "claude-opus-4-5-20251101",
   "claude-sonnet-4-5-20250929",
   "gpt-5.2-codex",
@@ -52,6 +57,11 @@ export const VERIFIED_MISTRAL_MODELS = ["devstral-medium-2512"];
 // (e.g., they return `claude-sonnet-4-20250514` instead of `openhands/claude-sonnet-4-20250514`)
 export const VERIFIED_OPENHANDS_MODELS = [
   "rainymodel",
+  "rainymodel/auto",
+  "rainymodel/chat",
+  "rainymodel/code",
+  "rainymodel/agent",
+  "rainymodel/document",
   "claude-opus-4-5-20251101",
   "claude-sonnet-4-5-20250929",
   "gpt-5.2-codex",
