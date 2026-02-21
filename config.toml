@@ -14,14 +14,14 @@ file_store_path = "/tmp/openhands"
 # File store type
 file_store = "local"
 
-# Enable the browser environment
-enable_browser = true
+# Disable browser (not available on Render native runtime)
+enable_browser = false
 
 # Maximum number of iterations
 max_iterations = 100
 
-# Runtime environment
-runtime = "local"
+# Runtime environment (cli = no tmux/Docker needed)
+runtime = "cli"
 
 # Name of the default agent
 default_agent = "CodeActAgent"
